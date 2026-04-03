@@ -139,9 +139,208 @@ const BlueprintTracking = () => (
     </ShowcaseCard>
 );
 
+// 4. Freight Forwarding Panel
+const FreightForwarding = () => (
+    <ShowcaseCard
+        title="Freight Forwarding 货代操作面板"
+        description="订舱管控 — 货代核心工作台，订舱单、箱型、船期、费用明细一屏管控"
+        tags={['industry:Logistics', '场景:订舱管控', '港口代码', '箱型', '船期', '报价对比']}
+    >
+        <div className="is-freight-scene">
+            <div className="is-freight-card">
+                <div className="is-freight-header">
+                    <span className="is-freight-logo">⚓ FreightOS</span>
+                    <span className="is-freight-status live">LIVE</span>
+                </div>
+                <div className="is-freight-booking">
+                    <div className="is-freight-route">
+                        <div className="is-freight-port"><span className="is-freight-code">CNSHA</span><span className="is-freight-city">上海</span></div>
+                        <div className="is-freight-arrow">→ 🚢 →</div>
+                        <div className="is-freight-port"><span className="is-freight-code">USLAX</span><span className="is-freight-city">洛杉矶</span></div>
+                    </div>
+                    <div className="is-freight-details">
+                        <div className="is-freight-detail"><span className="is-freight-dl">箱型</span><span className="is-freight-dv">40'HQ × 2</span></div>
+                        <div className="is-freight-detail"><span className="is-freight-dl">船期</span><span className="is-freight-dv">ETD 04/12</span></div>
+                        <div className="is-freight-detail"><span className="is-freight-dl">船公司</span><span className="is-freight-dv">COSCO</span></div>
+                        <div className="is-freight-detail"><span className="is-freight-dl">报价</span><span className="is-freight-dv highlight">$1,850/箱</span></div>
+                    </div>
+                </div>
+                <div className="is-freight-actions">
+                    <button className="is-freight-btn">Confirm Booking</button>
+                    <button className="is-freight-btn ghost">Compare Rates</button>
+                </div>
+            </div>
+        </div>
+    </ShowcaseCard>
+);
+
+// 5. Warehouse WMS
+const WarehouseWMS = () => (
+    <ShowcaseCard
+        title="Warehouse WMS 仓储管理系统"
+        description="仓库运营 — 库位热力图 + 库存水位 + 拣货任务，仓储全局可视化"
+        tags={['industry:Logistics', '场景:仓库运营', '库位热力图', '利用率', '拣货任务状态']}
+    >
+        <div className="is-wms-scene">
+            <div className="is-wms-card">
+                <div className="is-wms-header">
+                    <span className="is-wms-title">📦 Warehouse A3</span>
+                    <span className="is-wms-util">利用率 78%</span>
+                </div>
+                <div className="is-wms-grid">
+                    <div className="is-wms-bin hot">A1</div>
+                    <div className="is-wms-bin warm">A2</div>
+                    <div className="is-wms-bin hot">A3</div>
+                    <div className="is-wms-bin cool">B1</div>
+                    <div className="is-wms-bin empty">B2</div>
+                    <div className="is-wms-bin warm">B3</div>
+                    <div className="is-wms-bin cool">C1</div>
+                    <div className="is-wms-bin warm">C2</div>
+                    <div className="is-wms-bin hot">C3</div>
+                </div>
+                <div className="is-wms-legend">
+                    <span><i className="is-wms-dot hot" />高频</span>
+                    <span><i className="is-wms-dot warm" />中频</span>
+                    <span><i className="is-wms-dot cool" />低频</span>
+                    <span><i className="is-wms-dot empty" />空闲</span>
+                </div>
+                <div className="is-wms-tasks">
+                    <div className="is-wms-task"><span className="is-wms-task-id">#P-4421</span><span>拣货中</span><span className="is-wms-task-status picking">进行中</span></div>
+                    <div className="is-wms-task"><span className="is-wms-task-id">#P-4422</span><span>待上架</span><span className="is-wms-task-status pending">排队</span></div>
+                </div>
+            </div>
+        </div>
+    </ShowcaseCard>
+);
+
+// 6. Container Tracking
+const ContainerTracking = () => (
+    <ShowcaseCard
+        title="Container Tracking 集装箱追踪"
+        description="海运全程 — 多式联运全链路，海运+陆运+港口状态，实时 ETA 预测"
+        tags={['industry:Logistics', '场景:海运全程', '多式联运时间轴', '柜号', 'ETA 脉冲动画']}
+    >
+        <div className="is-container-scene">
+            <div className="is-container-card">
+                <div className="is-container-header">
+                    <span className="is-container-id">COSCU4821937</span>
+                    <span className="is-container-type">40'HQ</span>
+                </div>
+                <div className="is-container-timeline">
+                    <div className="is-ct-step done"><div className="is-ct-dot done" /><div className="is-ct-info"><span className="is-ct-label">装港 Loading</span><span className="is-ct-val">上海 CNSHA</span><span className="is-ct-date">03/28 ✓</span></div></div>
+                    <div className="is-ct-line done" />
+                    <div className="is-ct-step active"><div className="is-ct-dot active" /><div className="is-ct-info"><span className="is-ct-label">在途 In Transit</span><span className="is-ct-val">太平洋 🚢</span><span className="is-ct-date">预计 12 天</span></div></div>
+                    <div className="is-ct-line" />
+                    <div className="is-ct-step"><div className="is-ct-dot" /><div className="is-ct-info"><span className="is-ct-label">卸港 Discharge</span><span className="is-ct-val">洛杉矶 USLAX</span><span className="is-ct-date">ETA 04/09</span></div></div>
+                    <div className="is-ct-line" />
+                    <div className="is-ct-step"><div className="is-ct-dot" /><div className="is-ct-info"><span className="is-ct-label">提柜 Pickup</span><span className="is-ct-val">待安排</span><span className="is-ct-date">—</span></div></div>
+                </div>
+            </div>
+        </div>
+    </ShowcaseCard>
+);
+
+// 7. Fleet Management
+const FleetManagement = () => (
+    <ShowcaseCard
+        title="Fleet Management 车队调度面板"
+        description="陆运调度 — 实时 GPS + 路线优化 + 司机状态，末端运力全局调度"
+        tags={['industry:Logistics', '场景:陆运调度', 'GPS 地图', '车辆动画', '司机状态']}
+    >
+        <div className="is-fleet-scene">
+            <div className="is-fleet-card">
+                <div className="is-fleet-header">
+                    <span className="is-fleet-title">🚛 Fleet Control</span>
+                    <span className="is-fleet-count">12/15 在线</span>
+                </div>
+                <div className="is-fleet-map">
+                    <div className="is-fleet-map-grid" />
+                    <div className="is-fleet-truck t1">🚚</div>
+                    <div className="is-fleet-truck t2">🚚</div>
+                    <div className="is-fleet-truck t3">🚛</div>
+                </div>
+                <div className="is-fleet-list">
+                    <div className="is-fleet-row"><span className="is-fleet-plate">沪A·88321</span><span className="is-fleet-driver">张师傅</span><span className="is-fleet-st on">配送中</span></div>
+                    <div className="is-fleet-row"><span className="is-fleet-plate">沪B·66712</span><span className="is-fleet-driver">李师傅</span><span className="is-fleet-st idle">待命</span></div>
+                    <div className="is-fleet-row"><span className="is-fleet-plate">沪A·55903</span><span className="is-fleet-driver">王师傅</span><span className="is-fleet-st on">揽收中</span></div>
+                </div>
+            </div>
+        </div>
+    </ShowcaseCard>
+);
+
+// 8. Customs Declaration
+const CustomsDeclaration = () => (
+    <ShowcaseCard
+        title="Customs Declaration 报关清关面板"
+        description="通关流程 — 报关单据流 + HS 编码 + 审批状态，通关全流程数字化"
+        tags={['industry:Logistics', '场景:通关流程', 'HS 编码', '单据信息', '四步审批流']}
+    >
+        <div className="is-customs-scene">
+            <div className="is-customs-card">
+                <div className="is-customs-header">
+                    <span className="is-customs-title">🛃 通关工作台</span>
+                    <span className="is-customs-badge">海关直连</span>
+                </div>
+                <div className="is-customs-doc">
+                    <div className="is-customs-doc-row"><span className="is-customs-dl">报关单号</span><span className="is-customs-dv">2026SHEXP-00482</span></div>
+                    <div className="is-customs-doc-row"><span className="is-customs-dl">HS 编码</span><span className="is-customs-dv">8471.30.0100</span></div>
+                    <div className="is-customs-doc-row"><span className="is-customs-dl">品名</span><span className="is-customs-dv">便携式计算机</span></div>
+                    <div className="is-customs-doc-row"><span className="is-customs-dl">申报价值</span><span className="is-customs-dv">$24,800</span></div>
+                </div>
+                <div className="is-customs-steps">
+                    <div className="is-customs-step done">📄 单据就绪</div>
+                    <div className="is-customs-step done">🔍 预审通过</div>
+                    <div className="is-customs-step active">⏳ 海关审核</div>
+                    <div className="is-customs-step">✅ 放行</div>
+                </div>
+            </div>
+        </div>
+    </ShowcaseCard>
+);
+
+// 9. Last-Mile Delivery
+const LastMileDelivery = () => (
+    <ShowcaseCard
+        title="Last-Mile Delivery 末端配送追踪"
+        description="最后一公里 — 骑手实时位置 + 配送进度 + 客户通知，末端体验优化"
+        tags={['industry:Logistics', '场景:最后一公里', '进度条', '骑手距离', '短信通知']}
+    >
+        <div className="is-lastmile-scene">
+            <div className="is-lastmile-card">
+                <div className="is-lastmile-header">
+                    <span className="is-lastmile-title">📍 配送追踪</span>
+                    <span className="is-lastmile-eta">预计 14:30 送达</span>
+                </div>
+                <div className="is-lastmile-progress">
+                    <div className="is-lastmile-bar"><div className="is-lastmile-fill" /></div>
+                    <div className="is-lastmile-labels">
+                        <span className="done">已揽收</span>
+                        <span className="done">运输中</span>
+                        <span className="active">派送中</span>
+                        <span>已签收</span>
+                    </div>
+                </div>
+                <div className="is-lastmile-rider">
+                    <div className="is-lastmile-avatar">🏍️</div>
+                    <div className="is-lastmile-info">
+                        <span className="is-lastmile-name">快递员 小陈</span>
+                        <span className="is-lastmile-dist">距您 1.2km · 约 8 分钟</span>
+                    </div>
+                    <button className="is-lastmile-call">📞</button>
+                </div>
+                <div className="is-lastmile-notify">
+                    <span className="is-lastmile-notify-icon">🔔</span>
+                    <span>已向收件人发送短信通知</span>
+                </div>
+            </div>
+        </div>
+    </ShowcaseCard>
+);
+
 /* ── Finance & Crypto ── */
 
-// 4. FinTech Minimalist
+// 4-F. FinTech Minimalist
 const FinTechMinimalist = () => (
     <ShowcaseCard
         title="FinTech Minimalist 无国界极简金融风"
@@ -763,6 +962,12 @@ const industryDemos = [
     { industry: 'logistics', el: <HighDensityDashboard key="density" /> },
     { industry: 'logistics', el: <IndustrialConsole key="console" /> },
     { industry: 'logistics', el: <BlueprintTracking key="blueprint" /> },
+    { industry: 'logistics', el: <FreightForwarding key="freight" /> },
+    { industry: 'logistics', el: <WarehouseWMS key="wms" /> },
+    { industry: 'logistics', el: <ContainerTracking key="container" /> },
+    { industry: 'logistics', el: <FleetManagement key="fleet" /> },
+    { industry: 'logistics', el: <CustomsDeclaration key="customs" /> },
+    { industry: 'logistics', el: <LastMileDelivery key="lastmile" /> },
     { industry: 'finance', el: <FinTechMinimalist key="fintech" /> },
     { industry: 'finance', el: <PremiumMetallic key="premium" /> },
     { industry: 'finance', el: <Web3Iridescent key="web3" /> },
@@ -801,7 +1006,7 @@ const IndustryStyles = () => {
                 >
                     <span className="vs-hero-tag">B. Industry Expressive</span>
                     <h1 className="vs-hero-title is-title">Industry Styles</h1>
-                    <p className="vs-hero-subtitle">行业专属风 — 22 种垂直行业视觉体系</p>
+                    <p className="vs-hero-subtitle">行业专属风 — 28 种垂直行业视觉体系</p>
                 </motion.div>
                 <motion.div
                     className="vs-filters"

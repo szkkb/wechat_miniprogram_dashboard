@@ -416,6 +416,256 @@
 .is-saas-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 24px rgba(99,102,241,0.4); }
 
 /* ═══════════════════════════════════════════════════════
+   NEW LOGISTICS & INFRASTRUCTURE STYLES
+   ═══════════════════════════════════════════════════════ */
+
+/* ── 4. Freight Forwarding 货代操作面板 ── */
+.is-freight-scene {
+    width: 100%; min-height: 300px; display: flex; align-items: center; justify-content: center;
+    background: #0b1222;
+}
+.is-freight-card {
+    width: 340px; border-radius: 12px; overflow: hidden;
+    background: #111b2e; border: 1px solid rgba(255,255,255,0.06);
+}
+.is-freight-header {
+    padding: 0.7rem 1rem; display: flex; justify-content: space-between; align-items: center;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.is-freight-logo { font-weight: 700; font-size: 0.9rem; color: #e2e8f0; }
+.is-freight-status {
+    font-size: 0.6rem; padding: 0.15rem 0.5rem; border-radius: 20px; font-weight: 600;
+}
+.is-freight-status.live { background: rgba(34,197,94,0.15); color: #22c55e; }
+.is-freight-booking { padding: 1rem; }
+.is-freight-route {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 1rem; padding-bottom: 0.75rem;
+    border-bottom: 1px dashed rgba(255,255,255,0.08);
+}
+.is-freight-port { text-align: center; }
+.is-freight-code { display: block; font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; font-weight: 700; color: #38bdf8; }
+.is-freight-city { display: block; font-size: 0.7rem; color: #64748b; margin-top: 0.1rem; }
+.is-freight-arrow { font-size: 0.85rem; color: #475569; letter-spacing: 2px; }
+.is-freight-details { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+.is-freight-detail { display: flex; flex-direction: column; gap: 0.1rem; }
+.is-freight-dl { font-size: 0.6rem; color: #475569; }
+.is-freight-dv { font-size: 0.8rem; color: #cbd5e1; font-weight: 500; }
+.is-freight-dv.highlight { color: #fbbf24; font-weight: 700; }
+.is-freight-actions { padding: 0.6rem 1rem; display: flex; gap: 0.5rem; border-top: 1px solid rgba(255,255,255,0.06); }
+.is-freight-btn {
+    flex: 1; padding: 0.5rem; border-radius: 8px; border: none; cursor: pointer;
+    font-size: 0.75rem; font-weight: 600; transition: all 0.15s;
+    background: #38bdf8; color: #0c1a2e;
+}
+.is-freight-btn.ghost { background: transparent; border: 1px solid rgba(255,255,255,0.1); color: #94a3b8; }
+.is-freight-btn:hover { opacity: 0.9; }
+
+/* ── 5. Warehouse WMS 仓储管理 ── */
+.is-wms-scene {
+    width: 100%; min-height: 300px; display: flex; align-items: center; justify-content: center;
+    background: #0d1117;
+}
+.is-wms-card {
+    width: 320px; padding: 1rem; border-radius: 12px;
+    background: #161b22; border: 1px solid rgba(255,255,255,0.06);
+}
+.is-wms-header {
+    display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;
+}
+.is-wms-title { font-size: 0.9rem; font-weight: 600; color: #e6edf3; }
+.is-wms-util { font-size: 0.7rem; color: #f59e0b; font-weight: 600; }
+.is-wms-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; margin-bottom: 0.6rem;
+}
+.is-wms-bin {
+    height: 36px; border-radius: 6px; display: flex; align-items: center; justify-content: center;
+    font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; font-weight: 600; color: rgba(255,255,255,0.7);
+}
+.is-wms-bin.hot { background: rgba(239,68,68,0.25); border: 1px solid rgba(239,68,68,0.3); }
+.is-wms-bin.warm { background: rgba(245,158,11,0.2); border: 1px solid rgba(245,158,11,0.25); }
+.is-wms-bin.cool { background: rgba(59,130,246,0.15); border: 1px solid rgba(59,130,246,0.2); }
+.is-wms-bin.empty { background: rgba(255,255,255,0.03); border: 1px dashed rgba(255,255,255,0.08); color: rgba(255,255,255,0.3); }
+.is-wms-legend { display: flex; gap: 0.75rem; margin-bottom: 0.75rem; font-size: 0.6rem; color: #8b949e; }
+.is-wms-dot {
+    display: inline-block; width: 8px; height: 8px; border-radius: 2px; margin-right: 3px;
+}
+.is-wms-dot.hot { background: rgba(239,68,68,0.6); }
+.is-wms-dot.warm { background: rgba(245,158,11,0.5); }
+.is-wms-dot.cool { background: rgba(59,130,246,0.5); }
+.is-wms-dot.empty { background: rgba(255,255,255,0.1); }
+.is-wms-tasks { display: flex; flex-direction: column; gap: 4px; }
+.is-wms-task {
+    display: flex; align-items: center; gap: 0.5rem; padding: 0.4rem 0.5rem;
+    background: rgba(255,255,255,0.03); border-radius: 6px; font-size: 0.7rem; color: #8b949e;
+}
+.is-wms-task-id { font-family: 'JetBrains Mono', monospace; color: #58a6ff; font-weight: 600; }
+.is-wms-task-status { margin-left: auto; font-size: 0.6rem; padding: 0.1rem 0.4rem; border-radius: 4px; font-weight: 600; }
+.is-wms-task-status.picking { background: rgba(34,197,94,0.15); color: #22c55e; }
+.is-wms-task-status.pending { background: rgba(245,158,11,0.15); color: #f59e0b; }
+
+/* ── 6. Container Tracking 集装箱追踪 ── */
+.is-container-scene {
+    width: 100%; min-height: 300px; display: flex; align-items: center; justify-content: center;
+    background: #0a1628;
+}
+.is-container-card {
+    width: 320px; padding: 1.25rem; border-radius: 12px;
+    background: #0f1d32; border: 1px solid rgba(0,200,255,0.1);
+}
+.is-container-header {
+    display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;
+}
+.is-container-id {
+    font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 700; color: #38bdf8;
+}
+.is-container-type {
+    font-size: 0.6rem; padding: 0.15rem 0.5rem; border-radius: 4px;
+    background: rgba(56,189,248,0.1); color: #38bdf8; border: 1px solid rgba(56,189,248,0.2);
+    font-family: 'JetBrains Mono', monospace; font-weight: 600;
+}
+.is-container-timeline { display: flex; flex-direction: column; align-items: flex-start; }
+.is-ct-step { display: flex; align-items: flex-start; gap: 0.6rem; }
+.is-ct-dot {
+    width: 12px; height: 12px; border-radius: 50%; margin-top: 2px; flex-shrink: 0;
+    background: rgba(255,255,255,0.08); border: 2px solid rgba(255,255,255,0.15);
+}
+.is-ct-dot.done { background: #22c55e; border-color: #22c55e; box-shadow: 0 0 6px rgba(34,197,94,0.4); }
+.is-ct-dot.active { background: #38bdf8; border-color: #38bdf8; box-shadow: 0 0 8px rgba(56,189,248,0.4); animation: is-ct-pulse 2s infinite; }
+@keyframes is-ct-pulse { 0%,100%{box-shadow:0 0 6px rgba(56,189,248,0.4)} 50%{box-shadow:0 0 14px rgba(56,189,248,0.6)} }
+.is-ct-info { padding-bottom: 0.4rem; }
+.is-ct-label { display: block; font-size: 0.6rem; color: #475569; }
+.is-ct-val { display: block; font-size: 0.8rem; color: #cbd5e1; font-weight: 500; }
+.is-ct-date { display: block; font-size: 0.65rem; color: #64748b; font-family: 'JetBrains Mono', monospace; }
+.is-ct-line {
+    width: 2px; height: 16px; margin-left: 5px;
+    background: rgba(255,255,255,0.08);
+}
+.is-ct-line.done { background: #22c55e; }
+
+/* ── 7. Fleet Management 车队调度 ── */
+.is-fleet-scene {
+    width: 100%; min-height: 300px; display: flex; align-items: center; justify-content: center;
+    background: #0f1117;
+}
+.is-fleet-card {
+    width: 320px; border-radius: 12px; overflow: hidden;
+    background: #1a1d25; border: 1px solid rgba(255,255,255,0.06);
+}
+.is-fleet-header {
+    padding: 0.75rem 1rem; display: flex; justify-content: space-between; align-items: center;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.is-fleet-title { font-size: 0.9rem; font-weight: 600; color: #e2e8f0; }
+.is-fleet-count { font-size: 0.7rem; color: #22c55e; font-weight: 600; }
+.is-fleet-map {
+    height: 100px; position: relative; background: #12151c;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+.is-fleet-map-grid {
+    position: absolute; inset: 0;
+    background-image:
+        linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+    background-size: 20px 20px;
+}
+.is-fleet-truck { position: absolute; font-size: 1rem; }
+.is-fleet-truck.t1 { top: 25%; left: 20%; animation: is-fleet-move1 6s ease-in-out infinite alternate; }
+.is-fleet-truck.t2 { top: 55%; left: 60%; animation: is-fleet-move2 8s ease-in-out infinite alternate; }
+.is-fleet-truck.t3 { top: 40%; left: 40%; animation: is-fleet-move3 5s ease-in-out infinite alternate; }
+@keyframes is-fleet-move1 { 0%{transform:translate(0,0)} 100%{transform:translate(40px,-10px)} }
+@keyframes is-fleet-move2 { 0%{transform:translate(0,0)} 100%{transform:translate(-30px,15px)} }
+@keyframes is-fleet-move3 { 0%{transform:translate(0,0)} 100%{transform:translate(20px,10px)} }
+.is-fleet-list { padding: 0.5rem; display: flex; flex-direction: column; gap: 3px; }
+.is-fleet-row {
+    display: flex; align-items: center; gap: 0.5rem; padding: 0.4rem 0.5rem;
+    border-radius: 6px; font-size: 0.7rem; color: #94a3b8;
+    background: rgba(255,255,255,0.02);
+}
+.is-fleet-plate { font-family: 'JetBrains Mono', monospace; font-weight: 600; color: #e2e8f0; font-size: 0.7rem; }
+.is-fleet-driver { flex: 1; }
+.is-fleet-st { font-size: 0.6rem; padding: 0.1rem 0.4rem; border-radius: 4px; font-weight: 600; }
+.is-fleet-st.on { background: rgba(34,197,94,0.15); color: #22c55e; }
+.is-fleet-st.idle { background: rgba(245,158,11,0.15); color: #f59e0b; }
+
+/* ── 8. Customs Declaration 报关清关 ── */
+.is-customs-scene {
+    width: 100%; min-height: 300px; display: flex; align-items: center; justify-content: center;
+    background: #f8f9fb;
+}
+.is-customs-card {
+    width: 320px; padding: 1.25rem; border-radius: 14px;
+    background: #fff; border: 1px solid #e5e7eb;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+}
+.is-customs-header {
+    display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;
+}
+.is-customs-title { font-size: 0.95rem; font-weight: 700; color: #1f2937; }
+.is-customs-badge {
+    font-size: 0.6rem; padding: 0.2rem 0.5rem; border-radius: 6px; font-weight: 600;
+    background: #dbeafe; color: #1d4ed8;
+}
+.is-customs-doc {
+    display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1rem;
+    padding: 0.75rem; border-radius: 8px; background: #f9fafb; border: 1px solid #f3f4f6;
+}
+.is-customs-doc-row { display: flex; justify-content: space-between; font-size: 0.75rem; }
+.is-customs-dl { color: #6b7280; }
+.is-customs-dv { color: #111827; font-weight: 500; font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; }
+.is-customs-steps { display: flex; flex-direction: column; gap: 0.4rem; }
+.is-customs-step {
+    padding: 0.45rem 0.75rem; border-radius: 8px; font-size: 0.75rem;
+    background: #f3f4f6; color: #9ca3af; font-weight: 500;
+}
+.is-customs-step.done { background: #f0fdf4; color: #16a34a; }
+.is-customs-step.active { background: #eff6ff; color: #2563eb; border: 1px solid #bfdbfe; font-weight: 600; }
+
+/* ── 9. Last-Mile Delivery 末端配送 ── */
+.is-lastmile-scene {
+    width: 100%; min-height: 300px; display: flex; align-items: center; justify-content: center;
+    background: #fafafa;
+}
+.is-lastmile-card {
+    width: 320px; padding: 1.25rem; border-radius: 16px;
+    background: #fff; border: 1px solid #f0f0f0;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+}
+.is-lastmile-header {
+    display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;
+}
+.is-lastmile-title { font-size: 0.95rem; font-weight: 700; color: #1a1a1a; }
+.is-lastmile-eta { font-size: 0.7rem; color: #22c55e; font-weight: 600; }
+.is-lastmile-progress { margin-bottom: 1rem; }
+.is-lastmile-bar {
+    height: 4px; border-radius: 2px; background: #f0f0f0; margin-bottom: 0.4rem;
+    overflow: hidden;
+}
+.is-lastmile-fill { width: 75%; height: 100%; background: linear-gradient(90deg, #22c55e, #16a34a); border-radius: 2px; }
+.is-lastmile-labels { display: flex; justify-content: space-between; font-size: 0.6rem; color: #d4d4d4; }
+.is-lastmile-labels .done { color: #22c55e; font-weight: 600; }
+.is-lastmile-labels .active { color: #1a1a1a; font-weight: 700; }
+.is-lastmile-rider {
+    display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem;
+    border-radius: 12px; background: #f8f8f8; margin-bottom: 0.75rem;
+}
+.is-lastmile-avatar { font-size: 1.5rem; }
+.is-lastmile-info { flex: 1; }
+.is-lastmile-name { display: block; font-size: 0.85rem; font-weight: 600; color: #1a1a1a; }
+.is-lastmile-dist { display: block; font-size: 0.7rem; color: #999; }
+.is-lastmile-call {
+    width: 36px; height: 36px; border-radius: 50%; border: none; cursor: pointer;
+    background: #22c55e; font-size: 1rem; display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 2px 8px rgba(34,197,94,0.3); transition: transform 0.15s;
+}
+.is-lastmile-call:hover { transform: scale(1.1); }
+.is-lastmile-notify {
+    display: flex; align-items: center; gap: 0.4rem; padding: 0.5rem 0.75rem;
+    border-radius: 8px; background: #eff6ff; font-size: 0.7rem; color: #3b82f6;
+}
+.is-lastmile-notify-icon { font-size: 0.8rem; }
+
+/* ═══════════════════════════════════════════════════════
    2026 NEW ENTERPRISE STYLES
    ═══════════════════════════════════════════════════════ */
 
