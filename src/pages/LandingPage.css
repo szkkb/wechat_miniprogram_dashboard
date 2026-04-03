@@ -286,9 +286,17 @@
         font-size: 3.2rem;
     }
 
+    /* Reorder: header → cards → tools (cards before tools on mobile) */
     .landing-left-col {
         gap: 3rem;
+        display: contents; /* Break out children so order works on grid */
     }
+
+    .landing-header { order: 1; }
+    .landing-intro { order: 2; }
+    .landing-right-col { order: 3; }
+    .landing-tools { order: 4; }
+    .landing-footer { order: 5; }
 
     .fx-card {
         margin-left: 0;
