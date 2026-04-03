@@ -76,3 +76,26 @@ body {
   box-shadow: var(--glass-shadow);
   border-radius: 16px;
 }
+
+/* CopyableName component */
+.copyable-name {
+  display: inline-flex; align-items: center; gap: 0.4rem; position: relative;
+}
+.copyable-name-en { font-weight: 600; color: #f8fafc; }
+.copyable-name-zh { color: #94a3b8; font-weight: 400; }
+.copyable-name[data-size="small"] .copyable-name-en { font-size: 0.85rem; }
+.copyable-name[data-size="small"] .copyable-name-zh { font-size: 0.8rem; }
+.copyable-name-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 24px; height: 24px; border-radius: 6px; border: none;
+  background: rgba(255,255,255,0.05); color: #71717a; cursor: pointer;
+  transition: all 0.2s; flex-shrink: 0;
+}
+.copyable-name-btn:hover { background: rgba(255,255,255,0.1); color: #e2e8f0; }
+.copyable-name-btn.copied { background: rgba(34,197,94,0.15); color: #22c55e; }
+.copyable-toast {
+  position: absolute; top: -28px; right: 0; padding: 0.2rem 0.5rem;
+  background: #22c55e; color: #fff; font-size: 0.65rem; font-weight: 600;
+  border-radius: 6px; white-space: nowrap; pointer-events: none;
+  animation: fadeIn 0.2s ease-out;
+}

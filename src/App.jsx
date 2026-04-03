@@ -5,12 +5,14 @@ import WebFXLayout from './components/WebFXLayout/WebFXLayout';
 import LandingPage from './pages/LandingPage';
 
 // Web FX Pages
+import WebFXOverview from './pages/web-fx/WebFXOverview';
 import Explore from './pages/web-fx/Explore';
 import Gallery from './pages/web-fx/Gallery';
-import Collections from './pages/web-fx/Collections';
 import TypographyDemo from './pages/web-fx/TypographyDemo';
+import VisualStyles from './pages/web-fx/VisualStyles';
+import IndustryStyles from './pages/web-fx/IndustryStyles';
 
-// We will create these pages in subsequent steps
+// Mini Program — Legacy
 import ViewContainers from './pages/components/ViewContainers'
 import FormElements from './pages/components/FormElements'
 import BasicContent from './pages/components/BasicContent'
@@ -18,7 +20,7 @@ import SkylineFeatures from './pages/advanced/SkylineFeatures'
 import GesturesAndAnimation from './pages/advanced/GesturesAndAnimation'
 import InteractiveAPIs from './pages/hardware/InteractiveAPIs'
 
-// V2 Standard Components
+// Mini Program — V2
 import RichtextDemo from './pages/ui-components/RichtextDemo'
 import PremiumCardDemo from './pages/ui-components/PremiumCardDemo'
 import SwipeTabCardsDemo from './pages/ui-components/SwipeTabCardsDemo'
@@ -37,55 +39,52 @@ function App() {
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<LandingPage />} />
-                
+
                 {/* Mini Program Lab Domain */}
                 <Route path="/mini-program" element={<Layout />}>
                     <Route index element={<Navigate to="/mini-program/components/view-containers" replace />} />
 
-                    {/* 1. UI Components */}
+                    {/* UI Components */}
                     <Route path="ui-components/rich-text" element={<RichtextDemo />} />
                     <Route path="ui-components/premium-cards" element={<PremiumCardDemo />} />
                     <Route path="ui-components/swipe-tabs" element={<SwipeTabCardsDemo />} />
 
-                    {/* 2. Data Display & Feedback */}
+                    {/* Data & Navigation */}
                     <Route path="data-display/timeline" element={<TimelineDemo />} />
-
-                    {/* 3. Navigation & Layout */}
                     <Route path="navigation/navbar" element={<NavigationLayoutDemo />} />
                     <Route path="navigation/country-picker" element={<CountryPickerDemo />} />
 
-                    {/* 4. Advanced Form & Controls */}
+                    {/* Advanced Form */}
                     <Route path="advanced-form/captcha" element={<AdvancedFormDemo />} />
 
-                    {/* 5. Map & LBS */}
+                    {/* Media & Graphics */}
                     <Route path="map-lbs/markers" element={<MapLBSDemo />} />
-
-                    {/* 6. Canvas & Graphic */}
                     <Route path="canvas/poster" element={<CanvasGraphicDemo />} />
 
-                    {/* 7. Ecosystem & Permissions */}
+                    {/* Ecosystem */}
                     <Route path="ecosystem/login" element={<EcosystemPermissionsDemo />} />
                     <Route path="ecosystem/floating-cs" element={<FloatingCSDemo />} />
+                    <Route path="hardware/interactive-apis" element={<InteractiveAPIs />} />
 
-                    {/* 8. Performance & UX Patterns */}
+                    {/* Advanced Engine */}
                     <Route path="performance/pull-refresh" element={<PerformanceUXDemo />} />
+                    <Route path="advanced/skyline-features" element={<SkylineFeatures />} />
+                    <Route path="advanced/gestures-animation" element={<GesturesAndAnimation />} />
 
-                    {/* Legacy routes for now to keep them working until refactored */}
+                    {/* UI Components (original) */}
                     <Route path="components/view-containers" element={<ViewContainers />} />
                     <Route path="components/form-elements" element={<FormElements />} />
                     <Route path="components/basic-content" element={<BasicContent />} />
-                    <Route path="advanced/skyline-features" element={<SkylineFeatures />} />
-                    <Route path="advanced/gestures-animation" element={<GesturesAndAnimation />} />
-                    <Route path="hardware/interactive-apis" element={<InteractiveAPIs />} />
                 </Route>
-                
-                {/* Web FX Gallery Domain */}
+
+                {/* Web FX Dashboard Domain */}
                 <Route path="/web-fx" element={<WebFXLayout />}>
-                    <Route index element={<Navigate to="/web-fx/explore" replace />} />
+                    <Route index element={<WebFXOverview />} />
                     <Route path="explore" element={<Explore />} />
                     <Route path="gallery" element={<Gallery />} />
-                    <Route path="collections" element={<Collections />} />
                     <Route path="typography" element={<TypographyDemo />} />
+                    <Route path="visual-styles" element={<VisualStyles />} />
+                    <Route path="industry-styles" element={<IndustryStyles />} />
                 </Route>
             </Routes>
         </BrowserRouter>

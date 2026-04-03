@@ -1,0 +1,57 @@
+.wfx-overview { max-width: 900px; }
+
+.wfx-ov-hero { margin-bottom: 2rem; }
+.wfx-ov-title {
+    font-family: 'Outfit', sans-serif; font-size: 2.2rem; font-weight: 800;
+    margin: 0 0 0.5rem;
+    background: linear-gradient(135deg, #fff 0%, #a855f7 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+.wfx-ov-subtitle {
+    font-family: 'Outfit', sans-serif; font-weight: 300;
+    color: #94a3b8; font-size: 1rem; margin: 0;
+}
+
+.wfx-ov-section {
+    margin-bottom: 1.5rem; padding: 1.25rem; border-radius: 16px;
+    background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06);
+    transition: border-color 0.2s;
+}
+.wfx-ov-section:hover { border-color: rgba(255,255,255,0.1); }
+
+.wfx-ov-section-header {
+    display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;
+}
+.wfx-ov-section-icon {
+    width: 36px; height: 36px; border-radius: 10px; display: flex;
+    align-items: center; justify-content: center;
+    background: rgba(168,85,247,0.1); color: #a855f7;
+}
+.wfx-ov-section-title {
+    font-family: 'Outfit', sans-serif; font-size: 1.1rem; font-weight: 700;
+    color: #f8fafc; margin: 0;
+}
+.wfx-ov-section-sub { font-size: 0.75rem; color: #64748b; margin: 0.15rem 0 0; }
+.wfx-ov-section-link {
+    margin-left: auto; font-size: 0.75rem; color: #a855f7; text-decoration: none;
+    display: flex; align-items: center; gap: 0.3rem; white-space: nowrap;
+    transition: gap 0.2s;
+}
+.wfx-ov-section-link:hover { gap: 0.5rem; }
+
+.wfx-ov-items {
+    display: flex; flex-wrap: wrap; gap: 0.4rem;
+}
+.wfx-ov-item {
+    display: flex; align-items: center; gap: 0.3rem; padding: 0.35rem 0.7rem;
+    border-radius: 8px; background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.04); font-size: 0.75rem;
+    transition: all 0.15s;
+}
+.wfx-ov-item:hover { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.08); }
+.wfx-ov-item-zh { color: #cbd5e1; font-weight: 500; }
+.wfx-ov-item-en { color: #64748b; font-size: 0.65rem; }
+.wfx-ov-item.more {
+    color: #a855f7; text-decoration: none; border-color: rgba(168,85,247,0.2);
+    background: rgba(168,85,247,0.05); cursor: pointer;
+}

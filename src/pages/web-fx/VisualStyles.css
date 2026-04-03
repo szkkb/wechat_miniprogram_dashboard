@@ -1,0 +1,592 @@
+/* ═══════════════════════════════════════════════════════
+   Visual Styles Page — 13 Material & Aesthetic Demos
+   ═══════════════════════════════════════════════════════ */
+
+/* ── Page Layout ── */
+.vs-page { max-width: 1200px; }
+
+/* ── Hero Section ── */
+.vs-hero {
+    position: relative; padding: 2rem 0 2rem; margin-bottom: 1.5rem;
+    overflow: hidden; border-radius: 20px;
+    background: rgba(15, 10, 30, 0.4);
+    border: 1px solid rgba(255,255,255,0.04);
+}
+.vs-hero-glow {
+    position: absolute; border-radius: 50%; filter: blur(100px); opacity: 0.25;
+    pointer-events: none;
+}
+.vs-hero-glow.g1 {
+    width: 300px; height: 300px; background: #a855f7;
+    top: -100px; right: -60px;
+    animation: vs-hero-drift 12s ease-in-out infinite alternate;
+}
+.vs-hero-glow.g2 {
+    width: 200px; height: 200px; background: #06b6d4;
+    bottom: -80px; left: -40px;
+    animation: vs-hero-drift 10s ease-in-out infinite alternate-reverse;
+}
+@keyframes vs-hero-drift {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(20px, -15px); }
+}
+.vs-hero-content { position: relative; padding: 0 2rem; }
+.vs-hero-tag {
+    display: inline-block; font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem; letter-spacing: 2px; color: #a855f7;
+    padding: 0.3rem 0.8rem; border-radius: 20px; margin-bottom: 1rem;
+    background: rgba(168,85,247,0.1); border: 1px solid rgba(168,85,247,0.2);
+}
+.vs-hero-title {
+    font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 3rem;
+    margin: 0.75rem 0 0.5rem; line-height: 1.1;
+    background: linear-gradient(135deg, #fff 0%, #c084fc 60%, #a855f7 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+.vs-hero-subtitle {
+    font-family: 'Outfit', sans-serif; font-weight: 300;
+    color: #94a3b8; font-size: 1.1rem; margin: 0;
+}
+
+/* Industry hero accent override */
+.is-hero .vs-hero-glow.g1, .is-g1 { background: #0ea5e9; }
+.is-hero .vs-hero-glow.g2, .is-g2 { background: #22c55e; }
+.is-title {
+    background: linear-gradient(135deg, #fff 0%, #38bdf8 60%, #0ea5e9 100%) !important;
+    -webkit-background-clip: text !important; -webkit-text-fill-color: transparent !important;
+}
+.is-hero .vs-hero-tag {
+    color: #0ea5e9; background: rgba(14,165,233,0.1); border-color: rgba(14,165,233,0.2);
+}
+
+.vs-filters {
+    display: flex; gap: 0.5rem; flex-wrap: wrap;
+    position: relative; padding: 0 2rem; margin-top: 1.5rem;
+}
+.vs-filter {
+    padding: 0.5rem 1rem; border-radius: 10px; border: 1px solid rgba(255,255,255,0.08);
+    background: rgba(255,255,255,0.03); color: #cbd5e1; cursor: pointer;
+    font-family: 'Outfit', sans-serif; font-size: 0.85rem; font-weight: 500;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.vs-filter .zh {
+    color: #64748b; margin-left: 0.3rem; font-size: 0.75rem; font-weight: 300;
+}
+.vs-filter:hover { background: rgba(255,255,255,0.06); transform: translateY(-1px); }
+.vs-filter.active {
+    background: rgba(168,85,247,0.15); border-color: rgba(168,85,247,0.4);
+    color: #e2e8f0; box-shadow: 0 0 16px rgba(168,85,247,0.1);
+}
+.vs-filter.active .zh { color: #a855f7; }
+.vs-grid { display: flex; flex-direction: column; gap: 0; }
+
+/* ═══════════════════════════════════════════════════════
+   1. Glassmorphism 玻璃拟态
+   ═══════════════════════════════════════════════════════ */
+.vs-glass-scene {
+    width: 100%; min-height: 280px; position: relative;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden; background: #0c0c14;
+}
+.vs-glass-blob {
+    position: absolute; border-radius: 50%; filter: blur(60px); opacity: 0.7;
+    animation: vs-blob-float 8s ease-in-out infinite alternate;
+}
+.vs-glass-blob.b1 { width: 200px; height: 200px; background: #a855f7; top: -40px; left: -20px; }
+.vs-glass-blob.b2 { width: 180px; height: 180px; background: #06b6d4; bottom: -30px; right: -10px; animation-delay: -3s; }
+.vs-glass-blob.b3 { width: 120px; height: 120px; background: #f43f5e; top: 50%; left: 50%; animation-delay: -5s; }
+@keyframes vs-blob-float {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(30px, -20px) scale(1.1); }
+}
+.vs-glass-card {
+    position: relative; padding: 1.5rem; border-radius: 16px;
+    background: rgba(255,255,255,0.08); backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.15);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.1);
+}
+.vs-glass-card.back {
+    width: 200px; height: 120px; transform: translate(-20px, -10px) rotate(-6deg);
+    z-index: 1;
+}
+.vs-glass-card.front {
+    width: 220px; padding: 1.5rem; transform: translate(20px, 10px) rotate(3deg);
+    z-index: 2; display: flex; flex-direction: column; gap: 0.5rem;
+}
+.vs-glass-avatar {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: linear-gradient(135deg, #a855f7, #06b6d4);
+}
+.vs-glass-line {
+    height: 8px; border-radius: 4px; background: rgba(255,255,255,0.15); width: 80%;
+}
+.vs-glass-line.short { width: 50%; }
+.vs-glass-badge {
+    align-self: flex-start; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.7rem;
+    background: rgba(168,85,247,0.3); border: 1px solid rgba(168,85,247,0.4); color: #c084fc;
+}
+
+/* ═══════════════════════════════════════════════════════
+   2. Neumorphism 新拟物
+   ═══════════════════════════════════════════════════════ */
+.vs-neu-scene {
+    width: 100%; min-height: 280px; display: flex; align-items: center; justify-content: center;
+    background: #e0e5ec;
+}
+.vs-neu-card {
+    width: 260px; padding: 2rem; border-radius: 24px; display: flex; flex-direction: column;
+    align-items: center; gap: 1.2rem; background: #e0e5ec;
+    box-shadow: 8px 8px 16px #b8bec7, -8px -8px 16px #ffffff;
+}
+.vs-neu-circle {
+    width: 64px; height: 64px; border-radius: 50%; display: flex; align-items: center;
+    justify-content: center; font-size: 1.5rem; background: #e0e5ec;
+    box-shadow: 6px 6px 12px #b8bec7, -6px -6px 12px #ffffff;
+    color: #6366f1;
+}
+.vs-neu-track {
+    width: 100%; height: 8px; border-radius: 4px; background: #e0e5ec;
+    box-shadow: inset 3px 3px 6px #b8bec7, inset -3px -3px 6px #ffffff;
+    overflow: hidden;
+}
+.vs-neu-fill {
+    width: 65%; height: 100%; border-radius: 4px;
+    background: linear-gradient(90deg, #818cf8, #6366f1);
+}
+.vs-neu-btns { display: flex; gap: 1rem; }
+.vs-neu-btn {
+    width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center;
+    justify-content: center; border: none; cursor: pointer; font-size: 1rem;
+    background: #e0e5ec; color: #64748b;
+    box-shadow: 4px 4px 8px #b8bec7, -4px -4px 8px #ffffff;
+    transition: all 0.15s;
+}
+.vs-neu-btn:active, .vs-neu-btn.pressed {
+    box-shadow: inset 4px 4px 8px #b8bec7, inset -4px -4px 8px #ffffff;
+}
+.vs-neu-btn.main { width: 52px; height: 52px; color: #6366f1; font-size: 1.2rem; }
+
+/* ═══════════════════════════════════════════════════════
+   3. Claymorphism 泥塑 3D
+   ═══════════════════════════════════════════════════════ */
+.vs-clay-scene {
+    width: 100%; min-height: 280px; display: flex; align-items: center; justify-content: center;
+    gap: 1.5rem; background: #f0f0f5; flex-wrap: wrap; padding: 1rem;
+}
+.vs-clay-card {
+    width: 180px; padding: 1.5rem; border-radius: 24px; text-align: center;
+    background: linear-gradient(135deg, #e8dff5, #f5e6f0);
+    border: 1px solid rgba(255,255,255,0.6);
+    box-shadow: 0 12px 24px rgba(166,130,200,0.25), 0 4px 8px rgba(166,130,200,0.15),
+                inset 0 2px 0 rgba(255,255,255,0.8);
+}
+.vs-clay-card.accent {
+    background: linear-gradient(135deg, #d5f0e8, #dff5ed);
+    box-shadow: 0 12px 24px rgba(100,180,150,0.25), 0 4px 8px rgba(100,180,150,0.15),
+                inset 0 2px 0 rgba(255,255,255,0.8);
+}
+.vs-clay-icon { font-size: 2rem; margin-bottom: 0.5rem; }
+.vs-clay-title { font-weight: 700; color: #2d2d3f; font-size: 1rem; margin-bottom: 0.25rem; }
+.vs-clay-desc { color: #6b6b80; font-size: 0.8rem; margin-bottom: 1rem; }
+.vs-clay-btn {
+    display: inline-block; padding: 0.4rem 1rem; border-radius: 14px; font-size: 0.75rem;
+    font-weight: 600; color: #fff; cursor: pointer;
+    background: linear-gradient(135deg, #a78bfa, #7c3aed);
+    box-shadow: 0 4px 12px rgba(124,58,237,0.3);
+}
+.vs-clay-card.accent .vs-clay-btn {
+    background: linear-gradient(135deg, #34d399, #059669);
+    box-shadow: 0 4px 12px rgba(5,150,105,0.3);
+}
+
+/* ═══════════════════════════════════════════════════════
+   4. Liquid Metal 液态金属
+   ═══════════════════════════════════════════════════════ */
+.vs-metal-scene {
+    width: 100%; min-height: 280px; display: flex; align-items: center; justify-content: center;
+    background: #0a0a0f;
+}
+.vs-metal-card {
+    width: 280px; height: 160px; border-radius: 20px; position: relative; overflow: hidden;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    background: linear-gradient(135deg, #1a1a2e, #2d2d44, #1a1a2e);
+    border: 1px solid rgba(255,255,255,0.1);
+}
+.vs-metal-shine {
+    position: absolute; inset: 0;
+    background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%),
+        rgba(255,255,255,0.3) 0%, rgba(200,200,220,0.1) 30%, transparent 60%);
+    transition: background 0.1s;
+    pointer-events: none;
+}
+.vs-metal-label {
+    font-size: 0.7rem; letter-spacing: 4px; color: rgba(255,255,255,0.5);
+    margin-bottom: 0.5rem; position: relative;
+}
+.vs-metal-value {
+    font-size: 3rem; font-weight: 200; position: relative;
+    background: linear-gradient(180deg, #fff 0%, #888 40%, #fff 50%, #666 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+.vs-metal-sub {
+    font-size: 0.75rem; color: rgba(255,255,255,0.3); position: relative; margin-top: 0.25rem;
+}
+
+/* ═══════════════════════════════════════════════════════
+   5. Holographic 全息
+   ═══════════════════════════════════════════════════════ */
+.vs-holo-scene {
+    width: 100%; min-height: 280px; display: flex; align-items: center; justify-content: center;
+    background: #0f0f1a; perspective: 1000px;
+}
+.vs-holo-card {
+    width: 320px; height: 190px; border-radius: 16px; position: relative; overflow: hidden;
+    background: linear-gradient(135deg, #1a1a3e, #2a1a4e);
+    border: 1px solid rgba(255,255,255,0.15);
+    transition: transform 0.15s ease-out;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+.vs-holo-foil {
+    position: absolute; inset: 0;
+    background: linear-gradient(
+        135deg,
+        rgba(255,0,128,0.15) 0%, rgba(0,255,255,0.15) 25%,
+        rgba(255,255,0,0.15) 50%, rgba(0,128,255,0.15) 75%,
+        rgba(255,0,255,0.15) 100%
+    );
+    background-size: 200% 200%;
+    animation: vs-holo-shift 4s ease-in-out infinite;
+    mix-blend-mode: screen;
+}
+@keyframes vs-holo-shift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+.vs-holo-content {
+    position: relative; padding: 1.5rem; height: 100%; display: flex;
+    flex-direction: column; justify-content: space-between;
+}
+.vs-holo-chip {
+    width: 36px; height: 28px; border-radius: 6px;
+    background: linear-gradient(135deg, #c0a040, #f0d060, #c0a040);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+.vs-holo-number {
+    font-size: 1.1rem; letter-spacing: 2px; color: rgba(255,255,255,0.8);
+    font-family: 'Courier New', monospace;
+}
+.vs-holo-name {
+    font-size: 0.8rem; letter-spacing: 3px; color: rgba(255,255,255,0.5);
+}
+
+/* ═══════════════════════════════════════════════════════
+   6. Dark Mode 极夜暗黑
+   ═══════════════════════════════════════════════════════ */
+.vs-dark-scene {
+    width: 100%; min-height: 280px; display: flex; align-items: center; justify-content: center;
+    background: #000;
+}
+.vs-dark-panel {
+    width: 340px; border-radius: 12px; overflow: hidden;
+    background: #0a0a0a; border: 1px solid rgba(255,255,255,0.06);
+}
+.vs-dark-dots {
+    padding: 0.75rem 1rem; display: flex; gap: 6px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+.vs-dark-dots span { width: 10px; height: 10px; border-radius: 50%; }
+.vs-dark-dots .r { background: #ff5f57; }
+.vs-dark-dots .y { background: #ffbd2e; }
+.vs-dark-dots .g { background: #28c840; }
+.vs-dark-body { display: flex; min-height: 160px; }
+.vs-dark-side {
+    width: 60px; padding: 0.75rem 0.5rem; display: flex; flex-direction: column; gap: 6px;
+    border-right: 1px solid rgba(255,255,255,0.04);
+}
+.vs-dark-item {
+    height: 8px; border-radius: 4px; background: rgba(255,255,255,0.06);
+}
+.vs-dark-item.active {
+    background: rgba(168,85,247,0.4);
+    box-shadow: 0 0 8px rgba(168,85,247,0.3);
+}
+.vs-dark-main { flex: 1; padding: 1rem; display: flex; flex-direction: column; gap: 0.5rem; }
+.vs-dark-line {
+    height: 6px; border-radius: 3px; background: rgba(255,255,255,0.06);
+}
+.vs-dark-line.w80 { width: 80%; }
+.vs-dark-line.w60 { width: 60%; }
+.vs-dark-cards { display: flex; gap: 0.5rem; margin-top: 0.5rem; }
+.vs-dark-mini {
+    flex: 1; height: 50px; border-radius: 8px;
+    background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.04);
+}
+
+/* ═══════════════════════════════════════════════════════
+   7. Dopamine UI 多巴胺
+   ═══════════════════════════════════════════════════════ */
+.vs-dopa-scene {
+    width: 100%; min-height: 280px; display: flex; align-items: center; justify-content: center;
+    gap: 1rem; background: #fffbf0; flex-wrap: wrap; padding: 1rem;
+}
+.vs-dopa-card {
+    width: 120px; padding: 1.2rem; border-radius: 20px; text-align: center;
+    transition: transform 0.2s;
+}
+.vs-dopa-card:hover { transform: translateY(-4px) scale(1.05); }
+.vs-dopa-card span { font-size: 2rem; display: block; margin-bottom: 0.5rem; }
+.vs-dopa-card p { margin: 0; font-weight: 700; font-size: 0.85rem; }
+.vs-dopa-card.c1 { background: #ff6b9d; color: #fff; box-shadow: 0 8px 24px rgba(255,107,157,0.4); }
+.vs-dopa-card.c2 { background: #ffd93d; color: #333; box-shadow: 0 8px 24px rgba(255,217,61,0.4); }
+.vs-dopa-card.c3 { background: #6bcbff; color: #fff; box-shadow: 0 8px 24px rgba(107,203,255,0.4); }
+.vs-dopa-card.c4 { background: #44d7a8; color: #fff; box-shadow: 0 8px 24px rgba(68,215,168,0.4); }
+
+/* ═══════════════════════════════════════════════════════
+   8. Neon / Cyberpunk 赛博朋克
+   ═══════════════════════════════════════════════════════ */
+.vs-neon-scene {
+    width: 100%; min-height: 280px; display: flex; align-items: center; justify-content: center;
+    background: #050510; position: relative; overflow: hidden; flex-direction: column; gap: 1rem;
+}
+.vs-neon-scanlines {
+    position: absolute; inset: 0; pointer-events: none;
+    background: repeating-linear-gradient(0deg, transparent 0px, transparent 2px, rgba(255,255,255,0.02) 2px, rgba(255,255,255,0.02) 4px);
+}
+.vs-neon-card {
+    width: 280px; padding: 1.5rem; border-radius: 4px; position: relative;
+    background: rgba(10,10,30,0.8);
+    border: 1px solid rgba(0,255,255,0.3);
+    box-shadow: 0 0 15px rgba(0,255,255,0.1), inset 0 0 15px rgba(0,255,255,0.05);
+}
+.vs-neon-title {
+    font-family: 'Courier New', monospace; font-size: 0.9rem; letter-spacing: 2px;
+    color: #0ff; text-shadow: 0 0 10px rgba(0,255,255,0.5);
+    margin-bottom: 0.75rem;
+}
+.vs-neon-divider {
+    height: 1px; margin-bottom: 0.75rem;
+    background: linear-gradient(90deg, transparent, rgba(0,255,255,0.4), transparent);
+}
+.vs-neon-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0.3rem 0; font-family: 'Courier New', monospace; font-size: 0.8rem;
+}
+.vs-neon-row .label { color: rgba(255,255,255,0.4); letter-spacing: 1px; }
+.vs-neon-row .val { font-weight: 700; }
+.vs-neon-row .val.cyan { color: #0ff; text-shadow: 0 0 8px rgba(0,255,255,0.5); }
+.vs-neon-row .val.magenta { color: #f0f; text-shadow: 0 0 8px rgba(255,0,255,0.5); }
+.vs-neon-row .val.green { color: #0f0; text-shadow: 0 0 8px rgba(0,255,0,0.5); }
+.vs-neon-bar {
+    margin-top: 0.75rem; height: 4px; border-radius: 2px;
+    background: rgba(255,255,255,0.05); overflow: hidden;
+}
+.vs-neon-bar-fill {
+    width: 70%; height: 100%;
+    background: linear-gradient(90deg, #0ff, #f0f);
+    box-shadow: 0 0 10px rgba(0,255,255,0.5);
+    animation: vs-neon-pulse 2s ease-in-out infinite;
+}
+@keyframes vs-neon-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
+}
+.vs-neon-sign {
+    font-size: 2rem; font-weight: 900; letter-spacing: 8px; position: relative;
+    color: #f0f;
+    text-shadow: 0 0 10px #f0f, 0 0 20px #f0f, 0 0 40px rgba(255,0,255,0.5);
+    animation: vs-neon-flicker 3s ease-in-out infinite;
+}
+@keyframes vs-neon-flicker {
+    0%, 100% { opacity: 1; }
+    92% { opacity: 1; }
+    93% { opacity: 0.3; }
+    94% { opacity: 1; }
+    96% { opacity: 0.5; }
+    97% { opacity: 1; }
+}
+
+/* ═══════════════════════════════════════════════════════
+   9. Pastel / Macaron 马卡龙
+   ═══════════════════════════════════════════════════════ */
+.vs-pastel-scene {
+    width: 100%; min-height: 280px; display: flex; align-items: center; justify-content: center;
+    gap: 1rem; background: #faf8f5; flex-wrap: wrap; padding: 1rem;
+}
+.vs-pastel-card {
+    width: 140px; padding: 1.5rem 1rem; border-radius: 20px; text-align: center;
+    transition: transform 0.3s;
+}
+.vs-pastel-card:hover { transform: translateY(-4px); }
+.vs-pastel-card.pink { background: #fce4ec; }
+.vs-pastel-card.mint { background: #e0f2f1; }
+.vs-pastel-card.lavender { background: #ede7f6; }
+.vs-pastel-ic {
+    width: 48px; height: 48px; border-radius: 50%; margin: 0 auto 0.75rem; font-size: 1.5rem;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(255,255,255,0.7);
+}
+.vs-pastel-card .t { margin: 0 0 0.25rem; font-weight: 600; font-size: 0.9rem; color: #444; }
+.vs-pastel-card .s { margin: 0; font-size: 0.75rem; color: #999; }
+
+/* ═══════════════════════════════════════════════════════
+   10. Flat 2.0 扁平 2.0
+   ═══════════════════════════════════════════════════════ */
+.vs-flat-scene {
+    width: 100%; min-height: 280px; display: flex; align-items: center; justify-content: center;
+    background: #f5f5f5;
+}
+.vs-flat-card {
+    width: 320px; padding: 1.5rem; border-radius: 12px; background: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.04);
+}
+.vs-flat-header { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.25rem; }
+.vs-flat-av {
+    width: 40px; height: 40px; border-radius: 10px;
+    background: linear-gradient(135deg, #3b82f6, #6366f1);
+}
+.vs-flat-name { font-weight: 600; font-size: 1rem; color: #1e293b; }
+.vs-flat-sub { font-size: 0.8rem; color: #94a3b8; }
+.vs-flat-metrics { display: flex; gap: 0.75rem; margin-bottom: 1.25rem; }
+.vs-flat-m {
+    flex: 1; padding: 0.75rem; border-radius: 10px; text-align: center;
+}
+.vs-flat-m.blue { background: #eff6ff; }
+.vs-flat-m.green { background: #f0fdf4; }
+.vs-flat-m.orange { background: #fff7ed; }
+.vs-flat-m .v { font-size: 1.1rem; font-weight: 700; color: #1e293b; }
+.vs-flat-m .l { font-size: 0.7rem; color: #94a3b8; margin-top: 0.15rem; }
+.vs-flat-m.blue .v { color: #3b82f6; }
+.vs-flat-m.green .v { color: #22c55e; }
+.vs-flat-m.orange .v { color: #f97316; }
+.vs-flat-btn {
+    width: 100%; padding: 0.6rem; border: none; border-radius: 8px; cursor: pointer;
+    background: #3b82f6; color: #fff; font-weight: 600; font-size: 0.85rem;
+    box-shadow: 0 2px 4px rgba(59,130,246,0.3);
+    transition: box-shadow 0.2s;
+}
+.vs-flat-btn:hover { box-shadow: 0 4px 12px rgba(59,130,246,0.4); }
+
+/* ═══════════════════════════════════════════════════════
+   11. Neo-Brutalism 新野蛮主义
+   ═══════════════════════════════════════════════════════ */
+.vs-brutal-scene {
+    width: 100%; min-height: 280px; display: flex; align-items: center; justify-content: center;
+    gap: 1.5rem; background: #fefefe; flex-wrap: wrap; padding: 1rem;
+}
+.vs-brutal-card {
+    width: 180px; padding: 1.5rem; border-radius: 4px;
+    border: 3px solid #000; position: relative;
+}
+.vs-brutal-card.yellow {
+    background: #ffdd00;
+    box-shadow: 6px 6px 0 #000;
+}
+.vs-brutal-card.pink {
+    background: #ff6b9d;
+    box-shadow: 6px 6px 0 #000;
+}
+.vs-brutal-h {
+    font-size: 1.4rem; font-weight: 900; color: #000; line-height: 1.1;
+    margin-bottom: 0.5rem;
+}
+.vs-brutal-card p { margin: 0 0 1rem; font-size: 0.8rem; color: #333; }
+.vs-brutal-tag {
+    display: inline-block; padding: 0.2rem 0.6rem; border: 2px solid #000;
+    font-size: 0.7rem; font-weight: 800; margin-bottom: 0.5rem;
+    background: #fff;
+}
+.vs-brutal-btn {
+    display: inline-block; padding: 0.5rem 1rem; border: 2px solid #000;
+    font-weight: 800; font-size: 0.75rem; cursor: pointer;
+    background: #fff; color: #000;
+    box-shadow: 3px 3px 0 #000;
+    transition: all 0.1s;
+}
+.vs-brutal-btn:hover { transform: translate(2px, 2px); box-shadow: 1px 1px 0 #000; }
+.vs-brutal-btn.dark { background: #000; color: #fff; }
+
+/* ═══════════════════════════════════════════════════════
+   12. Wireframe 线框蓝图
+   ═══════════════════════════════════════════════════════ */
+.vs-wire-scene {
+    width: 100%; min-height: 280px; display: flex; align-items: center; justify-content: center;
+    background: #0a1628; position: relative; overflow: hidden; flex-direction: column;
+    padding: 1.5rem;
+}
+.vs-wire-grid {
+    position: absolute; inset: 0;
+    background-image:
+        linear-gradient(rgba(0,200,255,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,200,255,0.06) 1px, transparent 1px);
+    background-size: 20px 20px;
+}
+.vs-wire-layout {
+    position: relative; width: 300px; display: flex; flex-direction: column; gap: 6px;
+}
+.vs-wire-box {
+    border: 1px dashed rgba(0,200,255,0.4); border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Courier New', monospace; font-size: 0.7rem; color: rgba(0,200,255,0.6);
+    letter-spacing: 1px;
+}
+.vs-wire-box.header { height: 32px; }
+.vs-wire-row { display: flex; gap: 6px; }
+.vs-wire-box.nav { width: 60px; height: 100px; }
+.vs-wire-box.content {
+    flex: 1; height: 100px; flex-direction: column; gap: 6px; padding: 0.75rem;
+    align-items: flex-start;
+}
+.vs-wire-lines { display: flex; flex-direction: column; gap: 4px; width: 100%; margin-top: 0.5rem; }
+.vs-wire-lines div {
+    height: 4px; border-radius: 2px; background: rgba(0,200,255,0.1); width: 80%;
+}
+.vs-wire-lines .short { width: 50%; }
+.vs-wire-box.footer { height: 24px; font-size: 0.6rem; }
+.vs-wire-dim {
+    position: relative; margin-top: 0.75rem; font-family: 'Courier New', monospace;
+    font-size: 0.7rem; color: rgba(0,200,255,0.4); letter-spacing: 2px;
+}
+
+/* ═══════════════════════════════════════════════════════
+   13. Bauhaus / Swiss 包豪斯
+   ═══════════════════════════════════════════════════════ */
+.vs-bauhaus-scene {
+    width: 100%; min-height: 280px; display: flex; align-items: center; justify-content: center;
+    background: #f5f0e8;
+}
+.vs-bauhaus-grid {
+    display: grid; grid-template-columns: repeat(3, 100px); grid-template-rows: repeat(2, 100px);
+    gap: 4px;
+}
+.vs-bauhaus-cell {
+    display: flex; align-items: center; justify-content: center; position: relative;
+}
+.vs-bauhaus-cell.red { background: #e53935; }
+.vs-bauhaus-cell.yellow { background: #fdd835; }
+.vs-bauhaus-cell.blue { background: #1e88e5; }
+.vs-bauhaus-cell.black { background: #212121; }
+.vs-bauhaus-cell.title-cell { background: #f5f0e8; }
+.vs-bauhaus-cell.sub-cell { background: #f5f0e8; }
+.vs-bauhaus-cell.title-cell span {
+    font-size: 0.85rem; font-weight: 900; line-height: 1.2; color: #212121;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+.vs-bauhaus-cell.sub-cell span {
+    font-size: 0.55rem; letter-spacing: 1px; color: #888;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+.vs-bauhaus-cell.black span {
+    font-size: 2rem; font-weight: 900; color: #fff;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+.vs-bauhaus-circle {
+    width: 60px; height: 60px; border-radius: 50%; background: rgba(255,255,255,0.3);
+}
+.vs-bauhaus-triangle {
+    width: 0; height: 0;
+    border-left: 30px solid transparent; border-right: 30px solid transparent;
+    border-bottom: 52px solid rgba(0,0,0,0.2);
+}
+.vs-bauhaus-square {
+    width: 50px; height: 50px; background: rgba(255,255,255,0.3);
+}

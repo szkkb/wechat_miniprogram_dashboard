@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Code, Settings, ExternalLink, RefreshCw } from 'lucide-react';
+import CopyableName from '../Common/CopyableName';
 import './ShowcaseCard.css';
 
 const ShowcaseCard = ({
@@ -17,7 +18,16 @@ const ShowcaseCard = ({
         <div className="showcase-card animate-fade-in">
             <div className="showcase-header">
                 <div className="showcase-title-area">
-                    <h3 className="showcase-title">{title}</h3>
+                    <h3 className="showcase-title">
+                        {(() => {
+                            // Parse "English 中文" format for CopyableName
+                            const match = title.match(/^(.+?)\s+([\u4e00-\u9fff].+)$/);
+                            if (match) {
+                                return <CopyableName en={match[1]} zh={match[2]} />;
+                            }
+                            return title;
+                        })()}
+                    </h3>
                     <p className="showcase-desc">{description}</p>
                 </div>
                 <div className="showcase-actions">
