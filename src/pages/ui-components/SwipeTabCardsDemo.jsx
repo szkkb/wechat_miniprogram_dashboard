@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ChevronLeft, MoreHorizontal, Circle, ChevronDown, CheckCircle2 } from 'lucide-react';
+import PromoCard from '../../components/Common/PromoCard';
 import './SwipeTabCardsDemo.css';
 
 const OPTIMIZED_PLANS = [
@@ -134,6 +135,11 @@ const SwipeTabCardsDemo = () => {
                         )}
                     </div>
                     
+                    {/* Promo */}
+                    <div style={{ padding: '0 16px' }}>
+                        <PromoCard theme="light" />
+                    </div>
+
                     {/* Padding for bottom action bar */}
                     <div style={{ height: 100 }}></div>
                 </div>

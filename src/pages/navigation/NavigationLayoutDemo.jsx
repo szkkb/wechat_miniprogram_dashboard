@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { ChevronLeft, Home, MoreHorizontal, Truck, MapPin } from 'lucide-react';
 import DemoCard from '../../components/Common/DemoCard';
+import PromoCard from '../../components/Common/PromoCard';
 import './NavigationLayout.css';
 
 const NavigationLayoutDemo = () => {
@@ -113,6 +114,8 @@ const NavigationLayoutDemo = () => {
                         </div>
                     </div>
                 </DemoCard>
+
+                <PromoCard theme="dark" />
             </div>
         </div>
     );

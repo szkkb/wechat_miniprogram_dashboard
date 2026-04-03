@@ -1,0 +1,175 @@
+/* ═══════════════════════════════════════════
+   PromoCard — Native Ad Component
+   Dark & Light theme variants
+   ═══════════════════════════════════════════ */
+
+.promo-card {
+    position: relative; overflow: hidden;
+    border-radius: 16px; padding: 1.5rem;
+    margin-top: 1.5rem;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.promo-card:hover { transform: translateY(-2px); }
+
+/* ── Glow accent ── */
+.promo-glow {
+    position: absolute; width: 200px; height: 200px; border-radius: 50%;
+    filter: blur(80px); opacity: 0.15; pointer-events: none;
+    top: -60px; right: -40px;
+}
+
+/* ═══ Dark Theme ═══ */
+.promo-dark {
+    background: rgba(20, 20, 28, 0.8);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255,255,255,0.08);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+}
+.promo-dark:hover { box-shadow: 0 12px 40px rgba(0,0,0,0.4); }
+.promo-dark .promo-glow { background: #07c160; }
+
+.promo-dark .promo-header { color: rgba(255,255,255,0.4); }
+.promo-dark .promo-title { color: #f0f0f0; }
+.promo-dark .promo-desc { color: #94a3b8; }
+.promo-dark .promo-service-icon {
+    background: rgba(7,193,96,0.1); color: #07c160;
+}
+.promo-dark .promo-service-name { color: #e2e8f0; }
+.promo-dark .promo-service-desc { color: #64748b; }
+.promo-dark .promo-proof-badge {
+    background: rgba(7,193,96,0.1); color: #07c160;
+    border: 1px solid rgba(7,193,96,0.2);
+}
+.promo-dark .promo-proof-text { color: #64748b; }
+.promo-dark .promo-wechat {
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+    color: #94a3b8;
+}
+.promo-dark .promo-wechat:hover { background: rgba(255,255,255,0.08); color: #e2e8f0; }
+.promo-dark .promo-wechat-id { color: #07c160; }
+.promo-dark .promo-cta-btn {
+    background: linear-gradient(135deg, #07c160, #059e4e); color: #fff;
+    box-shadow: 0 4px 16px rgba(7,193,96,0.25);
+}
+.promo-dark .promo-cta-btn:hover { box-shadow: 0 6px 24px rgba(7,193,96,0.35); }
+
+/* ═══ Light Theme ═══ */
+.promo-light {
+    background: #fff;
+    border: 1px solid #e8edf2;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+}
+.promo-light:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.1); }
+.promo-light .promo-glow { background: #3b82f6; }
+
+.promo-light .promo-header { color: #94a3b8; }
+.promo-light .promo-title { color: #0f172a; }
+.promo-light .promo-desc { color: #64748b; }
+.promo-light .promo-service-icon {
+    background: #eff6ff; color: #3b82f6;
+}
+.promo-light .promo-service-name { color: #1e293b; }
+.promo-light .promo-service-desc { color: #94a3b8; }
+.promo-light .promo-proof-badge {
+    background: #f0fdf4; color: #16a34a;
+    border: 1px solid #dcfce7;
+}
+.promo-light .promo-proof-text { color: #94a3b8; }
+.promo-light .promo-wechat {
+    background: #f8fafc; border: 1px solid #e2e8f0;
+    color: #64748b;
+}
+.promo-light .promo-wechat:hover { background: #f1f5f9; color: #334155; }
+.promo-light .promo-wechat-id { color: #07c160; font-weight: 600; }
+.promo-light .promo-cta-btn {
+    background: linear-gradient(135deg, #3b82f6, #2563eb); color: #fff;
+    box-shadow: 0 4px 16px rgba(59,130,246,0.25);
+}
+.promo-light .promo-cta-btn:hover { box-shadow: 0 6px 24px rgba(59,130,246,0.35); }
+
+/* ═══ Shared Internals ═══ */
+.promo-header {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 0.75rem; font-size: 0.65rem;
+}
+.promo-badge {
+    display: inline-flex; align-items: center; gap: 0.3rem;
+    padding: 0.2rem 0.6rem; border-radius: 20px; font-weight: 600;
+    background: linear-gradient(135deg, rgba(168,85,247,0.15), rgba(99,102,241,0.15));
+    color: #a78bfa; font-size: 0.65rem;
+}
+.promo-subtle { font-size: 0.6rem; opacity: 0.4; }
+
+.promo-title {
+    font-family: 'Outfit', -apple-system, sans-serif;
+    font-size: 1.15rem; font-weight: 700; line-height: 1.4;
+    margin: 0 0 0.5rem;
+}
+.promo-desc {
+    font-size: 0.8rem; line-height: 1.6; margin: 0 0 1rem;
+}
+
+.promo-services {
+    display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 1rem;
+}
+.promo-service {
+    display: flex; align-items: center; gap: 0.75rem;
+}
+.promo-service-icon {
+    width: 32px; height: 32px; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.promo-service-info { display: flex; flex-direction: column; }
+.promo-service-name { font-size: 0.8rem; font-weight: 600; }
+.promo-service-desc { font-size: 0.65rem; margin-top: 0.1rem; }
+
+.promo-social-proof {
+    display: flex; align-items: center; gap: 0.6rem;
+    margin-bottom: 1rem; flex-wrap: wrap;
+}
+.promo-proof-badge {
+    font-size: 0.65rem; font-weight: 600; padding: 0.2rem 0.6rem;
+    border-radius: 6px; white-space: nowrap;
+}
+.promo-proof-text { font-size: 0.7rem; font-style: italic; }
+
+.promo-cta-row {
+    display: flex; gap: 0.6rem; align-items: center; flex-wrap: wrap;
+}
+.promo-wechat {
+    display: flex; align-items: center; gap: 0.4rem;
+    padding: 0.5rem 0.8rem; border-radius: 10px;
+    font-size: 0.75rem; cursor: pointer; transition: all 0.2s;
+}
+.promo-wechat-id { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; }
+.promo-copy-icon { opacity: 0.5; transition: opacity 0.2s; }
+.promo-wechat:hover .promo-copy-icon { opacity: 1; }
+
+/* Copied state — entire button turns green */
+.promo-wechat-copied {
+    background: rgba(34,197,94,0.15) !important;
+    border-color: rgba(34,197,94,0.3) !important;
+    color: #22c55e !important;
+    font-weight: 600;
+    animation: promo-copy-flash 0.3s ease-out;
+}
+@keyframes promo-copy-flash {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.promo-cta-btn {
+    display: flex; align-items: center; gap: 0.4rem;
+    padding: 0.55rem 1.2rem; border-radius: 10px; border: none;
+    font-size: 0.8rem; font-weight: 600; cursor: pointer;
+    font-family: 'Outfit', sans-serif; transition: all 0.2s;
+    margin-left: auto;
+}
+.promo-cta-btn:hover { transform: translateY(-1px); }
+
+@media (max-width: 480px) {
+    .promo-cta-row { flex-direction: column; }
+    .promo-cta-btn { margin-left: 0; width: 100%; justify-content: center; }
+    .promo-wechat { width: 100%; justify-content: center; }
+}
