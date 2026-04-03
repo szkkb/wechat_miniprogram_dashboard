@@ -1,0 +1,180 @@
+/* Floating CS Button Demos */
+
+/* ── Shared Screen ─────────────────────────── */
+.cs-demo-screen {
+    width: 100%;
+    height: 420px;
+    background: var(--bg-primary);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Two-column grid for this page */
+.two-col {
+    grid-template-columns: 1fr 1fr;
+}
+
+@media (max-width: 900px) {
+    .two-col {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Fake Page Content (skeleton) */
+.cs-fake-content {
+    padding: 24px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.cs-skeleton-bar {
+    height: 14px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 7px;
+    width: 100%;
+}
+
+.cs-fake-card {
+    border-radius: 12px;
+    overflow: hidden;
+    margin: 4px 0;
+}
+
+/* ── Shared Float Button ───────────────────── */
+.cs-float-btn {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: var(--accent-primary);
+    color: #fff;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: relative;
+    z-index: 10;
+    box-shadow: 0 4px 20px rgba(7, 193, 96, 0.5);
+    transition: transform 0.15s, box-shadow 0.2s;
+}
+
+.cs-float-btn:hover {
+    transform: scale(1.08);
+    box-shadow: 0 8px 24px rgba(7, 193, 96, 0.6);
+}
+
+.cs-float-btn:active {
+    transform: scale(0.94);
+}
+
+/* ── 方案一: Fixed + Pulse Rings ──────────── */
+.cs-float-wrapper {
+    position: absolute;
+    right: 20px;
+    bottom: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 10;
+}
+
+/* Ripple pulse rings */
+.cs-pulse-ring {
+    position: absolute;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    border: 2px solid var(--accent-primary);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.ring-1 {
+    animation: pulsate 2.4s ease-out infinite;
+}
+
+.ring-2 {
+    animation: pulsate 2.4s ease-out 0.8s infinite;
+}
+
+@keyframes pulsate {
+    0% {
+        transform: scale(1);
+        opacity: 0.7;
+    }
+
+    100% {
+        transform: scale(2.2);
+        opacity: 0;
+    }
+}
+
+/* Tooltip */
+.cs-tooltip {
+    position: absolute;
+    right: 60px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(20, 20, 21, 0.95);
+    color: var(--text-primary);
+    font-size: 12px;
+    padding: 6px 12px;
+    border-radius: 8px;
+    white-space: nowrap;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    pointer-events: none;
+    animation: fadeInLeft 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.cs-tooltip::after {
+    content: '';
+    position: absolute;
+    right: -6px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-left: 6px solid rgba(20, 20, 21, 0.95);
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+}
+
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateY(-50%) translateX(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(-50%) translateX(0);
+    }
+}
+
+/* ── 方案二: Draggable ─────────────────────── */
+.cs-float-btn.draggable {
+    cursor: grab;
+    box-shadow: 0 4px 16px rgba(7, 193, 96, 0.4);
+}
+
+.cs-float-btn.draggable.dragging {
+    cursor: grabbing;
+    transform: scale(1.12);
+    box-shadow: 0 12px 30px rgba(7, 193, 96, 0.6);
+}
+
+/* Small drag-hint icon overlaid bottom-right of button */
+.drag-hint {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.8);
+}

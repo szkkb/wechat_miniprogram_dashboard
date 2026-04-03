@@ -1,0 +1,166 @@
+/* LBS-Markers Pattern CSS */
+
+.map-demo-container {
+    width: 100%;
+    height: 400px;
+    /* Fitting the mock phone roughly */
+    background: var(--bg-tertiary);
+    position: relative;
+    overflow: hidden;
+}
+
+.fake-map-bg {
+    position: absolute;
+    inset: -20%;
+    /* larger than container to allow fake panning if needed */
+    background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+        radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 40px 40px, 20px 20px;
+    background-position: 0 0, 10px 10px;
+    opacity: 0.5;
+    z-index: 1;
+}
+
+/* Marker Base */
+.custom-marker {
+    position: absolute;
+    z-index: 10;
+    transform: translate(-50%, -100%);
+    /* Point rests exactly on coord */
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.marker-pin {
+    width: 32px;
+    height: 32px;
+    background: var(--bg-secondary);
+    border: 2px solid var(--text-primary);
+    border-radius: 50% 50% 50% 0;
+    /* Tear drop shape */
+    transform: rotate(-45deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.marker-pin svg {
+    transform: rotate(45deg);
+    /* Counter-rotate icon inside */
+    color: var(--text-primary);
+    transition: color 0.3s;
+}
+
+.marker-pulse {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 50%);
+    width: 10px;
+    height: 4px;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 50%;
+    filter: blur(2px);
+    z-index: -1;
+    transition: all 0.3s;
+}
+
+/* Selected State */
+.custom-marker.selected {
+    z-index: 20;
+}
+
+.custom-marker.selected .marker-pin {
+    background: var(--accent-primary);
+    border-color: var(--accent-primary);
+    transform: rotate(-45deg) scale(1.2) translateY(-10px) translateX(10px);
+    /* Hop up */
+    box-shadow: 0 10px 20px rgba(7, 193, 96, 0.4);
+}
+
+.custom-marker.selected .marker-pin svg {
+    color: #fff;
+}
+
+.custom-marker.selected .marker-pulse {
+    transform: translate(-50%, 50%) scale(2);
+    opacity: 0.5;
+}
+
+/* Bottom Detail Card */
+.map-detail-card {
+    position: absolute;
+    bottom: 20px;
+    left: 16px;
+    right: 16px;
+    background: rgba(30, 30, 35, 0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 16px;
+    z-index: 30;
+    transform: translateY(150%);
+    /* Hidden below */
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.map-detail-card.active {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.detail-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 8px;
+}
+
+.title-row h4 {
+    margin: 0 0 4px 0;
+    font-size: 16px;
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.status-badge {
+    font-size: 11px;
+    padding: 2px 6px;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-tertiary);
+}
+
+.status-badge.open {
+    background: rgba(7, 193, 96, 0.1);
+    color: var(--accent-primary);
+}
+
+.close-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-tertiary);
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 50%;
+}
+
+.close-btn:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-secondary);
+}
+
+.distance-info {
+    margin: 0 0 16px 0;
+    font-size: 13px;
+    color: var(--text-secondary);
+}
+
+.action-row {
+    display: flex;
+}

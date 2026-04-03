@@ -1,0 +1,204 @@
+.premium-demo-container {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.demo-section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.section-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* --- Style 1: Crystal Glass (Glassmorphism) --- */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.glass-card-button {
+    position: relative;
+    height: 180px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 
+        0 8px 32px 0 rgba(0, 0, 0, 0.3),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    overflow: hidden;
+    text-align: center;
+    padding: 20px;
+}
+
+.glass-card-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.1),
+        transparent
+    );
+    transition: 0.5s;
+}
+
+.glass-card-button:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 
+        0 15px 45px 0 rgba(0, 0, 0, 0.4),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.glass-card-button:hover::before {
+    left: 100%;
+}
+
+.glass-card-button:active {
+    transform: translateY(-2px) scale(0.98);
+}
+
+.glass-icon-wrapper {
+    width: 60px;
+    height: 60px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 16px;
+    box-shadow: 0 8px 16px rgba(99, 102, 241, 0.3);
+}
+
+.glass-card-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 4px;
+}
+
+.glass-card-desc {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* --- Style 2: Floating 3D Neumorphic --- */
+.neo-card-button {
+    position: relative;
+    height: 180px;
+    border-radius: 24px;
+    background: linear-gradient(145deg, #1e293b, #0f172a);
+    box-shadow: 
+        10px 10px 20px #080c14,
+        -5px -5px 15px rgba(255, 255, 255, 0.05);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+    padding: 24px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.neo-card-button:hover {
+    transform: translateY(-5px);
+    box-shadow: 
+        15px 15px 30px #06090f,
+        -8px -8px 20px rgba(255, 255, 255, 0.08);
+    background: linear-gradient(145deg, #253347, #111a2e);
+}
+
+.neo-card-button:active {
+    transform: translateY(0);
+    box-shadow: 
+        inset 6px 6px 12px #080c14,
+        inset -4px -4px 10px rgba(255, 255, 255, 0.03);
+}
+
+.neo-icon-box {
+    width: 80px;
+    height: 80px;
+    border-radius: 20px;
+    background: #1e293b;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 
+        8px 8px 16px #080c14,
+        -4px -4px 12px rgba(255, 255, 255, 0.05);
+    color: #38bdf8;
+    transition: all 0.3s ease;
+}
+
+.neo-card-button:hover .neo-icon-box {
+    transform: scale(1.1) rotate(5deg);
+    color: #7dd3fc;
+}
+
+.neo-content {
+    flex: 1;
+}
+
+.neo-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #f8fafc;
+    margin-bottom: 6px;
+    letter-spacing: -0.02em;
+}
+
+.neo-badge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 8px;
+    background: rgba(56, 189, 248, 0.1);
+    color: #38bdf8;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.neo-arrow {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.03);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgba(255, 255, 255, 0.3);
+    transition: all 0.3s ease;
+}
+
+.neo-card-button:hover .neo-arrow {
+    background: #38bdf8;
+    color: #0f172a;
+    transform: translateX(5px);
+}

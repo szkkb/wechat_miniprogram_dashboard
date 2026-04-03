@@ -1,0 +1,156 @@
+/* DemoCard V2 Standard Architecture CSS */
+
+.demo-card-v2 {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    /* Override default glass-panel padding for strict internal structure */
+    overflow: hidden;
+    transition: transform var(--transition-fast) var(--spring-easing), box-shadow var(--transition-fast);
+}
+
+.demo-card-v2:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* 1. Header Area */
+.dc-header {
+    padding: 20px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.dc-title-group h4 {
+    margin: 0 0 8px 0;
+}
+
+.dc-title-group h4 code {
+    color: var(--accent-primary);
+    background: rgba(7, 193, 96, 0.1);
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-family: 'Fira Code', monospace;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+}
+
+.dc-title {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.dc-badge {
+    font-size: 12px;
+    padding: 6px 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    color: var(--text-secondary);
+    white-space: nowrap;
+    letter-spacing: 0.5px;
+}
+
+/* 2. Main Stage Area */
+.dc-stage {
+    padding: 32px 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 180px;
+    position: relative;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.2) 100%);
+}
+
+.dc-stage.has-mock-phone {
+    background: radial-gradient(circle at center, rgba(255, 255, 255, 0.03) 0%, transparent 60%);
+    padding: 40px 24px;
+}
+
+/* Override existing mock-phone scale for standard cards to fit better */
+.dc-mock-phone {
+    transform: scale(0.95);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+}
+
+.dc-mock-screen {
+    background: var(--bg-primary);
+    /* Use deep background inside phone */
+}
+
+/* 3. Controls Area */
+.dc-controls {
+    padding: 16px 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.03);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    background: rgba(0, 0, 0, 0.1);
+    align-items: center;
+}
+
+/* 4. Description Area */
+.dc-description {
+    padding: 16px 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.03);
+    margin: 0;
+}
+
+.dc-description p {
+    margin: 0;
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* 5. Logs Console Area */
+.dc-console {
+    background: rgba(0, 0, 0, 0.4);
+    border-top: 1px solid rgba(255, 255, 255, 0.03);
+    padding: 12px 24px;
+    height: 64px;
+    /* Fixed height for 2 lines */
+    overflow-y: auto;
+    font-family: 'Fira Code', monospace;
+    font-size: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    /* Keep newest at bottom */
+}
+
+/* scrollbar for console */
+.dc-console::-webkit-scrollbar {
+    width: 4px;
+}
+
+.dc-console::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+}
+
+.dc-log-line {
+    display: flex;
+    gap: 8px;
+    margin-top: 4px;
+    opacity: 0.8;
+    animation: fadeIn 0.2s ease-out forwards;
+}
+
+.dc-log-line:last-child {
+    opacity: 1;
+    color: var(--accent-primary);
+}
+
+.log-time {
+    color: var(--text-tertiary);
+}
+
+.log-msg {
+    color: inherit;
+}

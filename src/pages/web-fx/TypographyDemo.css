@@ -1,0 +1,111 @@
+.typo-controls {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.control-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.control-group label {
+    font-size: 0.85rem;
+    color: #94a3b8;
+    font-weight: 500;
+}
+
+.control-group input[type="range"] {
+    width: 200px;
+    accent-color: #a855f7;
+}
+
+.control-group select {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 0.4rem;
+    border-radius: 6px;
+}
+
+.typo-demo-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+    padding-top: 2rem;
+}
+
+.perf-badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: rgba(16, 185, 129, 0.15);
+    color: #10b981;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-family: monospace;
+    font-size: 0.8rem;
+}
+
+.available-width-box {
+    border-right: 2px dashed rgba(255, 255, 255, 0.2);
+    border-left: 2px dashed rgba(255, 255, 255, 0.2);
+    min-height: 200px;
+    transition: width 0.1s linear;
+}
+
+.shrink-wrap-box {
+    border: 1px solid rgba(168, 85, 247, 0.5);
+    background: rgba(168, 85, 247, 0.05);
+    position: relative;
+}
+
+.dynamic-floater-svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 2;
+    filter: drop-shadow(0 0 15px rgba(168, 85, 247, 0.6));
+}
+
+.text-canvas {
+    display: block;
+    position: relative;
+    z-index: 1;
+}
+
+.imp-notes {
+    padding: 1.5rem;
+    background: rgba(30, 41, 59, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+}
+
+.imp-notes h3 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    color: #f8fafc;
+}
+
+.imp-notes ul {
+    margin: 0;
+    padding-left: 1.5rem;
+    color: #94a3b8;
+    line-height: 1.6;
+}
+
+.imp-notes li {
+    margin-bottom: 0.5rem;
+}
+
+.imp-notes code {
+    background: rgba(0,0,0,0.3);
+    padding: 0.1rem 0.3rem;
+    border-radius: 4px;
+    font-family: monospace;
+    color: #c084fc;
+}

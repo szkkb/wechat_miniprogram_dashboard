@@ -1,0 +1,220 @@
+/* ECO-Login Pattern CSS */
+
+.eco-demo-container {
+    width: 100%;
+    height: 480px;
+    background: var(--bg-primary);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.mock-app-header {
+    height: 120px;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.05), transparent);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+.mock-avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.05);
+}
+
+.mock-name {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.mock-app-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Intercept Panel Overlay */
+.login-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    z-index: 50;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.login-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.login-panel {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(35, 35, 40, 0.98);
+    border-top-left-radius: 24px;
+    border-top-right-radius: 24px;
+    padding: 32px 24px;
+    z-index: 51;
+    transform: translateY(100%);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login-panel.open {
+    transform: translateY(0);
+}
+
+.lp-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    color: var(--text-tertiary);
+    cursor: pointer;
+    padding: 4px;
+}
+
+.lp-brand {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.lp-logo {
+    width: 48px;
+    height: 48px;
+    background: var(--accent-primary);
+    color: #fff;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 14px;
+    margin: 0 auto 16px auto;
+}
+
+.lp-brand h3 {
+    margin: 0;
+    font-size: 18px;
+    color: var(--text-primary);
+    line-height: 1.4;
+}
+
+.lp-btn-login {
+    width: 100%;
+    padding: 14px;
+    border-radius: 12px;
+    font-size: 16px;
+    margin-bottom: 12px;
+}
+
+.lp-btn-other {
+    width: 100%;
+    padding: 14px;
+    border-radius: 12px;
+    font-size: 16px;
+    background: rgba(255, 255, 255, 0.05);
+    border: none;
+    margin-bottom: 24px;
+}
+
+/* Privacy Policy Box */
+.lp-policy {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 0 12px;
+}
+
+.policy-checkbox {
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    margin-top: 2px;
+}
+
+.policy-checkbox input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark {
+    height: 14px;
+    width: 14px;
+    background-color: transparent;
+    border: 1px solid var(--text-tertiary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: transparent;
+    transition: all 0.2s;
+}
+
+.policy-checkbox input:checked~.checkmark {
+    background-color: var(--accent-primary);
+    border-color: var(--accent-primary);
+    color: white;
+}
+
+.policy-text {
+    font-size: 12px;
+    color: var(--text-tertiary);
+    line-height: 1.5;
+}
+
+/* Shake Alert when unchecked */
+.shake-alert {
+    animation: shakeX 0.4s cubic-bezier(.36, .07, .19, .97) both;
+}
+
+.shake-alert .policy-text {
+    color: #ef4444;
+    /* Force red text temporarily */
+}
+
+.shake-alert .checkmark {
+    border-color: #ef4444;
+}
+
+@keyframes shakeX {
+
+    10%,
+    90% {
+        transform: translate3d(-2px, 0, 0);
+    }
+
+    20%,
+    80% {
+        transform: translate3d(4px, 0, 0);
+    }
+
+    30%,
+    50%,
+    70% {
+        transform: translate3d(-6px, 0, 0);
+    }
+
+    40%,
+    60% {
+        transform: translate3d(6px, 0, 0);
+    }
+}

@@ -1,0 +1,165 @@
+/* Progress Bar */
+.premium-progress-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.progress-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.progress-value {
+    color: var(--accent-primary);
+    font-family: monospace;
+}
+
+.progress-track {
+    width: 100%;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.02);
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent-secondary), var(--accent-primary));
+    border-radius: 4px;
+    position: relative;
+    transition: width 0.1s linear;
+}
+
+.progress-glow {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 20px;
+    background: white;
+    filter: blur(4px);
+    opacity: 0.6;
+    border-radius: 50%;
+    transform: translateX(50%);
+}
+
+/* Circular Progress */
+.circular-progress {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: conic-gradient(var(--accent-primary) var(--progress), rgba(255, 255, 255, 0.05) 0deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    box-shadow: 0 0 15px rgba(7, 193, 96, 0.1);
+}
+
+.inner-circle {
+    width: 68px;
+    height: 68px;
+    background: var(--bg-primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-primary);
+    font-size: 14px;
+    font-weight: 600;
+    font-family: monospace;
+}
+
+/* Icons */
+.icon-wrapper {
+    padding: 16px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.3s ease;
+}
+
+.icon-wrapper:hover {
+    transform: scale(1.1);
+}
+
+.icon-wrapper.success {
+    color: #07c160;
+    background: rgba(7, 193, 96, 0.1);
+    border-color: rgba(7, 193, 96, 0.2);
+    box-shadow: 0 0 20px rgba(7, 193, 96, 0.2);
+}
+
+.icon-wrapper.info {
+    color: #10a37f;
+    background: rgba(16, 163, 127, 0.1);
+    border-color: rgba(16, 163, 127, 0.2);
+    box-shadow: 0 0 20px rgba(16, 163, 127, 0.2);
+}
+
+.icon-wrapper.warning {
+    color: #f59e0b;
+    background: rgba(245, 158, 11, 0.1);
+    border-color: rgba(245, 158, 11, 0.2);
+    box-shadow: 0 0 20px rgba(245, 158, 11, 0.2);
+}
+
+.icon-wrapper.danger {
+    color: #ef4444;
+    background: rgba(239, 68, 68, 0.1);
+    border-color: rgba(239, 68, 68, 0.2);
+    box-shadow: 0 0 20px rgba(239, 68, 68, 0.2);
+}
+
+/* Buttons */
+.premium-btn {
+    width: 100%;
+    padding: 12px 20px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    outline: none;
+    border: none;
+}
+
+.premium-btn.primary {
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+    color: white;
+    box-shadow: 0 4px 15px var(--accent-primary-glow);
+}
+
+.premium-btn.primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px var(--accent-primary-glow), inset 0 0 0 2px rgba(255, 255, 255, 0.2);
+}
+
+.premium-btn.primary:active {
+    transform: translateY(1px);
+}
+
+.premium-btn.secondary {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-primary);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.premium-btn.secondary:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+}

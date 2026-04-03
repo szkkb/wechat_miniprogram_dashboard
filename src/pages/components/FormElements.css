@@ -1,0 +1,181 @@
+.component-showcase {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.component-showcase.full-width {
+    flex-direction: column;
+}
+
+/* Switch Styling */
+.switch-input {
+    display: none;
+}
+
+.switch-body {
+    width: 56px;
+    height: 32px;
+    background: var(--bg-tertiary);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 100px;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.switch-handle {
+    width: 26px;
+    height: 26px;
+    background: white;
+    border-radius: 50%;
+    position: absolute;
+    top: 2px;
+    left: 3px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.switch-input:checked+.switch-body {
+    background: var(--accent-primary);
+    border-color: var(--accent-primary);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1), 0 0 15px var(--accent-primary-glow);
+}
+
+.switch-input:checked+.switch-body .switch-handle {
+    transform: translateX(23px);
+    box-shadow: -2px 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.switch-input:active+.switch-body .switch-handle {
+    width: 32px;
+}
+
+.switch-input:active:checked+.switch-body .switch-handle {
+    transform: translateX(17px);
+}
+
+/* Premium Input */
+.input-group {
+    width: 100%;
+    max-width: 250px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.input-group label {
+    font-size: 13px;
+    color: var(--text-secondary);
+    font-weight: 500;
+    padding-left: 4px;
+}
+
+.premium-input {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 14px 16px;
+    color: var(--text-primary);
+    font-size: 15px;
+    outline: none;
+    transition: all 0.3s ease;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.premium-input:focus {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 0 3px var(--accent-primary-glow), inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.premium-input::placeholder {
+    color: var(--text-tertiary);
+}
+
+/* Premium Slider */
+.premium-slider-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 250px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+}
+
+.premium-slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    outline: none;
+    z-index: 2;
+    position: relative;
+    cursor: pointer;
+}
+
+.slider-track-fill {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    height: 6px;
+    transform: translateY(-50%);
+    background: linear-gradient(90deg, var(--accent-secondary), var(--accent-primary));
+    border-radius: 4px;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.premium-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: white;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    border: 2px solid var(--accent-primary);
+}
+
+.premium-slider::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+    box-shadow: 0 0 15px var(--accent-primary-glow);
+}
+
+.slider-value {
+    position: absolute;
+    top: -30px;
+    transform: translateX(-50%);
+    background: var(--text-primary);
+    color: var(--bg-primary);
+    padding: 4px 10px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: bold;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.slider-value::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 50%;
+    transform: translateX(-50%) rotate(45deg);
+    width: 8px;
+    height: 8px;
+    background: var(--text-primary);
+}
+
+.premium-slider:active~.slider-value,
+.premium-slider:hover~.slider-value {
+    opacity: 1;
+}

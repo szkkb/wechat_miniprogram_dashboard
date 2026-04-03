@@ -1,0 +1,263 @@
+/* NL-NavBar Pattern CSS */
+
+.navbar-demo-container {
+    width: 100%;
+    height: 400px;
+    background: var(--bg-primary);
+    position: relative;
+    overflow: hidden;
+    /* For clipping fake scroll */
+}
+
+/* Scrollable Area */
+.scroll-view {
+    position: absolute;
+    inset: 0;
+    overflow-y: auto;
+    scrollbar-width: none;
+}
+
+.scroll-view::-webkit-scrollbar {
+    display: none;
+}
+
+/* Immersive Header */
+.nav-logistics-header {
+    height: 240px;
+    background: linear-gradient(135deg, #1d2521, var(--bg-primary));
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 60px;
+    /* offset for navbar */
+    margin-bottom: -20px;
+}
+
+.nav-map-pattern {
+    position: absolute;
+    inset: 0;
+    background-image:
+        radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 16px 16px;
+    opacity: 0.5;
+}
+
+.route-info {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+    width: 60%;
+    justify-content: space-between;
+}
+
+.route-city {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.route-dash {
+    flex: 1;
+    height: 1px;
+    border-top: 2px dashed rgba(255, 255, 255, 0.2);
+}
+
+.route-truck {
+    color: var(--accent-primary);
+    background: rgba(7, 193, 96, 0.1);
+    padding: 8px;
+    border-radius: 50%;
+    box-shadow: 0 0 16px rgba(7, 193, 96, 0.2);
+}
+
+.status-badge {
+    position: relative;
+    z-index: 1;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    padding: 6px 16px;
+    border-radius: 16px;
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+/* Content Area */
+.logistics-content {
+    background: var(--bg-primary);
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    position: relative;
+    z-index: 2;
+    padding: 24px;
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.info-card {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 12px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.info-card h4 {
+    margin: 0;
+    font-size: 14px;
+    color: var(--text-primary);
+}
+
+.mock-timeline-item {
+    display: flex;
+    gap: 12px;
+}
+
+.mock-timeline-item .dot {
+    width: 8px;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    margin-top: 4px;
+}
+
+.mock-timeline-item .t-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.skeleton-bar {
+    height: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 6px;
+}
+
+/* Actual Custom NavBar Component Simulation */
+.custom-navbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    transition: background 0.3s, border-bottom 0.3s, box-shadow 0.3s;
+}
+
+.custom-navbar.transparent {
+    background: transparent;
+    border-bottom: 0.5px solid transparent;
+    box-shadow: none;
+}
+
+.custom-navbar.solid {
+    background: rgba(20, 20, 21, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 0.5px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-status-bar {
+    height: 44px;
+    /* Simulating iOS Dynamic Island / Notch safe area */
+}
+
+.navbar-content {
+    height: 44px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 12px;
+}
+
+.navbar-title {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+/* Capsules (Left returning & Right native) */
+.navbar-left-capsule,
+.navbar-right-capsule {
+    display: flex;
+    align-items: center;
+    height: 32px;
+    background: rgba(0, 0, 0, 0.2);
+    border: 0.5px solid rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    transition: background 0.3s, border-color 0.3s;
+}
+
+.custom-navbar.solid .navbar-left-capsule,
+.custom-navbar.solid .navbar-right-capsule {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.navbar-left-capsule button,
+.navbar-right-capsule button {
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+    width: 40px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    outline: none;
+    transition: background 0.2s;
+}
+
+.navbar-left-capsule button:hover,
+.navbar-right-capsule button:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.navbar-left-capsule button:active,
+.navbar-right-capsule button:active {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.capsule-divider {
+    width: 0.5px;
+    height: 18px;
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Tiny close circle */
+.close-circle {
+    width: 14px;
+    height: 14px;
+    border: 1.5px solid var(--text-primary);
+    border-radius: 50%;
+    position: relative;
+}
+
+.close-circle::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 6px;
+    height: 6px;
+    background: var(--text-primary);
+    border-radius: 50%;
+}

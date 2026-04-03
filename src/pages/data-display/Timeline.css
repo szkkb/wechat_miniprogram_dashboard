@@ -1,0 +1,384 @@
+/* DF-Timeline Pattern CSS */
+
+.timeline-container {
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    scrollbar-width: none;
+    /* Firefox */
+}
+
+.timeline-container::-webkit-scrollbar {
+    display: none;
+    /* Safari and Chrome */
+}
+
+/* Logistics Map Header */
+.logistics-map-header {
+    height: 140px;
+    position: relative;
+    background: linear-gradient(135deg, rgba(7, 193, 96, 0.2), rgba(0, 0, 0, 0.5));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: 20px;
+}
+
+.map-bg-pattern {
+    position: absolute;
+    inset: -20px;
+    background-image:
+        radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+        radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 20px 20px, 10px 10px;
+    background-position: 0 0, 5px 5px;
+    z-index: 0;
+    opacity: 0.6;
+}
+
+.logistics-route {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.route-point {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.route-point .city {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.point-icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: bold;
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+.point-icon.origin {
+    background: #4b5563;
+}
+
+.point-icon.dest {
+    background: var(--accent-primary);
+}
+
+.route-truck-line {
+    flex: 1;
+    position: relative;
+    height: 20px;
+    margin: 0 16px;
+    margin-top: 24px;
+}
+
+.line-dashed {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    border-top: 2px dashed rgba(255, 255, 255, 0.4);
+}
+
+.truck-icon-float {
+    position: absolute;
+    top: 50%;
+    left: 70%;
+    /* Mock progress */
+    transform: translate(-50%, -50%);
+    background: var(--bg-secondary);
+    color: var(--accent-primary);
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 10px var(--accent-primary-glow);
+    z-index: 2;
+}
+
+.delivery-status-tag {
+    position: relative;
+    z-index: 1;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    padding: 6px 16px;
+    border-radius: 16px;
+    font-size: 12px;
+    color: var(--accent-primary);
+    border: 1px solid rgba(7, 193, 96, 0.3);
+}
+
+/* Header with Copy */
+.timeline-header {
+    padding: 16px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    background: var(--bg-secondary);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.order-info-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.waybill-label {
+    font-size: 13px;
+    color: var(--text-secondary);
+}
+
+.timeline-header .waybill {
+    font-size: 14px;
+    color: var(--text-primary);
+    font-family: 'Fira Code', monospace;
+    font-weight: 500;
+}
+
+.copy-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.copy-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.copy-btn.copied {
+    color: var(--accent-primary);
+    border-color: rgba(7, 193, 96, 0.3);
+    background: rgba(7, 193, 96, 0.1);
+}
+
+.timeline-list {
+    padding: 24px 20px 8px 20px;
+    position: relative;
+}
+
+/* Item Base */
+.timeline-item {
+    position: relative;
+    padding-left: 32px;
+    margin-bottom: 24px;
+}
+
+.timeline-item:last-child {
+    margin-bottom: 0;
+}
+
+/* Tail (Connecting Line) */
+.timeline-tail {
+    position: absolute;
+    left: 11px;
+    /* Align with node center (node is 24px width -> 12px center) */
+    top: 24px;
+    /* Start below current node */
+    bottom: -24px;
+    /* Extend to next node */
+    width: 2px;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.timeline-item:last-child .timeline-tail {
+    display: none;
+}
+
+/* Node (Icon or Dot) */
+.timeline-node {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-primary);
+    border-radius: 50%;
+    z-index: 2;
+    color: var(--text-tertiary);
+}
+
+.timeline-node .dot {
+    width: 8px;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+}
+
+/* Status variants */
+.timeline-item.success .timeline-node {
+    color: var(--accent-primary);
+}
+
+.timeline-item.success .timeline-node.has-icon {
+    background: rgba(7, 193, 96, 0.1);
+    box-shadow: 0 0 10px rgba(7, 193, 96, 0.2);
+}
+
+.timeline-item.active .timeline-node {
+    color: var(--text-primary);
+}
+
+.timeline-item.active .timeline-node.has-icon {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Content */
+.timeline-content {
+    position: relative;
+    top: -2px;
+    /* Slight optical adjustment */
+}
+
+.timeline-title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 4px;
+}
+
+.timeline-title-row h4 {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+.timeline-item.success .timeline-title-row h4,
+.timeline-item.active .timeline-title-row h4 {
+    color: var(--text-primary);
+}
+
+.timeline-title-row .time {
+    font-size: 12px;
+    color: var(--text-tertiary);
+}
+
+.timeline-content p {
+    margin: 0;
+    font-size: 13px;
+    color: var(--text-tertiary);
+    line-height: 1.5;
+}
+
+.timeline-item.success .timeline-content p,
+.timeline-item.active .timeline-content p {
+    color: var(--text-secondary);
+}
+
+/* Courier Info Card inside timeline */
+.courier-card {
+    margin-top: 12px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.courier-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+}
+
+.courier-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.c-name {
+    font-size: 14px;
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+.c-phone {
+    font-size: 12px;
+    color: var(--text-secondary);
+    font-family: monospace;
+    margin-top: 2px;
+}
+
+.call-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(7, 193, 96, 0.15);
+    color: var(--accent-primary);
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.2s, background 0.2s;
+}
+
+.call-btn:hover {
+    transform: scale(1.05);
+    background: rgba(7, 193, 96, 0.25);
+}
+
+/* Expand Hook */
+.timeline-more {
+    text-align: center;
+    padding: 16px;
+    font-size: 12px;
+    color: var(--text-tertiary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    cursor: pointer;
+    border-top: 1px solid rgba(255, 255, 255, 0.02);
+    transition: background 0.2s, color 0.2s;
+}
+
+.timeline-more:hover {
+    background: rgba(255, 255, 255, 0.02);
+    color: var(--text-secondary);
+}

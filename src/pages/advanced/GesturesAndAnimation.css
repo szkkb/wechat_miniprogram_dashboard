@@ -1,0 +1,204 @@
+/* Share Element Animation Simulation */
+.share-element-container {
+    width: 100%;
+    height: 300px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+.image-grid {
+    display: flex;
+    gap: 16px;
+}
+
+.mini-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    overflow: hidden;
+    position: relative;
+}
+
+.mini-image:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+}
+
+.img-1 {
+    background: url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=200&auto=format&fit=crop') center/cover;
+}
+
+.img-2 {
+    background: url('https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=200&auto=format&fit=crop') center/cover;
+}
+
+.img-3 {
+    background: url('https://images.unsplash.com/photo-1542435503-956c25b15a6b?q=80&w=200&auto=format&fit=crop') center/cover;
+}
+
+.img-label {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: 800;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
+
+.expanded-image-view {
+    position: absolute;
+    inset: 0;
+    background: var(--bg-primary);
+    display: flex;
+    flex-direction: column;
+    z-index: 10;
+    cursor: pointer;
+}
+
+.large-image {
+    width: 100%;
+    height: 180px;
+    animation: expandShareElement 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.img-label.large {
+    font-size: 16px;
+    padding: 8px 16px;
+    opacity: 0;
+    animation: fadeIn 0.4s 0.2s forwards;
+}
+
+.expanded-text {
+    padding: 24px;
+    flex: 1;
+}
+
+.expanded-text h3 {
+    margin-bottom: 8px;
+    color: var(--accent-primary);
+}
+
+.expanded-text p {
+    color: var(--text-secondary);
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+@keyframes expandShareElement {
+    from {
+        transform: scale(0.4) translateY(50px);
+        opacity: 0;
+        border-radius: 20px;
+    }
+
+    to {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+        border-radius: 0;
+    }
+}
+
+.fade-in-up {
+    opacity: 0;
+    animation: fadeInUp 0.5s 0.1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Swipeable Cell Simulation */
+.swipeable-cell {
+    position: relative;
+    width: 100%;
+    height: 60px;
+    border-radius: 12px;
+    background: var(--bg-tertiary);
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.cell-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--bg-secondary);
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    font-size: 14px;
+    font-weight: 500;
+    z-index: 2;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.drag-indicator {
+    margin-left: auto;
+    color: var(--text-tertiary);
+    animation: slideHint 2s infinite;
+}
+
+@keyframes slideHint {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    50% {
+        transform: translateX(-5px);
+    }
+}
+
+.cell-actions {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    display: flex;
+    z-index: 1;
+}
+
+.action-btn {
+    height: 100%;
+    border: none;
+    color: white;
+    font-weight: 600;
+    font-size: 14px;
+    padding: 0 24px;
+    cursor: pointer;
+}
+
+.action-btn.delete {
+    background: #ef4444;
+}
+
+/* Simulated Swipe State */
+.swipeable-cell.swiped .cell-content {
+    transform: translateX(-80px);
+    /* Exact width of the delete button */
+}
