@@ -4,6 +4,14 @@ import Layout from './components/Layout/Layout';
 import WebFXLayout from './components/WebFXLayout/WebFXLayout';
 import LandingPage from './pages/LandingPage';
 
+// Growth Loop Pages
+import GrowthLoopLayout from './components/GrowthLoopLayout/GrowthLoopLayout';
+import GrowthLoopOverview from './pages/growth-loop/GrowthLoopOverview';
+import GrowthLoopOutline from './pages/growth-loop/GrowthLoopOutline';
+import GrowthLoopLifecycle from './pages/growth-loop/GrowthLoopLifecycle';
+import GrowthLoopKeywordMap from './pages/growth-loop/GrowthLoopKeywordMap';
+import ContentPage from './pages/growth-loop/ContentPage';
+
 // Web FX Pages
 import WebFXOverview from './pages/web-fx/WebFXOverview';
 import Explore from './pages/web-fx/Explore';
@@ -87,6 +95,25 @@ function App() {
                     <Route path="visual-styles" element={<VisualStyles />} />
                     <Route path="industry-styles" element={<IndustryStyles />} />
                     <Route path="wechat-buttons" element={<WeChatButtonDemo />} />
+                </Route>
+
+                {/* Growth Loop Learning Domain */}
+                <Route path="/growth-loop" element={<GrowthLoopLayout />}>
+                    <Route index element={<GrowthLoopOverview />} />
+                    <Route path="outline" element={<GrowthLoopOutline />} />
+                    <Route path="lifecycle" element={<GrowthLoopLifecycle />} />
+                    <Route path="keyword-map" element={<GrowthLoopKeywordMap />} />
+                    <Route path="roadmap" element={<ContentPage slug="roadmap" />} />
+                    <Route path="paradigm-shift" element={<ContentPage slug="paradigm-shift" />} />
+                    <Route path="loop-anatomy" element={<ContentPage slug="loop-anatomy" />} />
+                    <Route path="glossary" element={<ContentPage slug="glossary" />} />
+                    <Route path="design-canvas" element={<ContentPage slug="design-canvas" />} />
+                    <Route path="business-canvas" element={<ContentPage slug="business-canvas" />} />
+                    <Route path="experiment" element={<ContentPage slug="experiment-template" />} />
+                    <Route path="prompts-learning" element={<ContentPage slug="prompts-learning" />} />
+                    <Route path="prompts-analysis" element={<ContentPage slug="prompts-analysis" />} />
+                    <Route path="prompts-practice" element={<ContentPage slug="prompts-practice" />} />
+                    <Route path="prompts-reflection" element={<ContentPage slug="prompts-reflection" />} />
                 </Route>
             </Routes>
         </BrowserRouter>

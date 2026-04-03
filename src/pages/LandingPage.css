@@ -231,6 +231,8 @@
 
 .mp-card .card-action { color: #10b981; }
 .fx-card .card-action { color: #a855f7; }
+.gl-card .card-icon { color: #ffbe5c; }
+.gl-card .card-action { color: #ffbe5c; }
 
 /* ── FOOTER ── */
 .landing-footer {

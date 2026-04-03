@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Smartphone, Sparkles, ArrowRight, ExternalLink, Github, Palette, Layers, Pen } from 'lucide-react';
+import { Smartphone, Sparkles, TrendingUp, ArrowRight, ExternalLink, Github, Palette, Layers, Pen } from 'lucide-react';
 import { getMiniprogramCount, getWebfxCounts } from '../data/catalog-registry';
 import './LandingPage.css';
 
@@ -18,7 +18,7 @@ const LandingPage = () => {
                         <div className="landing-header">
                             <h1 className="landing-title">Component<br/>& FX Board.</h1>
                             <p className="landing-subtitle">
-                                一个开源的小程序组件与网站视觉风格 Dashboard
+                                一个开源的小程序组件、网站视觉风格与 Growth Loop 学习工具
                             </p>
                         </div>
                         <div className="landing-intro">
@@ -71,6 +71,17 @@ const LandingPage = () => {
                                     <p className="card-desc">网站视觉风格、行业风格与前端交互效果目录</p>
                                 </div>
                                 <div className="card-action">进入 Dashboard <ArrowRight size={16} /></div>
+                            </Link>
+
+                            <Link to="/growth-loop" className="workspace-card gl-card">
+                                <div className="card-icon-wrapper">
+                                    <TrendingUp size={48} className="card-icon" strokeWidth={1.5} />
+                                </div>
+                                <div className="card-body">
+                                    <h2 className="card-title">Growth Loop 学习</h2>
+                                    <p className="card-desc">增长飞轮方法论：可视化学习 + 实践模板 + AI Prompt 库</p>
+                                </div>
+                                <div className="card-action">开始学习 <ArrowRight size={16} /></div>
                             </Link>
                         </div>
                     </div>

@@ -1,0 +1,50 @@
+.glo-page { max-width: 900px; }
+
+.glo-hero { margin-bottom: 2rem; }
+.glo-title {
+    font-family: 'Outfit', sans-serif; font-size: 2.2rem; font-weight: 800;
+    margin: 0 0 0.5rem;
+    background: linear-gradient(135deg, #fff 0%, #ffbe5c 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+.glo-subtitle {
+    font-family: 'Outfit', sans-serif; font-weight: 300;
+    color: #94a3b8; font-size: 1rem; margin: 0 0 1rem;
+}
+.glo-desc {
+    color: #64748b; font-size: 0.85rem; line-height: 1.7; margin: 0;
+    max-width: 600px;
+}
+
+.glo-section {
+    margin-bottom: 1.5rem; padding: 1.25rem; border-radius: 16px;
+    background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06);
+    transition: border-color 0.2s;
+}
+.glo-section:hover { border-color: rgba(255,255,255,0.1); }
+
+.glo-section-header {
+    display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;
+}
+.glo-section-icon {
+    width: 36px; height: 36px; border-radius: 10px; display: flex;
+    align-items: center; justify-content: center;
+    background: rgba(255,190,92,0.1); color: #ffbe5c;
+}
+.glo-section-title {
+    font-family: 'Outfit', sans-serif; font-size: 1.1rem; font-weight: 700;
+    color: #f8fafc; margin: 0;
+}
+.glo-section-sub { font-size: 0.75rem; color: #64748b; margin: 0.15rem 0 0; }
+
+.glo-items { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.glo-item {
+    display: flex; align-items: center; gap: 0.4rem; padding: 0.4rem 0.75rem;
+    border-radius: 8px; background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.04); font-size: 0.75rem;
+    text-decoration: none; transition: all 0.15s; cursor: pointer;
+}
+.glo-item:hover { background: rgba(255,190,92,0.08); border-color: rgba(255,190,92,0.2); transform: translateY(-1px); }
+.glo-item-zh { color: #cbd5e1; font-weight: 500; }
+.glo-item-en { color: #475569; font-size: 0.65rem; }
+.glo-item-arrow { color: #475569; margin-left: auto; }

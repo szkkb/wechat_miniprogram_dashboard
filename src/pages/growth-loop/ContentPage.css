@@ -1,0 +1,77 @@
+.gl-content-loading {
+    padding: 4rem 2rem; text-align: center; color: #64748b; font-size: 0.9rem;
+}
+
+.gl-content-page {
+    max-width: 800px;
+}
+
+.gl-markdown-body {
+    color: #cbd5e1; line-height: 1.8; font-size: 0.9rem;
+}
+
+.gl-markdown-body h1 {
+    font-family: 'Outfit', sans-serif; font-size: 1.8rem; font-weight: 800;
+    color: #f8fafc; margin: 0 0 1rem; border-bottom: 1px solid rgba(255,255,255,0.06);
+    padding-bottom: 0.75rem;
+}
+.gl-markdown-body h2 {
+    font-family: 'Outfit', sans-serif; font-size: 1.3rem; font-weight: 700;
+    color: #f8fafc; margin: 2rem 0 0.75rem;
+}
+.gl-markdown-body h3 {
+    font-size: 1.05rem; font-weight: 600; color: #e2e8f0; margin: 1.5rem 0 0.5rem;
+}
+.gl-markdown-body h4 {
+    font-size: 0.9rem; font-weight: 600; color: #cbd5e1; margin: 1rem 0 0.4rem;
+}
+
+.gl-markdown-body p { margin: 0 0 1rem; }
+.gl-markdown-body ul, .gl-markdown-body ol {
+    margin: 0 0 1rem; padding-left: 1.5rem;
+}
+.gl-markdown-body li { margin-bottom: 0.4rem; }
+
+.gl-markdown-body strong { color: #f8fafc; font-weight: 600; }
+.gl-markdown-body em { color: #ffbe5c; font-style: italic; }
+
+.gl-markdown-body code {
+    font-family: 'JetBrains Mono', monospace; font-size: 0.8rem;
+    background: rgba(255,255,255,0.06); padding: 0.15rem 0.4rem;
+    border-radius: 4px; color: #a78bfa;
+}
+.gl-markdown-body pre {
+    background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 8px; padding: 1rem; overflow-x: auto; margin: 0 0 1rem;
+}
+.gl-markdown-body pre code {
+    background: none; padding: 0; font-size: 0.78rem; color: #e2e8f0;
+}
+
+.gl-markdown-body table {
+    width: 100%; border-collapse: collapse; margin: 0 0 1rem;
+    font-size: 0.8rem;
+}
+.gl-markdown-body th {
+    text-align: left; padding: 0.5rem; border-bottom: 2px solid rgba(255,255,255,0.1);
+    color: #f8fafc; font-weight: 600;
+}
+.gl-markdown-body td {
+    padding: 0.5rem; border-bottom: 1px solid rgba(255,255,255,0.04);
+    color: #94a3b8;
+}
+.gl-markdown-body tr:hover td { background: rgba(255,255,255,0.02); }
+
+.gl-markdown-body blockquote {
+    border-left: 3px solid #ffbe5c; margin: 0 0 1rem; padding: 0.5rem 1rem;
+    background: rgba(255,190,92,0.05); border-radius: 0 8px 8px 0;
+    color: #94a3b8;
+}
+
+.gl-markdown-body a { color: #ffbe5c; text-decoration: none; }
+.gl-markdown-body a:hover { text-decoration: underline; }
+
+.gl-markdown-body hr {
+    border: none; height: 1px; background: rgba(255,255,255,0.06);
+    margin: 2rem 0;
+}

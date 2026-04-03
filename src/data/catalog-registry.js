@@ -141,3 +141,30 @@ export function getWebfxCounts() {
   const interaction = WEBFX_CATALOG.filter(i => i.group === 'interaction').length;
   return { visual, industry, interaction, total: visual + industry + interaction };
 }
+
+// ═══ Growth Loop Domain ═══
+
+export const GROWTHLOOP_CATALOG = [
+  // 可视化 Visualizations
+  { id: 'gl-outline', name: { en: 'Growth Outline', zh: '学习大纲' }, group: 'visualization', route: '/growth-loop/outline' },
+  { id: 'gl-lifecycle', name: { en: 'Lifecycle Phases', zh: '生命周期' }, group: 'visualization', route: '/growth-loop/lifecycle' },
+  { id: 'gl-keyword-map', name: { en: 'Keyword Map', zh: '关键词图谱' }, group: 'visualization', route: '/growth-loop/keyword-map' },
+  // 学习内容 Learning
+  { id: 'gl-roadmap', name: { en: 'Learning Roadmap', zh: '学习路径' }, group: 'learning', route: '/growth-loop/roadmap' },
+  { id: 'gl-paradigm', name: { en: 'Paradigm Shift', zh: '范式转换' }, group: 'learning', route: '/growth-loop/paradigm-shift' },
+  { id: 'gl-anatomy', name: { en: 'Loop Anatomy', zh: '循环解剖' }, group: 'learning', route: '/growth-loop/loop-anatomy' },
+  { id: 'gl-glossary', name: { en: 'Glossary', zh: '术语表' }, group: 'learning', route: '/growth-loop/glossary' },
+  // 实践工具 Practice
+  { id: 'gl-canvas', name: { en: 'Design Canvas', zh: '循环设计画布' }, group: 'practice', route: '/growth-loop/design-canvas' },
+  { id: 'gl-biz-canvas', name: { en: 'Business Canvas', zh: '商业画布' }, group: 'practice', route: '/growth-loop/business-canvas' },
+  { id: 'gl-experiment', name: { en: 'Experiment Template', zh: '实验模板' }, group: 'practice', route: '/growth-loop/experiment' },
+  // Prompt 库
+  { id: 'gl-prompts-learn', name: { en: 'Learning Prompts', zh: '学习 Prompts' }, group: 'prompts', route: '/growth-loop/prompts-learning' },
+  { id: 'gl-prompts-analysis', name: { en: 'Analysis Prompts', zh: '分析 Prompts' }, group: 'prompts', route: '/growth-loop/prompts-analysis' },
+  { id: 'gl-prompts-practice', name: { en: 'Practice Prompts', zh: '实践 Prompts' }, group: 'prompts', route: '/growth-loop/prompts-practice' },
+  { id: 'gl-prompts-reflect', name: { en: 'Reflection Prompts', zh: '反思 Prompts' }, group: 'prompts', route: '/growth-loop/prompts-reflection' },
+];
+
+export function getGrowthLoopCount() {
+  return GROWTHLOOP_CATALOG.length;
+}
