@@ -24,10 +24,10 @@ const SectionPreview = ({ icon, title, subtitle, count, items, linkTo, delay }) 
         </div>
         <div className="wfx-ov-items">
             {items.slice(0, 8).map(item => (
-                <div key={item.id} className="wfx-ov-item">
+                <Link key={item.id} to={item.route} className="wfx-ov-item">
                     <span className="wfx-ov-item-zh">{item.name.zh}</span>
                     <span className="wfx-ov-item-en">{item.name.en}</span>
-                </div>
+                </Link>
             ))}
             {items.length > 8 && (
                 <Link to={linkTo} className="wfx-ov-item more">+{items.length - 8} more</Link>
