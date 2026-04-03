@@ -11,6 +11,7 @@ import Gallery from './pages/web-fx/Gallery';
 import TypographyDemo from './pages/web-fx/TypographyDemo';
 import VisualStyles from './pages/web-fx/VisualStyles';
 import IndustryStyles from './pages/web-fx/IndustryStyles';
+import WeChatButtonDemo from './pages/web-fx/WeChatButtonDemo';
 
 // Mini Program — Legacy
 import ViewContainers from './pages/components/ViewContainers'
@@ -85,6 +86,7 @@ function App() {
                     <Route path="typography" element={<TypographyDemo />} />
                     <Route path="visual-styles" element={<VisualStyles />} />
                     <Route path="industry-styles" element={<IndustryStyles />} />
+                    <Route path="wechat-buttons" element={<WeChatButtonDemo />} />
                 </Route>
             </Routes>
         </BrowserRouter>

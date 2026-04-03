@@ -1,7 +1,10 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
+import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import createGlobe from 'cobe';
+import Particles, { initParticlesEngine } from '@tsparticles/react';
+import { loadSlim } from '@tsparticles/slim';
 import ShowcaseCard from '../../components/WebFXLayout/ShowcaseCard';
+import PromoCard from '../../components/Common/PromoCard';
 import './IndustryStyles.css';
 
 /* ═══════════════════════════════════════════════════════
@@ -375,6 +378,14 @@ const GlobalNetwork = () => {
                 { location: [-33.8688, 151.2093], size: 0.03 },  // Sydney
                 { location: [55.7558, 37.6173], size: 0.03 },    // Moscow
             ],
+            arcs: [
+                { from: [22.5431, 114.0579], to: [34.0522, -118.2437] },  // Shenzhen → LA
+                { from: [31.2304, 121.4737], to: [40.7128, -74.006] },    // Shanghai → NYC
+                { from: [22.5431, 114.0579], to: [51.5074, -0.1278] },    // Shenzhen → London
+            ],
+            arcColor: [0.2, 0.5, 0.9],
+            arcWidth: 0.3,
+            arcHeight: 0.25,
         });
 
         let frame = 0;
@@ -413,8 +424,8 @@ const GlobalNetwork = () => {
     return (
         <ShowcaseCard
             title="Global Network 全球物流网络"
-            description="国际实力展示 — WebGL 3D 交互地球，全球枢纽节点可视化，拖拽旋转探索物流版图"
-            tags={['industry:Logistics', '场景:国际实力展示', 'WebGL 3D 地球', '全球枢纽节点', '鼠标拖拽旋转', 'COBE']}
+            description="国际实力展示 — WebGL 3D 交互地球 + 航线弧线，全球枢纽与货运路线可视化"
+            tags={['industry:Logistics', '场景:国际实力展示', 'WebGL 3D 地球', 'COBE Arcs 航线弧线', '10 枢纽节点', '7 条航线', '鼠标拖拽旋转']}
         >
             <div className="is-globe-scene">
                 <div className="is-globe-container">
@@ -432,6 +443,117 @@ const GlobalNetwork = () => {
                     <div className="is-globe-legend-item"><span className="is-globe-dot lg" />深圳 Shenzhen</div>
                     <div className="is-globe-legend-item"><span className="is-globe-dot md" />洛杉矶 · 纽约 · 伦敦</div>
                     <div className="is-globe-legend-item"><span className="is-globe-dot sm" />东京 · 新加坡 · 悉尼</div>
+                </div>
+            </div>
+        </ShowcaseCard>
+    );
+};
+
+// 11. Tilt 3D Service Cards
+const Tilt3DCards = () => {
+    const services = [
+        { icon: '🚢', title: '海运整柜', sub: 'FCL Ocean', stat: '15-25 天', accent: '#38bdf8' },
+        { icon: '✈️', title: '空运快线', sub: 'Air Express', stat: '3-5 天', accent: '#a78bfa' },
+        { icon: '🚛', title: '陆运专线', sub: 'Trucking', stat: '即日达', accent: '#22c55e' },
+    ];
+    return (
+        <ShowcaseCard
+            title="Tilt 3D Cards 3D 悬停服务卡"
+            description="B2B 信任感利器 — 鼠标悬停 3D 倾斜 + 光泽反射，提升服务卡片高级质感"
+            tags={['industry:Logistics', '场景:服务展示', 'Framer Motion 3D tilt', '鼠标跟随倾斜', '光泽反射', '零依赖']}
+        >
+            <div className="is-tilt-scene">
+                {services.map((s, i) => (
+                    <TiltCard key={i} service={s} index={i} />
+                ))}
+            </div>
+        </ShowcaseCard>
+    );
+};
+
+const TiltCard = ({ service, index }) => {
+    const ref = useRef(null);
+    const isTouchDevice = typeof window !== 'undefined' && ('ontouchstart' in window || navigator.maxTouchPoints > 0);
+    const x = useMotionValue(0);
+    const y = useMotionValue(0);
+    const rotateX = useSpring(useTransform(y, [-0.5, 0.5], [12, -12]), { stiffness: 300, damping: 30 });
+    const rotateY = useSpring(useTransform(x, [-0.5, 0.5], [-12, 12]), { stiffness: 300, damping: 30 });
+
+    const handleMove = (e) => {
+        if (isTouchDevice) return;
+        const rect = ref.current?.getBoundingClientRect();
+        if (!rect) return;
+        x.set((e.clientX - rect.left) / rect.width - 0.5);
+        y.set((e.clientY - rect.top) / rect.height - 0.5);
+    };
+    const handleLeave = () => { x.set(0); y.set(0); };
+
+    // Mobile: auto float animation; Desktop: mouse-driven tilt
+    return (
+        <motion.div
+            ref={ref}
+            className={`is-tilt-card ${isTouchDevice ? 'is-tilt-mobile' : ''}`}
+            style={isTouchDevice ? { transformStyle: 'preserve-3d' } : { rotateX, rotateY, transformStyle: 'preserve-3d' }}
+            onPointerMove={handleMove}
+            onPointerLeave={handleLeave}
+            {...(isTouchDevice ? {
+                animate: {
+                    rotateX: [0, -6, 0, 6, 0],
+                    rotateY: [0, 8, 0, -8, 0],
+                    y: [0, -6, 0],
+                },
+                transition: {
+                    duration: 4 + index * 0.8,
+                    repeat: Infinity,
+                    ease: 'easeInOut',
+                },
+            } : {})}
+        >
+            <div className="is-tilt-shine" />
+            <div className="is-tilt-icon">{service.icon}</div>
+            <div className="is-tilt-title">{service.title}</div>
+            <div className="is-tilt-sub">{service.sub}</div>
+            <div className="is-tilt-stat" style={{ color: service.accent }}>{service.stat}</div>
+        </motion.div>
+    );
+};
+
+// 12. Particle Network Background
+const ParticleNetwork = () => {
+    const [init, setInit] = useState(false);
+    useEffect(() => { initParticlesEngine(async (engine) => { await loadSlim(engine); }).then(() => setInit(true)); }, []);
+
+    const options = useMemo(() => ({
+        fullScreen: false,
+        background: { color: { value: 'transparent' } },
+        fpsLimit: 60,
+        particles: {
+            color: { value: ['#38bdf8', '#22c55e', '#a78bfa'] },
+            links: { color: '#38bdf8', distance: 120, enable: true, opacity: 0.25, width: 1 },
+            move: { enable: true, speed: 0.8, direction: 'none', outModes: { default: 'bounce' } },
+            number: { value: 50, density: { enable: true, area: 600 } },
+            opacity: { value: { min: 0.3, max: 0.7 } },
+            size: { value: { min: 1, max: 3 } },
+        },
+        detectRetina: true,
+    }), []);
+
+    return (
+        <ShowcaseCard
+            title="Particle Network 粒子连线科技感"
+            description="物流科技感背景 — 粒子自动连线形成网络拓扑，渲染供应链节点关系"
+            tags={['industry:Logistics', '场景:科技感背景', 'tsParticles', '粒子连线', '网络拓扑', '按需加载']}
+        >
+            <div className="is-particle-scene">
+                {init && <Particles className="is-particle-canvas" options={options} />}
+                <div className="is-particle-overlay">
+                    <div className="is-particle-title">Supply Chain Network</div>
+                    <div className="is-particle-subtitle">实时节点连接 · 智能路由优化</div>
+                    <div className="is-particle-stats">
+                        <div className="is-particle-stat"><span className="is-particle-sv">248</span><span className="is-particle-sl">Nodes</span></div>
+                        <div className="is-particle-stat"><span className="is-particle-sv">1.2k</span><span className="is-particle-sl">Links</span></div>
+                        <div className="is-particle-stat"><span className="is-particle-sv">99.7%</span><span className="is-particle-sl">Uptime</span></div>
+                    </div>
                 </div>
             </div>
         </ShowcaseCard>
@@ -1059,16 +1181,21 @@ const industries = [
 ];
 
 const industryDemos = [
-    { industry: 'logistics', el: <HighDensityDashboard key="density" /> },
-    { industry: 'logistics', el: <IndustrialConsole key="console" /> },
-    { industry: 'logistics', el: <BlueprintTracking key="blueprint" /> },
+    // ── 高级动效（置顶展示实力）
+    { industry: 'logistics', el: <GlobalNetwork key="globe" /> },
+    { industry: 'logistics', el: <Tilt3DCards key="tilt" /> },
+    { industry: 'logistics', el: <ParticleNetwork key="particles" /> },
+    // ── 核心业务场景
     { industry: 'logistics', el: <FreightForwarding key="freight" /> },
-    { industry: 'logistics', el: <WarehouseWMS key="wms" /> },
     { industry: 'logistics', el: <ContainerTracking key="container" /> },
+    { industry: 'logistics', el: <WarehouseWMS key="wms" /> },
     { industry: 'logistics', el: <FleetManagement key="fleet" /> },
     { industry: 'logistics', el: <CustomsDeclaration key="customs" /> },
     { industry: 'logistics', el: <LastMileDelivery key="lastmile" /> },
-    { industry: 'logistics', el: <GlobalNetwork key="globe" /> },
+    // ── 基础面板
+    { industry: 'logistics', el: <HighDensityDashboard key="density" /> },
+    { industry: 'logistics', el: <IndustrialConsole key="console" /> },
+    { industry: 'logistics', el: <BlueprintTracking key="blueprint" /> },
     { industry: 'finance', el: <FinTechMinimalist key="fintech" /> },
     { industry: 'finance', el: <PremiumMetallic key="premium" /> },
     { industry: 'finance', el: <Web3Iridescent key="web3" /> },
@@ -1107,7 +1234,7 @@ const IndustryStyles = () => {
                 >
                     <span className="vs-hero-tag">B. Industry Expressive</span>
                     <h1 className="vs-hero-title is-title">Industry Styles</h1>
-                    <p className="vs-hero-subtitle">行业专属风 — 29 种垂直行业视觉体系</p>
+                    <p className="vs-hero-subtitle">行业专属风 — 31 种垂直行业视觉体系</p>
                 </motion.div>
                 <motion.div
                     className="vs-filters"
@@ -1124,17 +1251,31 @@ const IndustryStyles = () => {
             </div>
             <div className="vs-grid">
                 <AnimatePresence mode="popLayout">
-                    {filtered.map((d, i) => (
-                        <motion.div
-                            key={d.industry + i}
-                            initial={{ opacity: 0, y: 24 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: -12 }}
-                            transition={{ duration: 0.4, delay: i * 0.05, ease: [0.16, 1, 0.3, 1] }}
-                        >
-                            {d.el}
-                        </motion.div>
-                    ))}
+                    {filtered.map((d, i) => {
+                        const isLogistics = active === 'logistics' || active === 'all';
+                        const showPromoAfter = d.industry === 'logistics' && i === 2 && (active === 'logistics' || active === 'all');
+                        return (
+                            <React.Fragment key={d.industry + i}>
+                                <motion.div
+                                    initial={{ opacity: 0, y: 24 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    exit={{ opacity: 0, y: -12 }}
+                                    transition={{ duration: 0.4, delay: i * 0.05, ease: [0.16, 1, 0.3, 1] }}
+                                >
+                                    {d.el}
+                                </motion.div>
+                                {showPromoAfter && (
+                                    <motion.div
+                                        initial={{ opacity: 0, y: 20 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{ duration: 0.5, delay: 0.2 }}
+                                    >
+                                        <PromoCard theme="dark" />
+                                    </motion.div>
+                                )}
+                            </React.Fragment>
+                        );
+                    })}
                 </AnimatePresence>
             </div>
         </div>

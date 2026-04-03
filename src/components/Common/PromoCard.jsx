@@ -1,15 +1,30 @@
-import React, { useState } from 'react';
-import { Copy, Check, MessageCircle, Cpu, Smartphone, Globe, ArrowRight } from 'lucide-react';
+import React, { useState, useCallback, useRef } from 'react';
+import { Copy, Check, MessageCircle, Cpu, Smartphone, Globe, ArrowRight, Search } from 'lucide-react';
 import './PromoCard.css';
 
-const PromoCard = ({ theme = 'dark' }) => {
-    const [copied, setCopied] = useState(false);
+/**
+ * PromoCard — "Seamless Handoff" UX
+ *
+ * State machine: idle → copied → resetting
+ *
+ * 点击任意按钮 →
+ *   左侧: ripple + icon flip ✅ + "已复制到剪贴板"
+ *   右侧: pulse glow + text morph → "💬 立即打开微信搜索"
+ *   3s → 双侧恢复
+ */
 
-    const handleCopy = async () => {
+const STATES = { IDLE: 'idle', COPIED: 'copied', RESETTING: 'resetting' };
+
+const PromoCard = ({ theme = 'dark' }) => {
+    const [phase, setPhase] = useState(STATES.IDLE);
+    const timerRef = useRef(null);
+
+    const handleAction = useCallback(async () => {
+        if (phase !== STATES.IDLE) return; // prevent re-trigger during animation
+
+        // Copy to clipboard
         try {
             await navigator.clipboard.writeText('xiaoleipro');
-            setCopied(true);
-            setTimeout(() => setCopied(false), 2000);
         } catch {
             const ta = document.createElement('textarea');
             ta.value = 'xiaoleipro';
@@ -17,11 +32,18 @@ const PromoCard = ({ theme = 'dark' }) => {
             ta.select();
             document.execCommand('copy');
             document.body.removeChild(ta);
-            setCopied(true);
-            setTimeout(() => setCopied(false), 2000);
         }
-    };
 
+        setPhase(STATES.COPIED);
+
+        timerRef.current = setTimeout(() => {
+            setPhase(STATES.RESETTING);
+            // Brief reset transition, then back to idle
+            setTimeout(() => setPhase(STATES.IDLE), 400);
+        }, 3500);
+    }, [phase]);
+
+    const isCopied = phase === STATES.COPIED;
     const isDark = theme === 'dark';
 
     return (
@@ -79,15 +101,43 @@ const PromoCard = ({ theme = 'dark' }) => {
                 <span className="promo-proof-text">你的同行正在用 AI 升级物流</span>
             </div>
 
-            <div className="promo-cta-row">
-                <button className={`promo-wechat ${copied ? 'promo-wechat-copied' : ''}`} onClick={handleCopy}>
-                    {copied
-                        ? <><Check size={14} /> <span>微信号已复制</span></>
-                        : <><MessageCircle size={14} /> <span className="promo-wechat-id">xiaoleipro</span> <Copy size={12} className="promo-copy-icon" /></>
-                    }
+            {/* ═══ Seamless Handoff CTA Row ═══ */}
+            <div className={`promo-cta-row ${isCopied ? 'promo-cta-copied' : ''}`}>
+                {/* Left: WeChat ID button */}
+                <button
+                    className={`promo-wechat ${isCopied ? 'promo-wechat-done' : ''}`}
+                    onClick={handleAction}
+                >
+                    {isCopied ? (
+                        <>
+                            <span className="promo-icon-flip"><Check size={14} /></span>
+                            <span className="promo-text-slide">✨ 已复制到剪贴板</span>
+                        </>
+                    ) : (
+                        <>
+                            <MessageCircle size={14} />
+                            <span className="promo-wechat-id">xiaoleipro</span>
+                            <Copy size={12} className="promo-copy-icon" />
+                        </>
+                    )}
+                    {/* Ripple element */}
+                    {isCopied && <span className="promo-ripple" />}
                 </button>
-                <button className="promo-cta-btn" onClick={handleCopy}>
-                    免费咨询 <ArrowRight size={14} />
+
+                {/* Right: CTA button — morphs to next-step guide */}
+                <button
+                    className={`promo-cta-btn ${isCopied ? 'promo-cta-handoff' : ''}`}
+                    onClick={handleAction}
+                >
+                    {isCopied ? (
+                        <>
+                            <span className="promo-text-slide">
+                                <Search size={14} /> 打开微信搜索粘贴
+                            </span>
+                        </>
+                    ) : (
+                        <>免费咨询 <ArrowRight size={14} /></>
+                    )}
                 </button>
             </div>
         </div>

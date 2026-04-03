@@ -72,6 +72,8 @@ export const WEBFX_CATALOG = [
   { id: 'customs-declaration', name: { en: 'Customs Declaration', zh: '报关清关' }, group: 'industry', sub: 'logistics', route: '/web-fx/industry-styles', hash: 'customs-declaration' },
   { id: 'last-mile-delivery', name: { en: 'Last-Mile Delivery', zh: '末端配送' }, group: 'industry', sub: 'logistics', route: '/web-fx/industry-styles', hash: 'last-mile-delivery' },
   { id: 'global-network', name: { en: 'Global Network', zh: '全球物流网络' }, group: 'industry', sub: 'logistics', route: '/web-fx/industry-styles', hash: 'global-network' },
+  { id: 'tilt-3d-cards', name: { en: 'Tilt 3D Cards', zh: '3D 悬停服务卡' }, group: 'industry', sub: 'logistics', route: '/web-fx/industry-styles', hash: 'tilt-3d-cards' },
+  { id: 'particle-network', name: { en: 'Particle Network', zh: '粒子连线科技感' }, group: 'industry', sub: 'logistics', route: '/web-fx/industry-styles', hash: 'particle-network' },
   { id: 'fintech-minimal', name: { en: 'FinTech Minimalist', zh: '极简金融' }, group: 'industry', sub: 'finance', route: '/web-fx/industry-styles', hash: 'fintech-minimal' },
   { id: 'premium-metallic', name: { en: 'Premium Metallic', zh: '暗夜淬金' }, group: 'industry', sub: 'finance', route: '/web-fx/industry-styles', hash: 'premium-metallic' },
   { id: 'web3-iridescent', name: { en: 'Web3 Iridescent', zh: '极客紫' }, group: 'industry', sub: 'finance', route: '/web-fx/industry-styles', hash: 'web3-iridescent' },
@@ -100,6 +102,7 @@ export const WEBFX_CATALOG = [
   { id: 'fluid-drag', name: { en: 'Fluid Drag & Drop', zh: '流体拖拽' }, group: 'interaction', route: '/web-fx/gallery' },
   { id: 'frosted-kpi', name: { en: 'Frosted KPI Card', zh: '毛玻璃卡片' }, group: 'interaction', route: '/web-fx/gallery' },
   { id: 'typography-engine', name: { en: 'Typography Engine', zh: '排版引擎' }, group: 'interaction', route: '/web-fx/typography' },
+  { id: 'wechat-buttons', name: { en: 'WeChat CTA Buttons', zh: '加微信按钮' }, group: 'interaction', route: '/web-fx/wechat-buttons' },
 ];
 
 export const WEBFX_GROUPS = [

@@ -700,6 +700,70 @@
 .is-globe-dot.md { width: 6px; height: 6px; }
 .is-globe-dot.sm { width: 4px; height: 4px; }
 
+/* ── 11. Tilt 3D Cards ── */
+.is-tilt-scene {
+    width: 100%; min-height: 280px; display: flex; align-items: center; justify-content: center;
+    gap: 1rem; background: #0a0e18; padding: 1.5rem; flex-wrap: wrap;
+    perspective: 1000px;
+}
+.is-tilt-card {
+    width: 140px; padding: 1.25rem; border-radius: 16px; text-align: center;
+    background: linear-gradient(135deg, rgba(30,40,60,0.9), rgba(20,30,50,0.9));
+    border: 1px solid rgba(255,255,255,0.08);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    cursor: pointer; position: relative; overflow: hidden;
+    transition: box-shadow 0.3s;
+}
+.is-tilt-card:hover {
+    box-shadow: 0 16px 48px rgba(0,0,0,0.4), 0 0 20px rgba(56,189,248,0.1);
+}
+.is-tilt-shine {
+    position: absolute; inset: 0; pointer-events: none;
+    background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, transparent 50%, transparent 100%);
+    opacity: 0; transition: opacity 0.3s;
+}
+.is-tilt-card:hover .is-tilt-shine { opacity: 1; }
+/* Mobile: always-on shimmer */
+.is-tilt-mobile .is-tilt-shine {
+    opacity: 1;
+    background: linear-gradient(135deg, rgba(255,255,255,0.06) 0%, transparent 40%, rgba(255,255,255,0.04) 80%, transparent 100%);
+    animation: is-tilt-shimmer 3s ease-in-out infinite;
+}
+@keyframes is-tilt-shimmer {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; }
+}
+.is-tilt-icon { font-size: 2rem; margin-bottom: 0.5rem; }
+.is-tilt-title { font-size: 0.85rem; font-weight: 700; color: #e2e8f0; margin-bottom: 0.15rem; }
+.is-tilt-sub { font-size: 0.6rem; color: #64748b; margin-bottom: 0.6rem; font-family: 'JetBrains Mono', monospace; }
+.is-tilt-stat { font-size: 0.9rem; font-weight: 800; font-family: 'Outfit', sans-serif; }
+
+/* ── 12. Particle Network ── */
+.is-particle-scene {
+    width: 100%; min-height: 300px; position: relative; overflow: hidden;
+    background: #050a15; display: flex; align-items: center; justify-content: center;
+}
+.is-particle-canvas {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+}
+.is-particle-overlay {
+    position: relative; text-align: center; z-index: 1; padding: 2rem;
+}
+.is-particle-title {
+    font-family: 'Outfit', sans-serif; font-size: 1.3rem; font-weight: 800;
+    color: #e2e8f0; margin-bottom: 0.3rem; letter-spacing: 1px;
+}
+.is-particle-subtitle {
+    font-size: 0.75rem; color: #64748b; margin-bottom: 1.25rem;
+}
+.is-particle-stats { display: flex; gap: 1.5rem; justify-content: center; }
+.is-particle-stat { text-align: center; }
+.is-particle-sv {
+    display: block; font-family: 'JetBrains Mono', monospace;
+    font-size: 1.3rem; font-weight: 700; color: #38bdf8;
+}
+.is-particle-sl { font-size: 0.6rem; color: #475569; letter-spacing: 1px; text-transform: uppercase; }
+
 /* ═══════════════════════════════════════════════════════
    2026 NEW ENTERPRISE STYLES
    ═══════════════════════════════════════════════════════ */
