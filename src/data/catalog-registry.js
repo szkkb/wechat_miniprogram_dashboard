@@ -71,6 +71,7 @@ export const WEBFX_CATALOG = [
   { id: 'fleet-management', name: { en: 'Fleet Management', zh: '车队调度' }, group: 'industry', sub: 'logistics', route: '/web-fx/industry-styles', hash: 'fleet-management' },
   { id: 'customs-declaration', name: { en: 'Customs Declaration', zh: '报关清关' }, group: 'industry', sub: 'logistics', route: '/web-fx/industry-styles', hash: 'customs-declaration' },
   { id: 'last-mile-delivery', name: { en: 'Last-Mile Delivery', zh: '末端配送' }, group: 'industry', sub: 'logistics', route: '/web-fx/industry-styles', hash: 'last-mile-delivery' },
+  { id: 'global-network', name: { en: 'Global Network', zh: '全球物流网络' }, group: 'industry', sub: 'logistics', route: '/web-fx/industry-styles', hash: 'global-network' },
   { id: 'fintech-minimal', name: { en: 'FinTech Minimalist', zh: '极简金融' }, group: 'industry', sub: 'finance', route: '/web-fx/industry-styles', hash: 'fintech-minimal' },
   { id: 'premium-metallic', name: { en: 'Premium Metallic', zh: '暗夜淬金' }, group: 'industry', sub: 'finance', route: '/web-fx/industry-styles', hash: 'premium-metallic' },
   { id: 'web3-iridescent', name: { en: 'Web3 Iridescent', zh: '极客紫' }, group: 'industry', sub: 'finance', route: '/web-fx/industry-styles', hash: 'web3-iridescent' },

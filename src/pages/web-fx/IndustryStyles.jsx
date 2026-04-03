@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import createGlobe from 'cobe';
 import ShowcaseCard from '../../components/WebFXLayout/ShowcaseCard';
 import './IndustryStyles.css';
 
@@ -337,6 +338,105 @@ const LastMileDelivery = () => (
         </div>
     </ShowcaseCard>
 );
+
+// 10. Global Network — Interactive 3D Globe
+const GlobalNetwork = () => {
+    const canvasRef = useRef(null);
+    const pointerInteracting = useRef(null);
+    const pointerMovement = useRef(0);
+    const phiRef = useRef(0);
+
+    useEffect(() => {
+        if (!canvasRef.current) return;
+        let width = canvasRef.current.offsetWidth;
+
+        const globe = createGlobe(canvasRef.current, {
+            devicePixelRatio: 2,
+            width: width * 2,
+            height: width * 2,
+            phi: 0,
+            theta: 0.25,
+            dark: 1,
+            diffuse: 2,
+            mapSamples: 16000,
+            mapBrightness: 8,
+            baseColor: [0.12, 0.18, 0.3],
+            markerColor: [0.1, 0.5, 0.9],
+            glowColor: [0.04, 0.22, 0.55],
+            markers: [
+                { location: [22.5431, 114.0579], size: 0.08 },   // Shenzhen
+                { location: [34.0522, -118.2437], size: 0.06 },  // Los Angeles
+                { location: [40.7128, -74.006], size: 0.06 },    // New York
+                { location: [43.6532, -79.3832], size: 0.05 },   // Toronto
+                { location: [31.2304, 121.4737], size: 0.05 },   // Shanghai
+                { location: [51.5074, -0.1278], size: 0.05 },    // London
+                { location: [35.6762, 139.6503], size: 0.04 },   // Tokyo
+                { location: [1.3521, 103.8198], size: 0.04 },    // Singapore
+                { location: [-33.8688, 151.2093], size: 0.03 },  // Sydney
+                { location: [55.7558, 37.6173], size: 0.03 },    // Moscow
+            ],
+        });
+
+        let frame = 0;
+        const animate = () => {
+            if (!pointerInteracting.current) phiRef.current += 0.003;
+            globe.update({ phi: phiRef.current + pointerMovement.current, width: width * 2, height: width * 2 });
+            frame = requestAnimationFrame(animate);
+        };
+        frame = requestAnimationFrame(animate);
+
+        setTimeout(() => { if (canvasRef.current) canvasRef.current.style.opacity = '1'; }, 100);
+
+        const onResize = () => { if (canvasRef.current) width = canvasRef.current.offsetWidth; };
+        window.addEventListener('resize', onResize);
+
+        return () => { cancelAnimationFrame(frame); globe.destroy(); window.removeEventListener('resize', onResize); };
+    }, []);
+
+    const onPointerDown = useCallback((e) => {
+        pointerInteracting.current = e.clientX - pointerMovement.current;
+        if (canvasRef.current) canvasRef.current.style.cursor = 'grabbing';
+    }, []);
+    const onPointerUp = useCallback(() => {
+        pointerInteracting.current = null;
+        if (canvasRef.current) canvasRef.current.style.cursor = 'grab';
+    }, []);
+    const onPointerMove = useCallback((e) => {
+        if (pointerInteracting.current !== null) {
+            const delta = e.clientX - pointerInteracting.current;
+            pointerMovement.current = delta / 200;
+            phiRef.current += delta / 200;
+            pointerInteracting.current = e.clientX;
+        }
+    }, []);
+
+    return (
+        <ShowcaseCard
+            title="Global Network 全球物流网络"
+            description="国际实力展示 — WebGL 3D 交互地球，全球枢纽节点可视化，拖拽旋转探索物流版图"
+            tags={['industry:Logistics', '场景:国际实力展示', 'WebGL 3D 地球', '全球枢纽节点', '鼠标拖拽旋转', 'COBE']}
+        >
+            <div className="is-globe-scene">
+                <div className="is-globe-container">
+                    <canvas
+                        ref={canvasRef}
+                        className="is-globe-canvas"
+                        onPointerDown={onPointerDown}
+                        onPointerUp={onPointerUp}
+                        onPointerOut={onPointerUp}
+                        onPointerMove={onPointerMove}
+                    />
+                    <div className="is-globe-glow" />
+                </div>
+                <div className="is-globe-legend">
+                    <div className="is-globe-legend-item"><span className="is-globe-dot lg" />深圳 Shenzhen</div>
+                    <div className="is-globe-legend-item"><span className="is-globe-dot md" />洛杉矶 · 纽约 · 伦敦</div>
+                    <div className="is-globe-legend-item"><span className="is-globe-dot sm" />东京 · 新加坡 · 悉尼</div>
+                </div>
+            </div>
+        </ShowcaseCard>
+    );
+};
 
 /* ── Finance & Crypto ── */
 
@@ -968,6 +1068,7 @@ const industryDemos = [
     { industry: 'logistics', el: <FleetManagement key="fleet" /> },
     { industry: 'logistics', el: <CustomsDeclaration key="customs" /> },
     { industry: 'logistics', el: <LastMileDelivery key="lastmile" /> },
+    { industry: 'logistics', el: <GlobalNetwork key="globe" /> },
     { industry: 'finance', el: <FinTechMinimalist key="fintech" /> },
     { industry: 'finance', el: <PremiumMetallic key="premium" /> },
     { industry: 'finance', el: <Web3Iridescent key="web3" /> },
@@ -1006,7 +1107,7 @@ const IndustryStyles = () => {
                 >
                     <span className="vs-hero-tag">B. Industry Expressive</span>
                     <h1 className="vs-hero-title is-title">Industry Styles</h1>
-                    <p className="vs-hero-subtitle">行业专属风 — 28 种垂直行业视觉体系</p>
+                    <p className="vs-hero-subtitle">行业专属风 — 29 种垂直行业视觉体系</p>
                 </motion.div>
                 <motion.div
                     className="vs-filters"
