@@ -79,4 +79,14 @@ src/
 
 ## License
 
-Private
+本项目采用 [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/) 协议。
+
+[![CC BY-NC 4.0](https://licensebuttons.net/l/by-nc/4.0/88x31.png)](https://creativecommons.org/licenses/by-nc/4.0/)
+
+**你可以：** 自由复制、分享、修改，用于个人学习和非商业项目
+
+**你需要：** 注明原作者和出处
+
+**你不可以：** 用于商业用途
+
+如需商业授权，请联系微信：`xiaoleipro`
