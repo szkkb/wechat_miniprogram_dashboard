@@ -177,3 +177,38 @@
     0% { transform: translate(0, 0); }
     100% { transform: translate(50px, 50px); }
 }
+
+/* Extreme Whitespace Mobile Overrides */
+@media (max-width: 768px) {
+    .landing-content {
+        padding: 6rem 1.5rem 2rem;
+        gap: 5rem;
+    }
+    
+    .workspace-cards {
+        gap: 3.5rem;
+    }
+    
+    .workspace-card {
+        padding: 3rem 2rem;
+        border-radius: 32px;
+    }
+    
+    .landing-title {
+        font-size: 2.2rem;
+        line-height: 1.4;
+        letter-spacing: 0.05em;
+        margin-bottom: 1.5rem;
+    }
+
+    .landing-subtitle {
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+    
+    /* Strict Info Density Limit */
+    .card-tags, 
+    .card-stats {
+        display: none !important;
+    }
+}

@@ -310,7 +310,14 @@
     }
 
     .topbar {
-        padding: 0 16px;
+        padding: 0 20px;
+        border-bottom: none;
+        border: 1px solid rgba(255, 255, 255, 0.05); /* very subtle to give it a glass feel */
+        background: rgba(10, 10, 12, 0.6);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+        margin: 12px 16px;
+        border-radius: 24px;
+        height: 64px;
     }
 
     .mobile-menu-btn {
@@ -318,7 +325,12 @@
     }
 
     .page-subtitle {
-        display: none;
+        display: none !important;
+    }
+
+    .page-title {
+        font-size: 1.15rem; /* Slightly smaller for elegance */
+        letter-spacing: 0.03em;
     }
 
     .sidebar-overlay.active {
@@ -328,6 +340,6 @@
     }
 
     .content-wrapper {
-        padding: 16px;
+        padding: 24px 24px 80px 24px; /* massive padding, letting content breathe */
     }
 }
