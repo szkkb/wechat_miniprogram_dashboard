@@ -14,12 +14,11 @@
     width: 100%;
     margin: 0 auto;
     min-height: 100vh;
-    padding: 2rem;
+    padding: 4rem 2rem 2rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    gap: 4rem;
+    gap: 3rem;
 }
 
 .landing-header {
@@ -149,6 +148,63 @@
 
 .workspace-card:hover .card-action {
     color: #fff;
+}
+
+/* ── Intro Section ── */
+.landing-intro {
+    max-width: 720px; text-align: center;
+}
+.landing-intro p {
+    color: #94a3b8; font-size: 0.95rem; line-height: 1.8; margin: 0 0 0.75rem;
+}
+.landing-intro strong { color: #e2e8f0; font-weight: 600; }
+
+/* ── Tools Section ── */
+.landing-tools {
+    width: 100%; max-width: 800px;
+}
+.tools-title {
+    font-size: 1.2rem; font-weight: 700; color: #e2e8f0; margin: 0 0 0.5rem;
+    text-align: center;
+}
+.tools-desc {
+    font-size: 0.85rem; color: #64748b; text-align: center; margin: 0 0 1.25rem;
+}
+.tools-grid {
+    display: flex; flex-direction: column; gap: 0.6rem;
+}
+.tool-card {
+    display: flex; align-items: center; gap: 0.75rem;
+    padding: 1rem 1.25rem; border-radius: 14px;
+    background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);
+    text-decoration: none; color: inherit;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.tool-card:hover {
+    background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.12);
+    transform: translateX(4px);
+}
+.tool-icon {
+    width: 40px; height: 40px; border-radius: 10px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(168,85,247,0.1); color: #a78bfa;
+}
+.tool-info { flex: 1; }
+.tool-name {
+    display: block; font-size: 0.9rem; font-weight: 600; color: #e2e8f0;
+    margin-bottom: 0.2rem;
+}
+.tool-desc {
+    display: block; font-size: 0.75rem; color: #64748b; line-height: 1.5;
+}
+.tool-link-icon { color: #475569; flex-shrink: 0; }
+
+/* ── Footer ── */
+.landing-footer {
+    padding: 1.5rem 0; text-align: center;
+}
+.landing-footer p {
+    font-size: 0.75rem; color: #475569; margin: 0;
 }
 
 /* Ambient Blobs */
