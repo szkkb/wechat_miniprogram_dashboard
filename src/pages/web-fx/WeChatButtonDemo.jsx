@@ -46,7 +46,7 @@ const SeamlessHandoff = () => {
                         {done ? (
                             <span className="wcb-text-slide"><Search size={14} /> 打开微信搜索粘贴</span>
                         ) : (
-                            <>免费咨询 <ArrowRight size={14} /></>
+                            <>付费咨询 <ArrowRight size={14} /></>
                         )}
                     </button>
                 </div>
@@ -147,7 +147,7 @@ const FluidMerge = () => {
                                     <span className="wcb-id">{WECHAT_ID}</span>
                                 </button>
                                 <button className="wcb-merge-right" onClick={handleClick}>
-                                    免费咨询 <ArrowRight size={14} />
+                                    付费咨询 <ArrowRight size={14} />
                                 </button>
                             </motion.div>
                         ) : (

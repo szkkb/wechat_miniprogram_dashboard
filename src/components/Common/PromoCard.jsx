@@ -136,7 +136,7 @@ const PromoCard = ({ theme = 'dark' }) => {
                             </span>
                         </>
                     ) : (
-                        <>免费咨询 <ArrowRight size={14} /></>
+                        <>付费咨询 <ArrowRight size={14} /></>
                     )}
                 </button>
             </div>
