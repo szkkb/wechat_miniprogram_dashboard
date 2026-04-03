@@ -42,7 +42,7 @@ const LandingPage = () => {
                                 </a>
                                 <a href="https://stitch.withgoogle.com/home" target="_blank" rel="noopener noreferrer" className="tool-row">
                                     <span className="tool-name">Google Stitch</span>
-                                    <span className="tool-link-text">界面一般，但设计系统文件不错，调好色丢给 AI 用 <ArrowRight size={14}/></span>
+                                    <span className="tool-link-text">能力一般，但设计系统文件不错，调好色丢给 AI 用 <ArrowRight size={14}/></span>
                                 </a>
                             </div>
                         </div>
