@@ -39,7 +39,7 @@ const InteractiveAPIs = () => {
 
     return (
         <div className="page-container animate-fade-in">
-            <div className="glass-panel header-panel">
+            <div className="glass-panel header-panel" tabIndex="0">
                 <h3 className="section-title">硬件交互与开放 API</h3>
                 <p className="section-desc">
                     模拟微信小程序能够调用的手机底层硬件能力，如相机预览、震动反馈、GPS定位及系统剪贴板读取。

@@ -149,7 +149,7 @@
 }
 
 .color-2 {
-    background: linear-gradient(135deg, #4ECDC4, #3BBRB6);
+    background: linear-gradient(135deg, #4ECDC4, #3bb8b6);
 }
 
 .color-3 {
@@ -338,5 +338,120 @@
 
     100% {
         transform: translate(0, 0);
+    }
+}
+
+/* ==============================================================
+   MOBILE OVERRIDES (Interaction First + Bottom Sheet Gesture)
+   ============================================================== */
+
+@media (max-width: 768px) {
+    /* Standardize standard .page-container to vertically stack */
+    .page-container {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        width: 100%;
+        padding-bottom: 140px; /* Massive space for the floating bottom sheet clearance */
+    }
+    
+    /* Maximize Core Stage Area on Mobile */
+    .demo-card {
+        padding: 16px 12px; /* Reduce outer padding */
+    }
+    
+    .demo-content {
+        min-height: 280px; /* Make the stage taller for animations */
+        padding: 16px;     /* Reduce inner padding */
+    }
+    
+    .mock-phone {
+        transform: scale(1.15); /* Magnify the mock phone */
+        transform-origin: center center;
+    }
+
+    /* Ensure .demo-grid does not force fixed grids on tiny phones */
+    .demo-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        margin-top: 0;
+        width: 100%;
+    }
+
+    /* Transform the verbose top header into a minimized floating bottom drawer! */
+    .header-panel {
+        position: fixed;
+        bottom: 24px;
+        left: 16px;
+        right: 16px;
+        z-index: 100;
+        background: rgba(26, 26, 30, 0.85); /* Deep dark glass */
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-radius: 20px;
+        padding: 40px 20px 20px;
+        border-left: none;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.8);
+        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        cursor: pointer;
+        /* Collapsed State Height constraints */
+        max-height: 48px;
+        overflow: hidden;
+    }
+    
+    /* The Gesture Bar Indicator */
+    .header-panel::before {
+        content: '👆 向上轻扫，或点击阅读本页介绍';
+        position: absolute;
+        top: 0; left: 0; right: 0;
+        height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 13px;
+        color: #07c160;
+        font-weight: 500;
+        background: linear-gradient(180deg, rgba(7, 193, 96, 0.05), transparent);
+        transition: opacity 0.3s;
+    }
+
+    .header-panel::after {
+        content: '';
+        position: absolute;
+        top: 8px; left: 50%;
+        transform: translateX(-50%);
+        width: 40px; height: 4px;
+        background: rgba(255,255,255,0.2);
+        border-radius: 2px;
+    }
+
+    /* Expanding State Hack via focus-origin tap! */
+    .header-panel:focus, .header-panel:focus-within {
+        max-height: 300px;
+        padding-top: 36px;
+        background: rgba(26, 26, 30, 0.95);
+        outline: none; /* remove default selection box */
+    }
+
+    /* Swap instructions when open */
+    .header-panel:focus::before, .header-panel:focus-within::before {
+        opacity: 0; 
+        pointer-events: none;
+    }
+
+    .header-panel .section-title {
+        font-size: 17px;
+        margin-bottom: 8px;
+        margin-top: 10px;
+        color: #fff;
+    }
+
+    .header-panel .section-desc {
+        font-size: 14px;
+        line-height: 1.6;
+        color: rgba(255, 255, 255, 0.7);
+        padding-bottom: 10px;
     }
 }

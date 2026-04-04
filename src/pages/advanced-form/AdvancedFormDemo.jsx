@@ -3,12 +3,12 @@ import DemoCard from '../../components/Common/DemoCard';
 import './AdvancedForm.css';
 
 const AdvancedFormDemo = () => {
-    const [code, setCode] = useState(['', '', '', '', '', '']);
+    const [code, setCode] = useState(['', '', '', '']);
     const [errorState, setErrorState] = useState(false);
     const [logs, setLogs] = useState([]);
-    const inputRefs = [useRef(null), useRef(null), useRef(null), useRef(null), useRef(null), useRef(null)];
+    const inputRefs = [useRef(null), useRef(null), useRef(null), useRef(null)];
 
-    const CODE_LENGTH = 6;
+    const CODE_LENGTH = 4;
 
     const handleChange = (index, e) => {
         const val = e.target.value.replace(/\D/g, ''); // Numbers only
@@ -45,7 +45,7 @@ const AdvancedFormDemo = () => {
     const verifyCode = (fullCode) => {
         setLogs(prev => [...prev.slice(-4), `提交验证码: ${fullCode}`]);
         // Fake Validation: fail if it's not '123456'
-        if (fullCode !== '123456') {
+        if (fullCode !== '1234') {
             setTimeout(() => {
                 setErrorState(true);
                 setLogs(prev => [...prev.slice(-4), `验证失败: 验证码错误`]);
@@ -56,7 +56,7 @@ const AdvancedFormDemo = () => {
     };
 
     const resetCode = () => {
-        setCode(['', '', '', '', '', '']);
+        setCode(['', '', '', '']);
         setErrorState(false);
         inputRefs[0].current?.focus();
         setLogs(prev => [...prev.slice(-4), `重置验证码阵区`]);
@@ -64,7 +64,7 @@ const AdvancedFormDemo = () => {
 
     return (
         <div className="page-container animate-fade-in">
-            <div className="glass-panel header-panel">
+            <div className="glass-panel header-panel" tabIndex="0">
                 <h3 className="section-title">高阶表单与控制 (Advanced Form)</h3>
                 <p className="section-desc">
                     覆盖需要复杂校验、多级联动或特定防窥输入键盘的高级录入组件表现。
@@ -73,14 +73,14 @@ const AdvancedFormDemo = () => {
 
             <div className="demo-grid">
                 <DemoCard
-                    title="六位验证码输入矩阵"
+                    title="四位验证码输入矩阵"
                     codeId="Pattern: AF-Captcha"
                     badge="连贯焦点跳跃"
                     description="独立方块矩阵，键入数字后自动连贯跃迁至下一格；最后一位输入完成自动触发异步提交验证方案。包含摇晃警示视觉传达。"
                     mockPhone={false}
                     controls={
                         <button className="premium-btn secondary" onClick={resetCode} style={{ width: 'auto', padding: '8px 16px' }}>
-                            清空并重新测试 (密码: 123456)
+                            清空并重新测试 (密码: 1234)
                         </button>
                     }
                     logs={logs}

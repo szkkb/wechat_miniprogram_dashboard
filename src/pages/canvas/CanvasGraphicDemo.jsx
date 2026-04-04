@@ -29,7 +29,7 @@ const CanvasGraphicDemo = () => {
 
     return (
         <div className="page-container animate-fade-in">
-            <div className="glass-panel header-panel">
+            <div className="glass-panel header-panel" tabIndex="0">
                 <h3 className="section-title">图形与海报生成 (Canvas & Graphic)</h3>
                 <p className="section-desc">
                     覆盖基于 Canvas 实现的前端图片合成、裁剪截取等展示能力。

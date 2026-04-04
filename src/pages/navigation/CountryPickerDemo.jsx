@@ -43,7 +43,7 @@ const CountryPickerDemo = () => {
 
     return (
         <div className="page-container animate-fade-in cp-page-wrapper">
-            <div className="glass-panel header-panel">
+            <div className="glass-panel header-panel" tabIndex="0">
                 <h3 className="section-title">导航与布局 (Navigation)</h3>
                 <p className="section-desc">
                     通过 draggable-sheet 实现物流目的国选择器，内含搜索过滤与时效展示，比 picker 原生选择器体验更丰富。

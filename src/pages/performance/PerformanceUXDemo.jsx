@@ -65,7 +65,7 @@ const PerformanceUXDemo = () => {
 
     return (
         <div className="page-container animate-fade-in">
-            <div className="glass-panel header-panel">
+            <div className="glass-panel header-panel" tabIndex="0">
                 <h3 className="section-title">性能与体验模式 (Performance & UX)</h3>
                 <p className="section-desc">
                     体验丝滑橡皮筋刷新、无限加载，以及大规模渲染下的抗抖动。

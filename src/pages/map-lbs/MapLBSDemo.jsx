@@ -25,7 +25,7 @@ const MapLBSDemo = () => {
 
     return (
         <div className="page-container animate-fade-in">
-            <div className="glass-panel header-panel">
+            <div className="glass-panel header-panel" tabIndex="0">
                 <h3 className="section-title">地图与位置 (Map & LBS)</h3>
                 <p className="section-desc">
                     覆盖基于地图容器展开的标记、轨迹及联动选择能力。

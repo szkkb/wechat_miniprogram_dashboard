@@ -7,7 +7,7 @@ const ViewContainers = () => {
 
     return (
         <div className="page-container animate-fade-in">
-            <div className="glass-panel header-panel">
+            <div className="glass-panel header-panel" tabIndex="0">
                 <h3 className="section-title">视图容器 (View Containers)</h3>
                 <p className="section-desc">
                     模拟微信小程序核心容器组件在 Web 端的高级质感实现。包含弹性滚动、轮播、触控拖拽与页面级容器模拟。

@@ -17,7 +17,7 @@ const BasicContent = () => {
 
     return (
         <div className="page-container animate-fade-in">
-            <div className="glass-panel header-panel">
+            <div className="glass-panel header-panel" tabIndex="0">
                 <h3 className="section-title">基础内容与反馈 (Basic Content)</h3>
                 <p className="section-desc">
                     展示小程序的基础排版元素、自定义状态图标、发光进度条和原生反馈机制的模拟。

@@ -1,446 +1,312 @@
+/* ==============================================================
+   Core Constraints & Reset
+   ============================================================== */
+.new-ux-container, .new-ux-container * {
+    box-sizing: border-box;
+}
+
+.page-container {
+    background: #111; /* Dark background to simulate phone wrapper on desktop */
+    display: flex; justify-content: center; align-items: center;
+}
+
 .new-ux-container {
-    height: 100%;
+    height: 100dvh;
+    width: 100%;
+    /* Pretext Engine Boundary: No reflow clamp mapping */
+    max-width: clamp(320px, 100vw, 480px); 
+    background-color: #f4f6f9;
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Segoe UI", Roboto, sans-serif;
+    position: relative;
+    overflow: hidden;
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
-    background-color: #f4f6f9;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    position: relative;
 }
 
-/* Header */
-.demo-header {
-    background-color: #fff;
-    padding: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    font-weight: 600;
-    font-size: 18px;
-    color: #333;
-    z-index: 10;
+/* 3D scale back effect when modal is open */
+.new-ux-container.modal-open .scroll-content,
+.new-ux-container.modal-open .demo-header-native {
+    transform: scale(0.95) translateY(-8px);
+    border-radius: 12px;
+    filter: blur(1px);
+    pointer-events: none;
+}
+.scroll-content, .demo-header-native {
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.back-btn {
-    position: absolute;
-    left: 16px;
-    background: none;
-    border: none;
-    font-size: 20px;
-    cursor: pointer;
-    color: #333;
+/* ==============================================================
+   Native WeChat Capsule Header
+   ============================================================== */
+.demo-header-native {
+    padding: env(safe-area-inset-top, 44px) 16px 12px;
+    background: #fff;
+    display: flex; align-items: center; justify-content: center;
+    position: relative; z-index: 10;
 }
 
+.demo-header-left {
+    position: absolute; left: 16px; bottom: 10px; cursor: pointer;
+}
+
+.demo-header-title {
+    font-size: 17px; font-weight: 600; color: #1a1a1a; padding-bottom: 2px;
+}
+
+.demo-header-capsule {
+    position: absolute; right: 12px; bottom: 6px;
+    display: flex; align-items: center; gap: 10px;
+    border: 1px solid rgba(0,0,0,0.12); border-radius: 24px;
+    padding: 5px 12px; background: rgba(255,255,255,0.7);
+}
+.capsule-divider {
+    width: 1px; height: 16px; background: rgba(0,0,0,0.12);
+}
+
+/* ==============================================================
+   Main Scroll Area
+   ============================================================== */
 .scroll-content {
     flex: 1;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
+    padding-top: 10px;
 }
 
 /* Context Header */
 .context-header {
-    padding: 20px 16px 12px;
+    padding: 10px 16px;
 }
-
 .destination-badge {
-    display: inline-block;
-    background: #eef3fc;
-    color: #0052d9;
-    padding: 6px 12px;
-    border-radius: 16px;
-    font-size: 15px;
-    font-weight: 600;
+    display: inline-block; background: #eef3fc; color: #0052d9;
+    padding: 6px 14px; border-radius: 20px; font-size: 14px; font-weight: 600;
     margin-bottom: 12px;
 }
-
+.modify-link { margin-left: 8px; font-size: 12px; font-weight: normal; color: #64748b; }
 .smart-tip {
-    display: flex;
-    align-items: flex-start;
-    gap: 8px;
-    font-size: 15px;
-    color: #333;
-    font-weight: 500;
-    line-height: 1.4;
+    display: flex; align-items: flex-start; gap: 8px;
+    font-size: 14px; color: #333; font-weight: 500; line-height: 1.5;
 }
+.smart-tip small { font-weight: 400; color: #888; font-size: 12px; margin-top: 4px; display: block; }
 
-.smart-tip small {
-    font-weight: 400;
-    color: #888;
-    font-size: 13px;
-    margin-top: 4px;
-    display: block;
-}
-
-/* Horizontal Swiper */
+/* Swiper (Container Query Support) */
 .horizontal-swiper-area {
-    display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    padding: 10px 16px 20px;
-    gap: 12px;
+    display: flex; overflow-x: auto; scroll-snap-type: x mandatory;
+    padding: 12px 16px 24px; gap: clamp(10px, 3cqw, 16px);
     scrollbar-width: none;
-    -webkit-overflow-scrolling: touch;
-    align-items: center; /* Aligns cards vertically centered */
+    container-type: inline-size;
 }
+.horizontal-swiper-area::-webkit-scrollbar { display: none; }
+.horizontal-swiper-area::after { content: ''; padding-right: 4px; }
 
-.horizontal-swiper-area::-webkit-scrollbar {
-    display: none;
-}
-
-.horizontal-swiper-area::after {
-    content: '';
-    padding-right: 4px;
-}
-
-/* Plan Cards */
+/* Plan Cards - Pretext Fluid Zero-Reflow */
 .plan-card {
-    background: #fff;
-    border-radius: 16px;
-    position: relative;
-    scroll-snap-align: center;
-    flex-shrink: 0;
-    width: 82vw;
-    max-width: 320px;
+    background: #fff; border-radius: 16px; position: relative;
+    scroll-snap-align: center; flex-shrink: 0;
+    width: clamp(260px, 82cqw, 320px);
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
-    border: 1px solid #f0f0f0;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    cursor: pointer;
-    overflow: hidden;
+    border: 1.5px solid transparent;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    cursor: pointer; overflow: hidden;
+    display: flex; flex-direction: column;
 }
 
+/* Tactical Aha: Highlight State */
 .plan-card.highlighted {
-    transform: scale(1.02);
-    border: 2px solid #0052d9;
-    box-shadow: 0 8px 24px rgba(0, 82, 217, 0.15);
+    transform: scale(1.03);
+    border-color: #0052d9;
+    box-shadow: 0 12px 30px rgba(0, 82, 217, 0.16), inset 0 0 0 1px #0052d9;
     z-index: 2;
 }
-
-.plan-card.normal {
-    transform: scale(0.95);
-    opacity: 0.9;
-}
+.plan-card.normal { transform: scale(0.95); opacity: 0.75; }
 
 .plan-badge {
-    padding: 10px 16px;
-    font-size: 14px;
-    font-weight: 600;
+    padding: 8px 16px; font-size: 13px; font-weight: 600;
     border-bottom: 1px solid rgba(0,0,0,0.04);
 }
+.plan-badge.best { background: linear-gradient(90deg, #fffcf0, #fff); color: #d48806; }
+.plan-badge.cheap { background: linear-gradient(90deg, #fff0e5, #fff); color: #ff7a00; }
+.plan-badge.fast { background: linear-gradient(90deg, #eef3fc, #fff); color: #0052d9; }
 
-.plan-badge.best {
-    background: linear-gradient(90deg, #fffcf0 0%, #fff 100%);
-    color: #d48806;
+.plan-content { padding: 16px; }
+.plan-title { font-size: 16px; font-weight: 600; color: #333; margin-bottom: 12px; }
+
+/* Tabular Nums for Logistics Aesthetics */
+.tabular-nums { font-variant-numeric: tabular-nums; font-family: -apple-system, sans-serif; }
+
+.plan-price-row { color: #ff3b30; margin-bottom: 6px; }
+.plan-price-row .currency { font-size: 16px; font-weight: 600; margin-right: 2px; }
+.plan-price-row .amount { font-size: 32px; font-weight: 800; letter-spacing: -1px; }
+
+.plan-time { font-size: 13px; color: #666; margin-bottom: 16px; }
+.plan-divider { height: 1px; background: #f0f0f0; margin: 12px 0; }
+
+.plan-features { list-style: none; padding: 0; margin: 0; }
+.plan-features li { font-size: clamp(11px, 3.5cqw, 12px); color: #555; margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+
+/* Explicit CTA Interaction Hint */
+.plan-card-cta {
+    margin-top: auto;
+    padding: 12px 16px;
+    background: linear-gradient(180deg, transparent, rgba(0, 82, 217, 0.03));
+    border-top: 1px dashed rgba(0, 0, 0, 0.06);
+    display: flex; align-items: center; gap: 6px;
+    font-size: clamp(12px, 3.5cqw, 13px); color: #0052d9; font-weight: 500;
 }
-
-.plan-badge.cheap {
-    background: linear-gradient(90deg, #fff0e5 0%, #fff 100%);
-    color: #ff7a00;
+.cta-pulse-icon {
+    display: flex; align-items: center; opacity: 0.8;
+    animation: cta-attention 2s infinite ease-in-out;
 }
+.cta-arrow { margin-left: auto; opacity: 0.6; transition: transform 0.3s; }
+.plan-card.highlighted .cta-arrow { transform: translateX(3px); opacity: 1; }
 
-.plan-badge.fast {
-    background: linear-gradient(90deg, #eef3fc 0%, #fff 100%);
-    color: #0052d9;
-}
-
-.plan-content {
-    padding: 16px;
-}
-
-.plan-title {
-    font-size: 16px;
-    font-weight: 600;
-    color: #333;
-    margin-bottom: 12px;
-}
-
-.plan-price-row {
-    color: #ff3b30;
-    margin-bottom: 4px;
-}
-
-.plan-price-row .currency {
-    font-size: 16px;
-    font-weight: 600;
-    margin-right: 2px;
-}
-
-.plan-price-row .amount {
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.plan-time {
-    font-size: 14px;
-    color: #666;
-    margin-bottom: 16px;
-}
-
-.plan-divider {
-    height: 1px;
-    background: #f0f0f0;
-    margin: 12px 0;
-}
-
-.plan-features {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.plan-features li {
-    font-size: 13px;
-    color: #555;
-    margin-bottom: 6px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
+@keyframes cta-attention {
+    0%, 100% { transform: scale(1); opacity: 0.6; }
+    50% { transform: scale(1.15); opacity: 1; }
 }
 
 .selection-indicator {
-    position: absolute;
-    top: 10px;
-    right: 12px;
-    background: #fff;
-    border-radius: 50%;
-    width: 24px;
-    height: 24px;
+    position: absolute; top: 12px; right: 12px;
+    background: #fff; border-radius: 50%; width: 24px; height: 24px;
     box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 
 /* Expand Section */
-.expand-section {
-    padding: 0 16px 20px;
-}
-
+.expand-section { padding: 0 16px 20px; }
 .expand-toggle-btn {
-    width: 100%;
-    background: none;
-    border: none;
-    padding: 16px 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    font-size: 14px;
-    color: #666;
-    border-top: 1px dashed #ddd;
-    border-bottom: 1px dashed #ddd;
-    cursor: pointer;
+    width: 100%; background: none; border: none; padding: 14px 0;
+    display: flex; align-items: center; justify-content: center; gap: 6px;
+    font-size: 13px; color: #666; cursor: pointer;
 }
+.expand-toggle-btn svg { transition: transform 0.3s ease; }
+.expand-toggle-btn svg.rotated { transform: rotate(180deg); }
 
-.expand-toggle-btn svg {
-    transition: transform 0.3s ease;
-}
+.alternative-list { margin-top: 10px; display: flex; flex-direction: column; gap: 10px; }
+.alt-route-card { background: #fff; padding: 14px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.03); }
+.alt-row-1 { display: flex; justify-content: space-between; margin-bottom: 8px; }
+.alt-title { font-weight: 500; font-size: 14px; color: #333; }
+.alt-price { font-weight: 700; font-size: 16px; color: #ff3b30; }
+.alt-row-2 { display: flex; justify-content: space-between; align-items: center; }
+.alt-time { font-size: 12px; color: #888; }
+.alt-tag { font-size: 11px; color: #ff7a00; background: #fff0e5; padding: 2px 8px; border-radius: 4px; }
 
-.expand-toggle-btn svg.rotated {
-    transform: rotate(180deg);
-}
+/* Promo & Wrapping */
+.promo-wrapper { padding: 0 16px; width: 100%; }
 
-.alternative-list {
-    margin-top: 16px;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-
-.alt-route-card {
-    background: #fff;
-    padding: 16px;
-    border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.03);
-}
-
-.alt-row-1 {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 8px;
-}
-
-.alt-title {
-    font-weight: 500;
-    color: #333;
-}
-
-.alt-price {
-    font-weight: 600;
-    color: #ff3b30;
-}
-
-.alt-row-2 {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.alt-time {
-    font-size: 13px;
-    color: #888;
-}
-
-.alt-tag {
-    font-size: 11px;
-    color: #ff7a00;
-    background: #fff0e5;
-    padding: 2px 8px;
-    border-radius: 4px;
-}
-
-/* Fixed Action Bar */
+/* ==============================================================
+   Sticky Action Bar (Glassmorphism)
+   ============================================================== */
 .fixed-action-bar {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: #fff;
-    padding: 12px 16px;
-    padding-bottom: env(safe-area-inset-bottom, 16px);
-    box-shadow: 0 -4px 16px rgba(0,0,0,0.06);
+    position: absolute; bottom: 0; left: 0; right: 0;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    border-top: 1px solid rgba(0,0,0,0.05);
+    padding: 12px 16px calc(12px + env(safe-area-inset-bottom, 16px));
     z-index: 20;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s;
+}
+.fixed-action-bar.hidden {
+    transform: translateY(100%);
+    opacity: 0; pointer-events: none;
 }
 
 .btn-submit {
-    width: 100%;
-    height: 48px;
-    border-radius: 24px;
-    background: #0052d9;
-    color: #fff;
-    border: none;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    box-shadow: 0 4px 12px rgba(0, 82, 217, 0.3);
+    width: 100%; height: 48px; border-radius: 24px;
+    background: #0052d9; color: #fff; border: none;
+    font-size: 16px; font-weight: 600; cursor: pointer;
+    box-shadow: 0 4px 16px rgba(0, 82, 217, 0.25);
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    position: relative; overflow: hidden;
 }
 
-/* ═══════════════════════════════════════════
-   Mobile Optimization — "Aha Moment" Upgrade
-   ═══════════════════════════════════════════ */
-@media (max-width: 768px) {
-    /* Cards: show peek of next card to invite swipe */
-    .horizontal-swiper-area {
-        padding: 8px 12px 16px;
-        gap: 10px;
-        scroll-padding-left: 12px;
-    }
-
-    .plan-card {
-        width: 75vw;
-        max-width: 280px;
-        border-radius: 14px;
-    }
-
-    .plan-card.highlighted {
-        transform: scale(1);
-        box-shadow: 0 6px 20px rgba(0, 82, 217, 0.18);
-    }
-
-    .plan-card.normal {
-        transform: scale(0.96);
-        opacity: 0.85;
-    }
-
-    .plan-badge {
-        padding: 8px 12px;
-        font-size: 12px;
-    }
-
-    .plan-content {
-        padding: 12px;
-    }
-
-    .plan-title {
-        font-size: 14px;
-        margin-bottom: 8px;
-    }
-
-    .plan-price-row .amount {
-        font-size: 24px;
-    }
-
-    .plan-price-row .currency {
-        font-size: 14px;
-    }
-
-    .plan-time {
-        font-size: 12px;
-        margin-bottom: 10px;
-    }
-
-    .plan-features li {
-        font-size: 12px;
-    }
-
-    /* Swipe hint: pulsing arrow */
-    .horizontal-swiper-area::before {
-        content: '👉 左滑对比';
-        position: absolute;
-        right: 16px;
-        top: -2px;
-        font-size: 11px;
-        color: #999;
-        z-index: 5;
-        animation: swipe-hint-fade 3s ease-in-out infinite;
-    }
-
-    .horizontal-swiper-area {
-        position: relative;
-    }
-
-    @keyframes swipe-hint-fade {
-        0%, 100% { opacity: 0.8; transform: translateX(0); }
-        50% { opacity: 0.4; transform: translateX(4px); }
-    }
-
-    /* Context header tighter */
-    .context-header {
-        padding: 14px 14px 8px;
-    }
-
-    .destination-badge {
-        font-size: 13px;
-        padding: 4px 10px;
-        margin-bottom: 8px;
-    }
-
-    .smart-tip {
-        font-size: 13px;
-    }
-
-    .smart-tip small {
-        font-size: 11px;
-    }
-
-    /* Header */
-    .demo-header {
-        padding: 12px;
-        font-size: 16px;
-    }
-
-    /* Expand section tighter */
-    .expand-section {
-        padding: 0 14px 14px;
-    }
-
-    .expand-toggle-btn {
-        padding: 12px 0;
-        font-size: 13px;
-    }
-
-    .alt-route-card {
-        padding: 12px;
-    }
-
-    .alt-title { font-size: 14px; }
-    .alt-price { font-size: 14px; }
-    .alt-time { font-size: 12px; }
-
-    /* Action bar */
-    .fixed-action-bar {
-        padding: 10px 14px;
-    }
-
-    .btn-submit {
-        height: 44px;
-        font-size: 15px;
-        border-radius: 22px;
-    }
+/* Subtle gloss pulse on button */
+.btn-submit::after {
+    content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    animation: gloss 4s infinite linear;
 }
+@keyframes gloss { 0% { left: -100%; } 20% { left: 200%; } 100% { left: 200%; } }
+
+/* ==============================================================
+   BOTTOM SHEET MODAL (Professional Half-Screen Interaction)
+   ============================================================== */
+.bottom-sheet-overlay {
+    position: absolute; inset: 0; background: rgba(0,0,0,0.6); z-index: 40;
+    opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+}
+.bottom-sheet-overlay.visible { opacity: 1; pointer-events: auto; }
+
+.bottom-sheet {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    background: #f4f6f9; border-radius: 20px 20px 0 0;
+    z-index: 50; display: flex; flex-direction: column;
+    max-height: 85dvh; transform: translateY(100%);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 -10px 40px rgba(0,0,0,0.15);
+}
+.bottom-sheet.visible { transform: translateY(0); }
+
+/* Drag handle */
+.bs-handle {
+    width: 36px; height: 4px; background: #ddd; border-radius: 2px;
+    margin: 10px auto 0;
+}
+
+/* Header */
+.bs-header {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 16px 20px; border-bottom: 1px solid rgba(0,0,0,0.04);
+    background: #fff; border-radius: 20px 20px 0 0;
+}
+.bs-title { font-size: 18px; font-weight: 700; color: #1a1a1a; margin: 0; }
+.bs-close { background: none; border: none; padding: 4px; border-radius: 50%; cursor: pointer; background: #f0f0f0; display: flex; }
+
+/* Scrollable Content */
+.bs-content { padding: 16px; overflow-y: auto; -webkit-overflow-scrolling: touch; flex: 1; margin-bottom: 80px; }
+
+/* Summary Box */
+.bs-summary-box { background: #fff; padding: 20px; border-radius: 12px; margin-bottom: 16px; position: relative; }
+.bs-price-main { display: flex; align-items: baseline; gap: 8px; margin-bottom: 4px; }
+.bs-original-price { font-size: 16px; color: #999; text-decoration: line-through; }
+.bs-current-price { font-size: 32px; font-weight: 800; color: #ff7a00; letter-spacing: -1px; }
+.bs-currency { font-size: 20px; font-weight: 600; margin-right: 2px; }
+
+.bs-time { font-size: 14px; color: #666; margin-bottom: 12px; }
+.bs-incremental-weight { font-size: 14px; font-weight: 600; color: #0052d9; cursor: pointer; }
+
+/* Promo Banner */
+.bs-promo-banner {
+    background: linear-gradient(90deg, #f0fdf4, #dcfce7); border-radius: 8px;
+    padding: 10px 16px; color: #16a34a; font-size: 14px; font-weight: 600;
+    margin-bottom: 16px;
+}
+
+/* Sections */
+.bs-section { background: #fff; border-radius: 12px; padding: 16px; margin-bottom: 16px; }
+.bs-section-title { font-size: 15px; font-weight: 700; margin: 0 0 16px; color: #333; }
+
+/* Billing Table Rows */
+.bs-billing-row {
+    display: flex; justify-content: space-between; font-size: 14px;
+    padding: 8px 0; border-bottom: 1px dashed #f0f0f0;
+}
+.bs-billing-row:last-child { border-bottom: none; }
+.bs-bill-label { color: #666; }
+.bs-bill-value { font-weight: 500; color: #333; }
+.bs-discount { color: #16a34a; font-weight: 600; }
+
+/* Tags Cloud */
+.bs-tags-cloud { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+.bs-tag-pill { background: #f4f6f9; color: #666; padding: 6px 12px; border-radius: 16px; font-size: 13px; }
+
+/* Prohibited Info */
+.bs-prohibited-text { font-size: 13px; color: #888; line-height: 1.5; background: #fffdf5; padding: 12px; border-radius: 8px; margin-top: 12px; }
+
+/* Action Footer fixed within Bottom Sheet */
+.bs-action-footer {
+    position: absolute; bottom: 0; left: 0; right: 0; background: #fff;
+    padding: 12px 16px calc(12px + env(safe-area-inset-bottom, 16px));
+    border-top: 1px solid rgba(0,0,0,0.05); z-index: 60;
+}
+.bs-submit-btn { border-radius: 12px; font-size: 17px; }

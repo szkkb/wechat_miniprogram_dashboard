@@ -7,7 +7,7 @@ const FormElements = () => {
 
     return (
         <div className="page-container animate-fade-in">
-            <div className="glass-panel header-panel">
+            <div className="glass-panel header-panel" tabIndex="0">
                 <h3 className="section-title">表单组件与控件 (Form Elements)</h3>
                 <p className="section-desc">
                     带有丰富微交互（涟漪、发光焦点、平滑缓动）的原生小程序表单控件在 Web 端的沉浸式模拟。

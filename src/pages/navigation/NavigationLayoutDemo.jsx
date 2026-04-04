@@ -20,7 +20,7 @@ const NavigationLayoutDemo = () => {
 
     return (
         <div className="page-container animate-fade-in">
-            <div className="glass-panel header-panel">
+            <div className="glass-panel header-panel" tabIndex="0">
                 <h3 className="section-title">导航与布局 (Navigation & Layout)</h3>
                 <p className="section-desc">
                     展示页面间路由流转顶栏与底栏的深度定制，包含沉浸式的安全区域过渡演算。

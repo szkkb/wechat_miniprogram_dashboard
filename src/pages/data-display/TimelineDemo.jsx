@@ -32,7 +32,7 @@ const TimelineDemo = () => {
 
     return (
         <div className="page-container animate-fade-in">
-            <div className="glass-panel header-panel">
+            <div className="glass-panel header-panel" tabIndex="0">
                 <h3 className="section-title">数据呈现与反馈 (Data Display)</h3>
                 <p className="section-desc">
                     展示列表、状态追踪、步骤指引及复杂的横滑动作单元阵列。

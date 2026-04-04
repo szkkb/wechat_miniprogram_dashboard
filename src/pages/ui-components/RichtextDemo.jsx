@@ -13,7 +13,7 @@ const RichtextDemo = () => {
 
     return (
         <div className="page-container animate-fade-in">
-            <div className="glass-panel header-panel">
+            <div className="glass-panel header-panel" tabIndex="0">
                 <h3 className="section-title">基础组件 (UI Components)</h3>
                 <p className="section-desc">
                     展示承载内容与信息的基石型组件系统，例如富文本、媒体呈现等。

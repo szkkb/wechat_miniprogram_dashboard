@@ -31,7 +31,9 @@ const TypographyDemo = () => {
     const rAFRef = useRef(null);
     const [stats, setStats] = useState("0.00");
 
-    const [maxWidth, setMaxWidth] = useState(500);
+    const [maxWidth, setMaxWidth] = useState(() => {
+        return typeof window !== 'undefined' && window.innerWidth < 550 ? window.innerWidth - 64 : 500;
+    });
     const [lineHeight, setLineHeight] = useState(28);
     const [fontIndex, setFontIndex] = useState(0);
 
@@ -40,6 +42,17 @@ const TypographyDemo = () => {
     const preparedText = useMemo(() => {
         return prepareWithSegments(PRETEXT_EXAMPLE_TEXT, font, { whiteSpace: 'pre-wrap' });
     }, [PRETEXT_EXAMPLE_TEXT, font]);
+
+    // Ensure slider bounds are respected when window resizing
+    useEffect(() => {
+        const handleResize = () => {
+            if (window.innerWidth < 550) {
+                setMaxWidth(window.innerWidth - 64);
+            }
+        };
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     useEffect(() => {
         if (!canvasRef.current || !svgRef.current) return;
@@ -62,14 +75,18 @@ const TypographyDemo = () => {
             ctx.clearRect(0, 0, maxWidth, totalHeight);
 
             const t = time * 0.001;
-            const orbY = (Math.sin(t) * 0.5 + 0.5) * (totalHeight - 100);
-            const orbXOffset = Math.sin(t * 1.5) * 50 + 80;
-            const orbRadius = 50;
+            // Ensure the orb stays within the mobile canvas horizontally
+            const maxSwing = Math.min(50, maxWidth / 4);
+            const orbY = (Math.sin(t) * 0.5 + 0.5) * (totalHeight - 120) + 10;
+            const orbXOffset = Math.sin(t * 1.5) * maxSwing + 60;
+            const orbRadius = 45; // Match UFO collision radius
             const orbLeftEdge = maxWidth - orbXOffset - orbRadius;
             const orbTopEdge = orbY;
-            const orbBottomEdge = orbY + orbRadius * 2;
+            const orbBottomEdge = orbY + orbRadius * 2.5; // extend bottom collision for the beam
 
-            svgElement.style.transform = "translate(" + (maxWidth - orbXOffset - orbRadius) + "px, " + orbTopEdge + "px)";
+            // Apply a slight hover rotation
+            const rotateAngle = Math.sin(t * 2) * 5;
+            svgElement.style.transform = `translate(${maxWidth - orbXOffset - orbRadius}px, ${orbTopEdge}px) rotate(${rotateAngle}deg)`;
 
             let cursor = { segmentIndex: 0, graphemeIndex: 0 };
             let y = 0;
@@ -111,7 +128,7 @@ const TypographyDemo = () => {
         <div className="typo-controls">
             <div className="control-group">
                 <label>容器宽度: {maxWidth}px</label>
-                <input type="range" min="300" max="800" value={maxWidth} onChange={e => setMaxWidth(Number(e.target.value))} />
+                <input type="range" min="200" max="800" value={maxWidth} onChange={e => setMaxWidth(Number(e.target.value))} />
             </div>
             <div className="control-group">
                 <label>行高: {lineHeight}px</label>
@@ -134,7 +151,7 @@ const TypographyDemo = () => {
 
             <ShowcaseCard
                 title="Pretext Engine 零回流排版引擎"
-                description="60 FPS 逐行动态排版 — 文字自动避让浮动障碍物，无 DOM 回流，纯 Canvas 绘制"
+                description="60 FPS 逐行动态排版 — 文字自动躲避 UFO，无 DOM 回流，纯 Canvas 绘制"
                 tags={['排版:零DOM回流', '性能:60fps', '布局:动态断行', '中文:标点禁排']}
                 hasControls={true}
                 controls={controls}
@@ -147,13 +164,39 @@ const TypographyDemo = () => {
                     <div className="available-width-box" style={{ width: maxWidth, position: 'relative' }}>
                         <svg
                             ref={svgRef}
-                            width="100" height="100" viewBox="0 0 100 100"
+                            width="90" height="100" viewBox="0 0 100 100"
                             className="dynamic-floater-svg"
                         >
-                            <circle cx="50" cy="50" r="45" fill="rgba(168, 85, 247, 0.4)" stroke="#c084fc" strokeWidth="2" />
-                            <circle cx="25" cy="40" r="5" fill="#f8fafc" />
-                            <circle cx="75" cy="40" r="5" fill="#f8fafc" />
-                            <path d="M 30 65 Q 50 85 70 65" stroke="#f8fafc" strokeWidth="3" fill="transparent" />
+                            <defs>
+                                <linearGradient id="ufoBeam" x1="0" y1="0" x2="0" y2="1">
+                                    <stop offset="0%" stopColor="#a855f7" stopOpacity="0.8" />
+                                    <stop offset="100%" stopColor="#a855f7" stopOpacity="0" />
+                                </linearGradient>
+                            </defs>
+                            {/* UFO Tractor Beam */}
+                            <path d="M 35 60 L 15 100 L 85 100 L 65 60 Z" fill="url(#ufoBeam)">
+                                <animate attributeName="opacity" values="0.4;0.8;0.4" dur="2s" repeatCount="indefinite" />
+                            </path>
+                            {/* Glass Dome */}
+                            <path d="M 25 50 A 25 25 0 0 1 75 50" fill="rgba(255, 255, 255, 0.15)" stroke="#c084fc" strokeWidth="2" />
+                            {/* Cute Little Alien */}
+                            <circle cx="50" cy="40" r="10" fill="#10b981" />
+                            <circle cx="45" cy="38" r="2.5" fill="#0f172a" />
+                            <circle cx="55" cy="38" r="2.5" fill="#0f172a" />
+                            <path d="M 47 43 Q 50 46 53 43" stroke="#0f172a" strokeWidth="1.5" fill="none" strokeLinecap="round" />
+                            {/* Saucer Body */}
+                            <ellipse cx="50" cy="55" rx="45" ry="14" fill="#1e293b" stroke="#c084fc" strokeWidth="2" />
+                            <ellipse cx="50" cy="52" rx="35" ry="8" fill="#334155" />
+                            {/* Blinking Lights */}
+                            <circle cx="20" cy="55" r="3" fill="#facc15">
+                                <animate attributeName="opacity" values="0.2;1;0.2" dur="1s" repeatCount="indefinite"/>
+                            </circle>
+                            <circle cx="50" cy="59" r="3" fill="#38bdf8">
+                                <animate attributeName="opacity" values="0.2;1;0.2" dur="1s" begin="0.3s" repeatCount="indefinite"/>
+                            </circle>
+                            <circle cx="80" cy="55" r="3" fill="#facc15">
+                                <animate attributeName="opacity" values="0.2;1;0.2" dur="1s" begin="0.6s" repeatCount="indefinite"/>
+                            </circle>
                         </svg>
                         <canvas ref={canvasRef} className="text-canvas" />
                     </div>

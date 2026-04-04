@@ -168,7 +168,7 @@ const DraggableCSDemo = () => {
 const FloatingCSDemo = () => {
     return (
         <div className="page-container animate-fade-in">
-            <div className="glass-panel header-panel">
+            <div className="glass-panel header-panel" tabIndex="0">
                 <h3 className="section-title">生态与全系统 (Ecosystem)</h3>
                 <p className="section-desc">
                     展示微信原生客服能力的两种悬浮唤起方案：固定呼吸球与可全屏拖动吸边球。
