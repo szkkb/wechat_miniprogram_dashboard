@@ -1,81 +1,89 @@
-# WeChat Mini Program Dashboard
+# Component & FX Board
 
-一个基于 React 构建的微信小程序能力演示 Dashboard，以高保真 Web 模拟的方式展示微信小程序的核心组件、API 和交互模式。
+一个开源的小程序组件、网站视觉风格与 Growth Loop 学习 Dashboard。
 
-## 预览
+**线上地址**: [www.kkbsz.com](https://www.kkbsz.com)
 
-项目包含两个主要模块：
+## 三个板块
 
-- **Mini Program Lab** — 微信小程序原生能力的交互式演示
-- **Web FX Gallery** — 前端视觉特效与排版展示
+### 📱 小程序组件 Lab
+微信小程序原生组件与 API 的交互式演示（18 个组件）
+- 视图容器、表单控件、富文本、高级卡片、滑动标签页
+- 时间轴、导航栏、国家选择器、验证码
+- 地图标注、Canvas 海报、快捷登录、悬浮客服
+- Skyline 引擎、手势动效、下拉刷新
 
-## 已实现的能力
+### 🎨 网站视觉 Dashboard
+视觉风格与前端交互效果目录（50+ 个演示）
+- **13 种视觉风格**: 玻璃拟态、新拟物、赛博朋克、包豪斯等
+- **31 种行业风格**: 物流（12 种含 3D 地球）、金融、电商、SaaS、博客
+- **交互演示**: 磁性按钮、拖拽排序、排版引擎、加微信按钮
 
-### UI 组件
-- 视图容器：`scroll-view`、`swiper`、`movable-view`
-- 表单控件：`switch`、`input`、`slider`
-- 基础内容：`progress`、`icon`、Feedback API
-- 富文本、高级卡片、滑动标签页
+### 📚 Growth Loop 学习
+增长飞轮方法论的系统学习工具
+- 3 个交互式可视化（学习大纲、生命周期图、关键词图谱）
+- Phase 1 核心教学（范式转换、循环解剖、术语表）
+- 实践模板（循环设计画布、商业画布、实验模板）
+- 40+ 结构化 AI Prompt 库
+- 数据观摩看板（localStorage 真实行为数据）
 
-### 高阶渲染与交互
-- Skyline 引擎特性：`sticky-header`、`draggable-sheet`、`grid-view` 瀑布流
-- 动效与手势：共享元素转场、Worklet 手势系统（左滑删除）
+## 使用方法
 
-### 设备与硬件 API
-- 相机扫码、地理位置、设备震动、剪贴板
+浏览效果 → 找到想要的 → 复制标准名称 → 粘贴给 AI 工具（ChatGPT / Claude / 豆包）
 
-### 更多模块
-- 导航布局、国家选择器、高级表单验证码
-- 地图与 LBS、Canvas 海报绘制
-- 生态权限登录、悬浮客服、性能与 UX 模式
-
-完整清单见 [ImplementedCapabilities.md](./ImplementedCapabilities.md)。
+每个组件和风格都有标准中英文名称，点击 📋 按钮一键复制。
 
 ## 技术栈
 
 - **React 18** + React Router v6
-- **Framer Motion** — 动画与手势
-- **Lucide React** — 图标
 - **Vite 5** — 构建工具
+- **Framer Motion** — 动画与手势
+- **COBE** — WebGL 3D 地球
+- **tsParticles** — 粒子效果
+- **react-markdown** — Markdown 渲染
 
 ## 快速开始
 
 ```bash
-# 安装依赖
+# 需要 Node.js 20+
 npm install
-
-# 启动开发服务器
 npm run dev
-
-# 生产构建
-npm run build
-
-# 预览构建产物
-npm run preview
 ```
+
+## 部署
+
+托管在 Cloudflare Pages，手动 CLI 部署：
+
+```bash
+./deploy.sh    # 一键：push GitHub + build + deploy Cloudflare
+```
+
+详细部署说明见 [CLAUDE.md](./CLAUDE.md)。
 
 ## 项目结构
 
 ```
 src/
-├── components/          # 通用组件与布局
-│   ├── Layout/          # Mini Program Lab 布局
-│   └── WebFXLayout/     # Web FX Gallery 布局
+├── components/
+│   ├── Layout/              # 小程序 Lab 布局
+│   ├── WebFXLayout/         # 视觉 Dashboard 布局
+│   ├── GrowthLoopLayout/    # Growth Loop 布局
+│   └── Common/              # CopyableName、PromoCard
 ├── pages/
-│   ├── components/      # 基础组件演示
-│   ├── advanced/        # Skyline & 手势动效
-│   ├── hardware/        # 设备硬件 API
-│   ├── ui-components/   # 高级 UI 组件
-│   ├── navigation/      # 导航相关
-│   ├── data-display/    # 数据展示
-│   ├── advanced-form/   # 高级表单
-│   ├── map-lbs/         # 地图与位置
-│   ├── canvas/          # Canvas 绘图
-│   ├── ecosystem/       # 生态与权限
-│   ├── performance/     # 性能与 UX
-│   └── web-fx/          # Web FX 特效
-└── main.jsx             # 入口文件
+│   ├── components/          # 小程序基础组件
+│   ├── ui-components/       # 高级 UI 组件
+│   ├── web-fx/              # 视觉风格与行业风格
+│   └── growth-loop/         # Growth Loop 学习
+├── data/catalog-registry.js # 所有 demo 的唯一数据源
+├── utils/track.js           # localStorage 埋点 SDK
+└── main.jsx
 ```
+
+## 配色工具推荐
+
+- [BrandColors](https://brandcolors.net/) — 大品牌配色参考
+- [Huemint](https://huemint.com/brand-intersection/) — AI 智能配色生成
+- [Google Stitch](https://stitch.withgoogle.com/home) — 设计系统导出
 
 ## License
 
@@ -83,10 +91,10 @@ src/
 
 [![CC BY-NC 4.0](https://licensebuttons.net/l/by-nc/4.0/88x31.png)](https://creativecommons.org/licenses/by-nc/4.0/)
 
-**你可以：** 自由复制、分享、修改，用于个人学习和非商业项目
+**可以**: 自由复制、分享、修改，用于个人学习和非商业项目
 
-**你需要：** 注明原作者和出处
+**需要**: 注明原作者和出处
 
-**你不可以：** 用于商业用途
+**不可以**: 用于商业用途
 
 如需商业授权，请联系微信：`xiaoleipro`
