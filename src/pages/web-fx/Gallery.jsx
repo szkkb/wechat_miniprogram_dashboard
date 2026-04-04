@@ -3,11 +3,91 @@ import SmoothAccordion from '../../components/WebFXLayout/Demos/SmoothAccordion'
 import SharedElement from '../../components/WebFXLayout/Demos/SharedElement';
 import HoverSpotlight from '../../components/WebFXLayout/Demos/HoverSpotlight';
 import FluidDragDrop from '../../components/WebFXLayout/Demos/FluidDragDrop';
-import TypographyDemo from '../../pages/web-fx/TypographyDemo';
+import ShowcaseCard from '../../components/WebFXLayout/ShowcaseCard';
+import { Link } from 'react-router-dom';
 import './Gallery.css';
 
 import MagneticButton from '../../components/WebFXLayout/BentoWidgets/MagneticButton';
 import FrostedKPICard from '../../components/WebFXLayout/BentoWidgets/FrostedKPICard';
+
+/* ── Typography Demos ── */
+const PretextEngineCard = () => (
+    <ShowcaseCard
+        title="Pretext Engine 零回流排版引擎"
+        description="60 FPS 逐行动态排版，文字自动避让浮动障碍物，零 DOM 回流"
+        tags={['typography:engine', 'performance:60fps', 'layout:dynamic-wrap', '中文:标点禁排']}
+    >
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem', padding: '1.5rem', background: '#0a0a12', minHeight: 200 }}>
+            <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.7rem', color: '#22c55e', background: 'rgba(34,197,94,0.1)', padding: '0.3rem 0.8rem', borderRadius: 6 }}>
+                layoutNextLine() · 0.1ms/帧
+            </div>
+            <div style={{ maxWidth: 340, color: '#94a3b8', fontSize: '0.8rem', lineHeight: 1.7, textAlign: 'center' }}>
+                纯 JS 逐行计算文字排布位置，Canvas 一次性绘制。支持中文逐字断行 + 标点禁排规则。
+            </div>
+            <Link to="/web-fx/typography" style={{ color: '#a855f7', fontSize: '0.8rem', textDecoration: 'none', fontWeight: 600 }}>
+                查看完整演示 →
+            </Link>
+        </div>
+    </ShowcaseCard>
+);
+
+const FontShowcase = () => (
+    <ShowcaseCard
+        title="Font Pairing 常用字体搭配"
+        description="前端项目常用的中英文字体组合，直接复制 CSS font-family 使用"
+        tags={['typography:fonts', 'design:pairing', 'CSS:font-family']}
+    >
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', padding: '1.5rem', background: '#0a0a12' }}>
+            <div style={{ borderBottom: '1px solid rgba(255,255,255,0.06)', paddingBottom: '0.75rem' }}>
+                <div style={{ fontFamily: "'Outfit', sans-serif", fontSize: '1.4rem', fontWeight: 800, color: '#f8fafc', marginBottom: 4 }}>
+                    Outfit 800 标题字体
+                </div>
+                <div style={{ fontFamily: "'Outfit', sans-serif", fontSize: '0.9rem', fontWeight: 300, color: '#94a3b8' }}>
+                    Outfit 300 正文搭配 · 适合科技/SaaS 产品
+                </div>
+                <code style={{ fontSize: '0.65rem', color: '#a78bfa', background: 'rgba(167,139,250,0.1)', padding: '0.15rem 0.4rem', borderRadius: 3, marginTop: 4, display: 'inline-block' }}>
+                    font-family: 'Outfit', sans-serif
+                </code>
+            </div>
+
+            <div style={{ borderBottom: '1px solid rgba(255,255,255,0.06)', paddingBottom: '0.75rem' }}>
+                <div style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontSize: '1.4rem', fontWeight: 400, color: '#f8fafc', marginBottom: 4 }}>
+                    Instrument Serif 编辑风
+                </div>
+                <div style={{ fontFamily: "Georgia, 'Songti SC', serif", fontSize: '0.9rem', color: '#94a3b8' }}>
+                    搭配宋体 · 适合杂志/奢侈品/人文博客
+                </div>
+                <code style={{ fontSize: '0.65rem', color: '#a78bfa', background: 'rgba(167,139,250,0.1)', padding: '0.15rem 0.4rem', borderRadius: 3, marginTop: 4, display: 'inline-block' }}>
+                    font-family: 'Instrument Serif', Georgia, serif
+                </code>
+            </div>
+
+            <div style={{ borderBottom: '1px solid rgba(255,255,255,0.06)', paddingBottom: '0.75rem' }}>
+                <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '1.1rem', fontWeight: 600, color: '#f8fafc', marginBottom: 4 }}>
+                    JetBrains Mono 等宽体
+                </div>
+                <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.8rem', color: '#94a3b8' }}>
+                    代码/数据/终端场景首选 · 清晰辨识度
+                </div>
+                <code style={{ fontSize: '0.65rem', color: '#a78bfa', background: 'rgba(167,139,250,0.1)', padding: '0.15rem 0.4rem', borderRadius: 3, marginTop: 4, display: 'inline-block' }}>
+                    font-family: 'JetBrains Mono', monospace
+                </code>
+            </div>
+
+            <div style={{ paddingBottom: '0.25rem' }}>
+                <div style={{ fontFamily: "'Noto Sans SC', sans-serif", fontSize: '1.2rem', fontWeight: 700, color: '#f8fafc', marginBottom: 4 }}>
+                    思源黑体 中文无衬线
+                </div>
+                <div style={{ fontFamily: "'Noto Sans SC', sans-serif", fontSize: '0.85rem', fontWeight: 300, color: '#94a3b8' }}>
+                    Google 免费中文字体 · 7 个字重 · 适合正文
+                </div>
+                <code style={{ fontSize: '0.65rem', color: '#a78bfa', background: 'rgba(167,139,250,0.1)', padding: '0.15rem 0.4rem', borderRadius: 3, marginTop: 4, display: 'inline-block' }}>
+                    font-family: 'Noto Sans SC', sans-serif
+                </code>
+            </div>
+        </div>
+    </ShowcaseCard>
+);
 
 // 1. Mandatory Bilingual Categories Dictionary
 const CATEGORIES = [
@@ -57,6 +137,16 @@ const DEMO_REGISTRY = [
         id: 'frosted-card',
         component: <FrostedKPICard key="frosted-card" />,
         categories: ['visual-styles', '3d-spatial', 'background']
+    },
+    {
+        id: 'pretext-engine',
+        component: <PretextEngineCard key="pretext" />,
+        categories: ['typography', 'performance']
+    },
+    {
+        id: 'font-showcase',
+        component: <FontShowcase key="fonts" />,
+        categories: ['typography', 'visual-styles']
     }
 ];
 
