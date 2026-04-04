@@ -60,7 +60,7 @@ const GrowthLoopOverview = () => (
                     这些资料是我自己的学习笔记，整理成了交互式的可视化和结构化文档，配上了给 AI 用的 Prompt 模板。分享出来，是因为我觉得这套东西对独立开发者尤其有用——<strong>你不需要市场部，你需要的是理解增长的底层逻辑，然后把它设计进产品里</strong>。
                 </p>
                 <p className="glo-story-colophon">
-                    — Jeremy & Claude 合写，2025
+                    — 萧磊 & Claude 合写，2026
                 </p>
             </div>
         </motion.div>

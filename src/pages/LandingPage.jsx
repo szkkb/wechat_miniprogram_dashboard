@@ -61,8 +61,13 @@ const LandingPage = () => {
                         </div>
                         <div className="landing-intro">
                             <p>
-                                这个项目源于我在做微信小程序和国际物流网站时的一个朴素需求：<strong>每次开新项目，都要反复翻找组件效果和视觉风格参考</strong>。后来索性做了这个 Dashboard，把常用的交互组件和视觉风格集中到一起。<br/><br/>
-                                现在开源出来，希望对初学者有帮助。使用方法很简单——<strong>浏览效果 → 找到想要的 → 复制标准名称 → 粘贴给 AI 工具（ChatGPT / Claude / 豆包）</strong>，让 AI 帮你深化风格和交互代码。这样即使没有设计师，也能快速起步。
+                                做微信小程序和国际物流网站的时候，我反复遇到同一个问题：<strong>组件叫什么名字？视觉风格怎么描述？</strong>说不出准确名称，AI 就帮不上忙。所以做了这个 Dashboard，把交互组件和视觉风格的<strong>标准名称</strong>整理到一起。
+                            </p>
+                            <p>
+                                后来学 SEO 和内容运营，发现关键词、冷启动、A/B 测试这些技巧之上还有一层更深的东西——<strong>增长飞轮</strong>。于是又加了 Growth Loop 学习区，把方法论整理成可视化和 Prompt 模板。
+                            </p>
+                            <p className="landing-intro-usage">
+                                用法很简单：<strong>浏览 → 复制名称 → 粘贴给 AI</strong>，让 ChatGPT / Claude / 豆包帮你生成代码和方案。没有设计师也能起步。
                             </p>
                         </div>
 

@@ -74,7 +74,13 @@
     color: #94a3b8;
     font-size: 1rem;
     line-height: 1.8;
-    margin: 0;
+    margin: 0 0 0.75rem;
+}
+.landing-intro p:last-child { margin-bottom: 0; }
+
+.landing-intro-usage {
+    font-size: 0.9rem !important;
+    color: #64748b !important;
 }
 
 .landing-intro strong {
