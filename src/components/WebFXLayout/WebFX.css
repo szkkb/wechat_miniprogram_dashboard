@@ -1,6 +1,7 @@
 .webfx-layout {
     display: flex;
     height: 100vh;
+    height: 100dvh;
     overflow: hidden;
     background-color: var(--bg-primary, #0f172a);
     color: var(--text-primary, #f8fafc);

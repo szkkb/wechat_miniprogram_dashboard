@@ -1,6 +1,7 @@
 .gl-layout {
     display: flex;
     height: 100vh;
+    height: 100dvh;
     overflow: hidden;
     background-color: #08080d;
     color: #eef3f8;
