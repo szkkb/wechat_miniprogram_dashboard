@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { BarChart3, BookOpen, Wrench, ArrowRight, Activity, Trash2 } from 'lucide-react';
+import { BarChart3, BookOpen, Wrench, ArrowRight, Activity, Trash2, MessageCircle } from 'lucide-react';
 import { getStats, clearEvents } from '../../utils/track';
 import './GrowthLoopOverview.css';
 
@@ -44,6 +44,25 @@ const GrowthLoopOverview = () => (
                 用户行为不是线性的"漏斗"，而是循环的"飞轮"——
                 每一个用户的产出都能成为下一个用户的输入，形成复利增长。
             </p>
+        </motion.div>
+
+        <motion.div className="glo-story"
+            initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.05 }}
+        >
+            <div className="glo-story-icon"><MessageCircle size={18} /></div>
+            <div className="glo-story-body">
+                <h3 className="glo-story-heading">为什么做这个</h3>
+                <p>
+                    做独立项目的人都知道「关键词优化」「冷启动」「A/B 测试」这些术语。我在系统学习 SEO 和自媒体内容运营之后，发现这些技巧之上还有一层更深的东西——<strong>增长飞轮 (Growth Loop)</strong>。它不是某一个技巧，而是一整套让产品自驱增长的方法论。
+                </p>
+                <p>
+                    这些资料是我自己的学习笔记，整理成了交互式的可视化和结构化文档，配上了给 AI 用的 Prompt 模板。分享出来，是因为我觉得这套东西对独立开发者尤其有用——<strong>你不需要市场部，你需要的是理解增长的底层逻辑，然后把它设计进产品里</strong>。
+                </p>
+                <p className="glo-story-colophon">
+                    — Jeremy & Claude 合写，2025
+                </p>
+            </div>
         </motion.div>
 
         <Section
