@@ -1,0 +1,56 @@
+/* Mobile Tab Bar — 固定底部导航 */
+.mobile-tab-bar {
+    display: none; /* 桌面端隐藏 */
+}
+
+@media (max-width: 768px) {
+    .mobile-tab-bar {
+        display: flex;
+        position: fixed;
+        bottom: 0; left: 0; right: 0;
+        z-index: 9999;
+        height: 56px;
+        padding-bottom: env(safe-area-inset-bottom, 0px);
+        background: rgba(10, 10, 14, 0.92);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-top: 1px solid rgba(255, 255, 255, 0.06);
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .tab-item {
+        display: flex; flex-direction: column; align-items: center;
+        gap: 2px; padding: 6px 0;
+        text-decoration: none; color: #64748b;
+        font-size: 10px; font-weight: 500;
+        transition: color 0.2s;
+        flex: 1;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .tab-item:active {
+        transform: scale(0.92);
+    }
+
+    .tab-item.active {
+        color: #22c55e;
+    }
+
+    .tab-icon {
+        display: flex; align-items: center; justify-content: center;
+        height: 24px;
+    }
+
+    .tab-label {
+        line-height: 1;
+    }
+
+    /* Add bottom padding to all scrollable content areas so tab bar doesn't cover content */
+    .content-wrapper,
+    .webfx-content,
+    .gl-content,
+    .landing-container {
+        padding-bottom: 72px !important;
+    }
+}

@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Layout from './components/Layout/Layout';
 import WebFXLayout from './components/WebFXLayout/WebFXLayout';
 import LandingPage from './pages/LandingPage';
+import MobileTabBar from './components/Common/MobileTabBar';
 
 // Growth Loop Pages
 import GrowthLoopLayout from './components/GrowthLoopLayout/GrowthLoopLayout';
@@ -46,6 +47,7 @@ import PerformanceUXDemo from './pages/performance/PerformanceUXDemo'
 function App() {
     return (
         <BrowserRouter>
+            <MobileTabBar />
             <Routes>
                 <Route path="/" element={<LandingPage />} />
 
