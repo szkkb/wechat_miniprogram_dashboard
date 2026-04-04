@@ -1,5 +1,6 @@
 import React, { useState, useCallback, useRef } from 'react';
 import { Copy, Check, MessageCircle, Cpu, Smartphone, Globe, ArrowRight, Search } from 'lucide-react';
+import { track } from '../../utils/track';
 import './PromoCard.css';
 
 /**
@@ -35,6 +36,7 @@ const PromoCard = ({ theme = 'dark' }) => {
         }
 
         setPhase(STATES.COPIED);
+        track('copy_wechat', { trigger: 'promo', page: location.pathname });
 
         timerRef.current = setTimeout(() => {
             setPhase(STATES.RESETTING);

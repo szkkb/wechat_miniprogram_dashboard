@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import { Outlet } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Outlet, useLocation } from 'react-router-dom';
+import { track } from '../../utils/track';
 import Sidebar from './Sidebar';
 import { Menu } from 'lucide-react';
 import './WebFX.css';
@@ -7,9 +8,13 @@ import './WebFX.css';
 const WebFXLayout = () => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
 
-    const toggleSidebar = () => {
-        setSidebarOpen(!sidebarOpen);
-    };
+    const location = useLocation();
+    const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
+
+    useEffect(() => {
+        const page = location.pathname.split('/').pop() || 'index';
+        track('pv_webfx', { page });
+    }, [location.pathname]);
 
     return (
         <div className="webfx-layout">

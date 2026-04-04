@@ -1,14 +1,19 @@
-import React, { useState } from 'react';
-import { Outlet } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Outlet, useLocation } from 'react-router-dom';
+import { track } from '../../utils/track';
 import Sidebar from './Sidebar';
 import TopBar from './TopBar';
 
 const Layout = () => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
 
-    const toggleSidebar = () => {
-        setSidebarOpen(!sidebarOpen);
-    };
+    const location = useLocation();
+    const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
+
+    useEffect(() => {
+        const page = location.pathname.split('/').pop() || 'index';
+        track('pv_miniprogram', { page });
+    }, [location.pathname]);
 
     return (
         <div className="layout-wrapper">

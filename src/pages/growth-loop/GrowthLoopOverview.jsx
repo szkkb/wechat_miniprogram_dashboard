@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { BarChart3, BookOpen, Wrench, ArrowRight } from 'lucide-react';
+import { BarChart3, BookOpen, Wrench, ArrowRight, Activity, Trash2 } from 'lucide-react';
+import { getStats, clearEvents } from '../../utils/track';
 import './GrowthLoopOverview.css';
 
 const Section = ({ icon, title, subtitle, items, delay }) => (
@@ -81,7 +82,122 @@ const GrowthLoopOverview = () => (
                 { zh: '实验模板', en: 'Experiment Template', path: '/growth-loop/experiment' },
             ]}
         />
+        <AnalyticsSection />
     </div>
 );
+
+/* ─────────────────────────────────────────
+   第四区块：数据观摩 — 你的真实行为数据
+   ───────────────────────────────────────── */
+const AnalyticsSection = () => {
+    const stats = useMemo(() => getStats(), []);
+
+    if (!stats) {
+        return (
+            <motion.div className="glo-section glo-analytics-empty"
+                initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+            >
+                <div className="glo-section-header">
+                    <div className="glo-section-icon analytics-icon"><Activity size={20} /></div>
+                    <div>
+                        <h2 className="glo-section-title">数据观摩 Data Observatory</h2>
+                        <p className="glo-section-sub">你的真实行为数据 · localStorage 本地存储</p>
+                    </div>
+                </div>
+                <div className="glo-analytics-placeholder">
+                    <p>你还没有产生任何行为数据。</p>
+                    <p>去浏览一些<Link to="/mini-program" className="glo-inline-link">小程序组件</Link>或<Link to="/web-fx" className="glo-inline-link">视觉风格</Link>，然后回来看你的行为轨迹。</p>
+                    <p className="glo-analytics-hint">每一次浏览、复制、点击都会被记录在你的浏览器本地。没有服务器，数据只属于你。</p>
+                </div>
+            </motion.div>
+        );
+    }
+
+    return (
+        <motion.div className="glo-section glo-analytics"
+            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+        >
+            <div className="glo-section-header">
+                <div className="glo-section-icon analytics-icon"><Activity size={20} /></div>
+                <div>
+                    <h2 className="glo-section-title">数据观摩 Data Observatory</h2>
+                    <p className="glo-section-sub">你的真实行为数据 · {stats.totalEvents} 条事件 · 自 {stats.firstVisit?.toLocaleDateString() || '—'}</p>
+                </div>
+                <button className="glo-clear-btn" onClick={() => { clearEvents(); window.location.reload(); }} title="清空数据">
+                    <Trash2 size={14} />
+                </button>
+            </div>
+
+            {/* KPI Strip */}
+            <div className="glo-kpi-strip">
+                <div className="glo-kpi"><span className="glo-kpi-val">{stats.uniquePages}</span><span className="glo-kpi-label">浏览页面</span></div>
+                <div className="glo-kpi"><span className="glo-kpi-val">{stats.totalCopies}</span><span className="glo-kpi-label">复制次数</span></div>
+                <div className="glo-kpi"><span className="glo-kpi-val">{stats.totalInteracts}</span><span className="glo-kpi-label">交互次数</span></div>
+                <div className="glo-kpi"><span className="glo-kpi-val">{stats.wechatCopies}</span><span className="glo-kpi-label">微信号复制</span></div>
+            </div>
+
+            {/* Domain Split */}
+            {(stats.domainSplit.mp + stats.domainSplit.fx + stats.domainSplit.gl > 0) && (
+                <div className="glo-domain-split">
+                    <span className="glo-domain-label">浏览分布：</span>
+                    {stats.domainSplit.mp > 0 && <span className="glo-domain-bar mp" style={{ flex: stats.domainSplit.mp }}>小程序 {stats.domainSplit.mp}</span>}
+                    {stats.domainSplit.fx > 0 && <span className="glo-domain-bar fx" style={{ flex: stats.domainSplit.fx }}>视觉 {stats.domainSplit.fx}</span>}
+                    {stats.domainSplit.gl > 0 && <span className="glo-domain-bar gl" style={{ flex: stats.domainSplit.gl }}>Growth {stats.domainSplit.gl}</span>}
+                </div>
+            )}
+
+            {/* Two columns */}
+            <div className="glo-analytics-grid">
+                {/* Left: Page Heat */}
+                <div className="glo-analytics-panel">
+                    <h4 className="glo-panel-title">页面热度 Top {stats.topPages.length}</h4>
+                    <div className="glo-heat-list">
+                        {stats.topPages.map((p, i) => (
+                            <div key={i} className="glo-heat-row">
+                                <span className="glo-heat-rank">{i + 1}</span>
+                                <span className="glo-heat-page">{p.page}</span>
+                                <span className="glo-heat-count">{p.count}</span>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+
+                {/* Right: Recent Events */}
+                <div className="glo-analytics-panel">
+                    <h4 className="glo-panel-title">最近事件</h4>
+                    <div className="glo-event-list">
+                        {stats.recentEvents.slice(0, 10).map((e, i) => (
+                            <div key={i} className="glo-event-row">
+                                <span className="glo-event-time">{new Date(e.t).toLocaleTimeString()}</span>
+                                <span className="glo-event-name">{e.e}</span>
+                                <span className="glo-event-page">{e.p}</span>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </div>
+
+            {/* Copy rankings */}
+            {stats.topCopies.length > 0 && (
+                <div className="glo-copy-ranking">
+                    <h4 className="glo-panel-title">最常复制的名称</h4>
+                    <div className="glo-copy-list">
+                        {stats.topCopies.map((c, i) => (
+                            <span key={i} className="glo-copy-chip">
+                                {['🥇','🥈','🥉','4️⃣','5️⃣'][i]} {c.name} × {c.count}
+                            </span>
+                        ))}
+                    </div>
+                </div>
+            )}
+
+            <div className="glo-analytics-footer">
+                💡 这就是 Growth Loop 的数据思维：观察行为 → 发现模式 → 优化体验 → 驱动增长
+            </div>
+        </motion.div>
+    );
+};
 
 export default GrowthLoopOverview;

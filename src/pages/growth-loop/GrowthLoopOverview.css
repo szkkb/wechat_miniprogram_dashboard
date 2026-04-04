@@ -48,3 +48,108 @@
 .glo-item-zh { color: #cbd5e1; font-weight: 500; }
 .glo-item-en { color: #475569; font-size: 0.65rem; }
 .glo-item-arrow { color: #475569; margin-left: auto; }
+
+/* ═══ Analytics Section ═══ */
+.analytics-icon { background: rgba(34,197,94,0.1) !important; color: #22c55e !important; }
+
+.glo-analytics-placeholder {
+    text-align: center; padding: 2rem 1rem; color: #64748b; font-size: 0.85rem; line-height: 1.8;
+}
+.glo-analytics-placeholder p { margin: 0 0 0.5rem; }
+.glo-inline-link { color: #ffbe5c; text-decoration: none; font-weight: 500; }
+.glo-inline-link:hover { text-decoration: underline; }
+.glo-analytics-hint { font-size: 0.75rem; color: #475569; margin-top: 0.5rem !important; }
+
+.glo-clear-btn {
+    margin-left: auto; background: none; border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 6px; padding: 0.3rem; color: #475569; cursor: pointer;
+    transition: all 0.2s;
+}
+.glo-clear-btn:hover { color: #ef4444; border-color: rgba(239,68,68,0.3); }
+
+/* KPI Strip */
+.glo-kpi-strip {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem; margin-bottom: 1rem;
+}
+.glo-kpi {
+    text-align: center; padding: 0.75rem 0.5rem; border-radius: 10px;
+    background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.04);
+}
+.glo-kpi-val {
+    display: block; font-family: 'JetBrains Mono', monospace; font-size: 1.3rem;
+    font-weight: 700; color: #22c55e;
+}
+.glo-kpi-label { font-size: 0.65rem; color: #64748b; }
+
+/* Domain Split Bar */
+.glo-domain-split {
+    display: flex; align-items: center; gap: 0; margin-bottom: 1rem;
+    border-radius: 6px; overflow: hidden; height: 24px;
+}
+.glo-domain-label {
+    font-size: 0.65rem; color: #64748b; margin-right: 0.5rem; white-space: nowrap;
+}
+.glo-domain-bar {
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.6rem; font-weight: 600; color: #fff; padding: 0 0.5rem;
+    min-width: 40px; height: 100%;
+}
+.glo-domain-bar.mp { background: #10b981; }
+.glo-domain-bar.fx { background: #a855f7; }
+.glo-domain-bar.gl { background: #ffbe5c; color: #000; }
+
+/* Analytics Grid */
+.glo-analytics-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 1rem;
+}
+.glo-analytics-panel {
+    background: rgba(0,0,0,0.2); border-radius: 10px; padding: 0.75rem;
+    border: 1px solid rgba(255,255,255,0.04);
+}
+.glo-panel-title {
+    font-size: 0.75rem; font-weight: 600; color: #94a3b8; margin: 0 0 0.5rem;
+}
+
+/* Heat List */
+.glo-heat-list { display: flex; flex-direction: column; gap: 2px; }
+.glo-heat-row {
+    display: flex; align-items: center; gap: 0.4rem; padding: 0.3rem 0.4rem;
+    border-radius: 4px; font-size: 0.7rem;
+}
+.glo-heat-row:hover { background: rgba(255,255,255,0.03); }
+.glo-heat-rank { color: #475569; font-weight: 600; width: 16px; }
+.glo-heat-page { flex: 1; color: #94a3b8; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.glo-heat-count { font-family: 'JetBrains Mono', monospace; color: #22c55e; font-weight: 600; font-size: 0.7rem; }
+
+/* Event List */
+.glo-event-list { display: flex; flex-direction: column; gap: 2px; max-height: 200px; overflow-y: auto; }
+.glo-event-row {
+    display: flex; align-items: center; gap: 0.4rem; padding: 0.25rem 0.4rem;
+    font-size: 0.65rem; border-radius: 4px;
+}
+.glo-event-row:hover { background: rgba(255,255,255,0.03); }
+.glo-event-time { color: #475569; font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; white-space: nowrap; }
+.glo-event-name { color: #22c55e; font-family: 'JetBrains Mono', monospace; font-weight: 500; }
+.glo-event-page { color: #475569; margin-left: auto; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 100px; }
+
+/* Copy Ranking */
+.glo-copy-ranking { margin-bottom: 0.75rem; }
+.glo-copy-list { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.glo-copy-chip {
+    padding: 0.3rem 0.6rem; border-radius: 6px; font-size: 0.7rem;
+    background: rgba(34,197,94,0.08); border: 1px solid rgba(34,197,94,0.15); color: #94a3b8;
+}
+
+/* Footer */
+.glo-analytics-footer {
+    font-size: 0.75rem; color: #475569; text-align: center;
+    padding: 0.75rem 0 0; border-top: 1px solid rgba(255,255,255,0.04);
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+    .glo-kpi-strip { grid-template-columns: repeat(2, 1fr); }
+    .glo-analytics-grid { grid-template-columns: 1fr; }
+    .glo-domain-split { flex-wrap: wrap; height: auto; }
+    .glo-domain-bar { height: 24px; }
+}

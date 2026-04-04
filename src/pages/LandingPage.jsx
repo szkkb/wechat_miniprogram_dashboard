@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Smartphone, Sparkles, TrendingUp, ArrowRight, ExternalLink, Github, Palette, Layers, Pen } from 'lucide-react';
 import { getMiniprogramCount, getWebfxCounts } from '../data/catalog-registry';
+import { track, ensureSession } from '../utils/track';
 import './LandingPage.css';
 
 const LandingPage = () => {
     const mpCount = getMiniprogramCount();
+
+    useEffect(() => { ensureSession(); track('pv_home'); }, []);
     const fxCounts = getWebfxCounts();
 
     return (
@@ -32,15 +35,15 @@ const LandingPage = () => {
                         <div className="landing-tools">
                             <h3 className="tools-title">配色与设计工具推荐</h3>
                             <div className="tools-list">
-                                <a href="https://brandcolors.net/" target="_blank" rel="noopener noreferrer" className="tool-row">
+                                <a href="https://brandcolors.net/" target="_blank" rel="noopener noreferrer" className="tool-row" onClick={() => track('click_tool', { tool: 'brandcolors' })}>
                                     <span className="tool-name">BrandColors</span>
                                     <span className="tool-link-text">大品牌官方配色值，想不出配色就看大厂 <ArrowRight size={14}/></span>
                                 </a>
-                                <a href="https://huemint.com/brand-intersection/" target="_blank" rel="noopener noreferrer" className="tool-row">
+                                <a href="https://huemint.com/brand-intersection/" target="_blank" rel="noopener noreferrer" className="tool-row" onClick={() => track('click_tool', { tool: 'huemint' })}>
                                     <span className="tool-name">Huemint</span>
                                     <span className="tool-link-text">AI 智能配色，输入关键词自动生成色彩方案 <ArrowRight size={14}/></span>
                                 </a>
-                                <a href="https://stitch.withgoogle.com/home" target="_blank" rel="noopener noreferrer" className="tool-row">
+                                <a href="https://stitch.withgoogle.com/home" target="_blank" rel="noopener noreferrer" className="tool-row" onClick={() => track('click_tool', { tool: 'google_stitch' })}>
                                     <span className="tool-name">Google Stitch</span>
                                     <span className="tool-link-text">能力一般，但设计系统文件不错，调好色丢给 AI 用 <ArrowRight size={14}/></span>
                                 </a>

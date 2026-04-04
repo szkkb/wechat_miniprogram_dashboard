@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Copy, Check } from 'lucide-react';
+import { track } from '../../utils/track';
 
 const CopyableName = ({ en, zh, size = 'default' }) => {
     const [copied, setCopied] = useState(false);
@@ -10,6 +11,7 @@ const CopyableName = ({ en, zh, size = 'default' }) => {
         try {
             await navigator.clipboard.writeText(aiName);
             setCopied(true);
+            track('copy_name', { en, zh });
             setTimeout(() => setCopied(false), 2000);
         } catch {
             // fallback

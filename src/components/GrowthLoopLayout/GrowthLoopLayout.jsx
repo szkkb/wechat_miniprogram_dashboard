@@ -1,12 +1,19 @@
-import React, { useState } from 'react';
-import { Outlet } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Outlet, useLocation } from 'react-router-dom';
+import { track } from '../../utils/track';
 import Sidebar from './Sidebar';
 import { Menu } from 'lucide-react';
 import './GrowthLoopLayout.css';
 
 const GrowthLoopLayout = () => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
+    const location = useLocation();
     const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
+
+    useEffect(() => {
+        const page = location.pathname.split('/').pop() || 'index';
+        track('pv_growthloop', { page });
+    }, [location.pathname]);
 
     return (
         <div className="gl-layout">
