@@ -4,13 +4,17 @@ import { Smartphone, GripHorizontal, ChevronRight, ChevronLeft } from 'lucide-re
 
 const ViewContainers = () => {
     const [activeTab, setActiveTab] = useState('scroll-view');
+    const [introOpen, setIntroOpen] = useState(false);
 
     return (
         <div className="page-container animate-fade-in">
-            <div className="glass-panel header-panel" tabIndex="0">
-                <h3 className="section-title">视图容器 (View Containers)</h3>
+            <div className={`glass-panel header-panel ${introOpen ? 'header-expanded' : ''}`}
+                onClick={() => setIntroOpen(!introOpen)}>
+                <div className="header-panel-handle" />
+                <div className="header-panel-hint">{introOpen ? '点击收起' : '点击查看本页介绍'}</div>
+                <h3 className="section-title">视图容器 View Containers</h3>
                 <p className="section-desc">
-                    模拟微信小程序核心容器组件在 Web 端的高级质感实现。包含弹性滚动、轮播、触控拖拽与页面级容器模拟。
+                    微信小程序三大核心容器的 Web 端高保真还原：弹性滚动、轮播焦点图、自由拖拽。
                 </p>
             </div>
 
