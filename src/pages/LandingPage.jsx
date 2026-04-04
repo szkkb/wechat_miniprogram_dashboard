@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Smartphone, Sparkles, TrendingUp, ArrowRight, ExternalLink, Github, Palette, Layers, Pen } from 'lucide-react';
+import { Smartphone, Sparkles, TrendingUp, ArrowRight, ExternalLink, Palette, Layers, Pen, Star, GitFork } from 'lucide-react';
 import { getMiniprogramCount, getWebfxCounts } from '../data/catalog-registry';
 import { track, ensureSession } from '../utils/track';
 import './LandingPage.css';
@@ -90,9 +90,27 @@ const LandingPage = () => {
                     </div>
                 </div>
 
+                {/* ── GitHub CTA ── */}
+                <div className="github-cta-section">
+                    <p className="github-cta-line">如果这个项目帮到了你，Star 是最好的感谢 ⭐</p>
+                    <div className="github-cta-buttons">
+                        <a href="https://github.com/szkkb/wechat_miniprogram_dashboard" target="_blank" rel="noopener noreferrer" className="github-btn star-btn" onClick={() => track('click_tool', { tool: 'github_star' })}>
+                            <Star size={16} />
+                            <span>Star 收藏</span>
+                        </a>
+                        <a href="https://github.com/szkkb/wechat_miniprogram_dashboard/fork" target="_blank" rel="noopener noreferrer" className="github-btn fork-btn" onClick={() => track('click_tool', { tool: 'github_fork' })}>
+                            <GitFork size={16} />
+                            <span>Fork</span>
+                        </a>
+                    </div>
+                    <p className="github-cta-hint">Star = 收藏到你的 GitHub，下次找得到 · 也让更多人发现这个项目</p>
+                </div>
+
                 {/* ── Footer ── */}
                 <div className="landing-footer">
-                    <p>开源项目 · 欢迎 Star 和 PR · 有问题随时提 Issue</p>
+                    <a href="https://github.com/szkkb/wechat_miniprogram_dashboard" target="_blank" rel="noopener noreferrer" className="footer-github-link">
+                        GitHub · CC BY-NC 4.0
+                    </a>
                 </div>
             </div>
 
