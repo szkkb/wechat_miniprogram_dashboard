@@ -356,7 +356,12 @@ const Gallery = () => {
             <main className="gallery-main">
                 <div className="gallery-header-info">
                     <h1>{CATEGORIES.find(c => c.id === activeCat)?.en}</h1>
-                    <p className="subtitle">{CATEGORIES.find(c => c.id === activeCat)?.zh} - 生产级组件库</p>
+                    <p className="subtitle">
+                        {activeCat === 'typography'
+                            ? '排版不是选字体，是构建阅读系统'
+                            : `${CATEGORIES.find(c => c.id === activeCat)?.zh} - 生产级组件库`
+                        }
+                    </p>
                 </div>
 
                 {filteredDemos.length > 0 ? (
