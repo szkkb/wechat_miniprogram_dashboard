@@ -79,7 +79,7 @@ const WebFXOverview = () => {
             <SectionPreview
                 icon={<MousePointerClick size={20} />}
                 title="交互演示 Interactions"
-                subtitle="磁性按钮 · 拖拽 · 手风琴 · 排版引擎"
+                subtitle="磁性按钮 · 拖拽 · 手风琴 · 字体与排版"
                 count={counts.interaction}
                 items={interactionItems}
                 linkTo="/web-fx/gallery"

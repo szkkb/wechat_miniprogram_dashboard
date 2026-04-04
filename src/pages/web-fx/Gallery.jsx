@@ -1,35 +1,189 @@
-import React, { useState, useMemo, useCallback } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import SmoothAccordion from '../../components/WebFXLayout/Demos/SmoothAccordion';
 import SharedElement from '../../components/WebFXLayout/Demos/SharedElement';
 import HoverSpotlight from '../../components/WebFXLayout/Demos/HoverSpotlight';
 import FluidDragDrop from '../../components/WebFXLayout/Demos/FluidDragDrop';
 import ShowcaseCard from '../../components/WebFXLayout/ShowcaseCard';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
+import { prepareWithSegments, layoutNextLine } from '@chenglou/pretext';
 import './Gallery.css';
 
 import MagneticButton from '../../components/WebFXLayout/BentoWidgets/MagneticButton';
 import FrostedKPICard from '../../components/WebFXLayout/BentoWidgets/FrostedKPICard';
 
 /* ── Typography Demos ── */
-const PretextEngineCard = () => (
-    <ShowcaseCard
-        title="Pretext Engine 零回流排版引擎"
-        description="60 FPS 逐行动态排版，文字自动避让浮动障碍物，零 DOM 回流"
-        tags={['typography:engine', 'performance:60fps', 'layout:dynamic-wrap', '中文:标点禁排']}
-    >
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem', padding: '1.5rem', background: '#0a0a12', minHeight: 200 }}>
-            <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.7rem', color: '#22c55e', background: 'rgba(34,197,94,0.1)', padding: '0.3rem 0.8rem', borderRadius: 6 }}>
-                layoutNextLine() · 0.1ms/帧
+const PRETEXT_CARD_TEXT = `Pretext 把中文逐行断行与障碍物避让放到纯 JavaScript 里计算，再由 Canvas 一次性绘制。这样 UFO 移动时，文字会自动改写每一行的可用宽度，而不会触发浏览器完整回流。
+
+滑到这个卡片区域时，演示会自动开始。你看到的每一帧都在用 layoutNextLine() 重新排版。`;
+const PRETEXT_CARD_FONT = '14px "Outfit", system-ui, sans-serif';
+const PRETEXT_CARD_HEIGHT = 240;
+const PRETEXT_CARD_LINE_HEIGHT = 22;
+const PRETEXT_CARD_MAX_WIDTH = 340;
+
+const PretextEngineCard = () => {
+    const stageRef = useRef(null);
+    const canvasRef = useRef(null);
+    const svgRef = useRef(null);
+    const rAFRef = useRef(null);
+    const [stats, setStats] = useState('0.00');
+    const [isInView, setIsInView] = useState(false);
+    const [canvasWidth, setCanvasWidth] = useState(PRETEXT_CARD_MAX_WIDTH);
+
+    const preparedText = useMemo(() => (
+        prepareWithSegments(PRETEXT_CARD_TEXT, PRETEXT_CARD_FONT, { whiteSpace: 'pre-wrap' })
+    ), []);
+
+    useEffect(() => {
+        if (!stageRef.current) return undefined;
+
+        const updateWidth = () => {
+            if (!stageRef.current) return;
+            const nextWidth = Math.max(220, Math.min(PRETEXT_CARD_MAX_WIDTH, stageRef.current.clientWidth - 32));
+            setCanvasWidth(nextWidth);
+        };
+
+        updateWidth();
+        window.addEventListener('resize', updateWidth);
+        return () => window.removeEventListener('resize', updateWidth);
+    }, []);
+
+    useEffect(() => {
+        if (!stageRef.current) return undefined;
+
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                setIsInView(entry.isIntersecting && entry.intersectionRatio >= 0.35);
+            },
+            {
+                threshold: [0.2, 0.35, 0.55],
+                rootMargin: '0px 0px -10% 0px',
+            }
+        );
+
+        observer.observe(stageRef.current);
+        return () => observer.disconnect();
+    }, []);
+
+    useEffect(() => {
+        if (!canvasRef.current || !svgRef.current) return undefined;
+
+        const canvas = canvasRef.current;
+        const ctx = canvas.getContext('2d');
+        const svgElement = svgRef.current;
+        const dpr = window.devicePixelRatio || 1;
+
+        canvas.width = canvasWidth * dpr;
+        canvas.height = PRETEXT_CARD_HEIGHT * dpr;
+        canvas.style.width = `${canvasWidth}px`;
+        canvas.style.height = `${PRETEXT_CARD_HEIGHT}px`;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        ctx.font = PRETEXT_CARD_FONT;
+        ctx.textBaseline = 'top';
+
+        const renderFrame = (time) => {
+            const start = performance.now();
+            ctx.clearRect(0, 0, canvasWidth, PRETEXT_CARD_HEIGHT);
+
+            const t = time * 0.001;
+            const maxSwing = Math.min(34, canvasWidth / 5);
+            const orbRadius = 32;
+            const orbXOffset = Math.sin(t * 1.35) * maxSwing + 42;
+            const orbY = (Math.sin(t * 0.9) * 0.5 + 0.5) * (PRETEXT_CARD_HEIGHT - 118) + 8;
+            const orbLeftEdge = canvasWidth - orbXOffset - orbRadius;
+            const orbTopEdge = orbY;
+            const orbBottomEdge = orbY + orbRadius * 2.5;
+            const rotateAngle = Math.sin(t * 1.8) * 4;
+
+            svgElement.style.transform = `translate(${canvasWidth - orbXOffset - orbRadius}px, ${orbTopEdge}px) rotate(${rotateAngle}deg)`;
+
+            let cursor = { segmentIndex: 0, graphemeIndex: 0 };
+            let y = 0;
+
+            ctx.fillStyle = '#d6deea';
+
+            while (true) {
+                let lineAvailableWidth = canvasWidth;
+                const lineBottom = y + PRETEXT_CARD_LINE_HEIGHT;
+
+                if (lineBottom > orbTopEdge && y < orbBottomEdge) {
+                    lineAvailableWidth = Math.max(0, orbLeftEdge - 12);
+                }
+
+                const line = layoutNextLine(preparedText, cursor, lineAvailableWidth);
+                if (line === null) break;
+
+                ctx.fillText(line.text, 0, y + 1);
+                cursor = line.end;
+                y += PRETEXT_CARD_LINE_HEIGHT;
+            }
+
+            const elapsed = performance.now() - start;
+            setStats(elapsed.toFixed(2));
+        };
+
+        if (rAFRef.current) cancelAnimationFrame(rAFRef.current);
+
+        if (!isInView) {
+            renderFrame(0);
+            return undefined;
+        }
+
+        const loop = (time) => {
+            renderFrame(time);
+            rAFRef.current = requestAnimationFrame(loop);
+        };
+
+        rAFRef.current = requestAnimationFrame(loop);
+        return () => {
+            if (rAFRef.current) cancelAnimationFrame(rAFRef.current);
+        };
+    }, [canvasWidth, isInView, preparedText]);
+
+    return (
+        <ShowcaseCard
+            title="Pretext Engine 零回流排版引擎"
+            description="滑入视口自动触发的动态文字避让演示，零 DOM 回流"
+            tags={['typography:engine', 'performance:auto-play', 'layout:dynamic-wrap', '中文:标点禁排']}
+        >
+            <div className="pretext-card-stage" ref={stageRef}>
+                <div className={`pretext-autoplay-badge ${isInView ? 'live' : ''}`}>
+                    {isInView ? 'In View · Live Layout' : 'Scroll Into View · Auto Play'}
+                </div>
+                <div className="pretext-card-note">
+                    排版耗时 {stats}ms · 进入视口自动开跑
+                </div>
+                <div className="pretext-card-frame" style={{ width: canvasWidth }}>
+                    <svg
+                        ref={svgRef}
+                        width="64"
+                        height="74"
+                        viewBox="0 0 100 100"
+                        className="pretext-card-floater"
+                    >
+                        <defs>
+                            <linearGradient id="galleryUfoBeam" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="0%" stopColor="#a855f7" stopOpacity="0.8" />
+                                <stop offset="100%" stopColor="#a855f7" stopOpacity="0" />
+                            </linearGradient>
+                        </defs>
+                        <path d="M 35 60 L 15 100 L 85 100 L 65 60 Z" fill="url(#galleryUfoBeam)" />
+                        <path d="M 25 50 A 25 25 0 0 1 75 50" fill="rgba(255, 255, 255, 0.15)" stroke="#c084fc" strokeWidth="2" />
+                        <circle cx="50" cy="40" r="10" fill="#10b981" />
+                        <circle cx="45" cy="38" r="2.5" fill="#0f172a" />
+                        <circle cx="55" cy="38" r="2.5" fill="#0f172a" />
+                        <path d="M 47 43 Q 50 46 53 43" stroke="#0f172a" strokeWidth="1.5" fill="none" strokeLinecap="round" />
+                        <ellipse cx="50" cy="55" rx="45" ry="14" fill="#1e293b" stroke="#c084fc" strokeWidth="2" />
+                        <ellipse cx="50" cy="52" rx="35" ry="8" fill="#334155" />
+                    </svg>
+                    <canvas ref={canvasRef} className="pretext-card-canvas" />
+                </div>
+                <div className="pretext-card-caption">
+                    文字会实时绕开 UFO，进入视口就自动播放，不再需要“查看完整演示”。
+                </div>
             </div>
-            <div style={{ maxWidth: 340, color: '#94a3b8', fontSize: '0.8rem', lineHeight: 1.7, textAlign: 'center' }}>
-                纯 JS 逐行计算文字排布位置，Canvas 一次性绘制。支持中文逐字断行 + 标点禁排规则。
-            </div>
-            <Link to="/web-fx/typography" style={{ color: '#a855f7', fontSize: '0.8rem', textDecoration: 'none', fontWeight: 600 }}>
-                查看完整演示 →
-            </Link>
-        </div>
-    </ShowcaseCard>
-);
+        </ShowcaseCard>
+    );
+};
 
 const FontShowcase = () => (
     <ShowcaseCard
@@ -252,7 +406,7 @@ const CATEGORIES = [
     { id: 'microinteractions', en: 'Microinteractions', zh: '组件微交互' },
     { id: 'background', en: 'Background & Effects', zh: '背景与特效' },
     { id: '3d-spatial', en: '3D & Spatial', zh: '3D 与空间' },
-    { id: 'typography', en: 'Typography', zh: '字体与排版' },
+    { id: 'typography', en: 'Typography Resources', zh: '字体与排版资源' },
     { id: 'data-vis', en: 'Data Visualization', zh: '数据可视化' },
     { id: 'ux-states', en: 'UX States', zh: '状态反馈' },
     { id: 'performance', en: 'Performance & A11y', zh: '性能与无障碍' },
@@ -323,7 +477,18 @@ const DEMO_REGISTRY = [
 ];
 
 const Gallery = () => {
-    const [activeCat, setActiveCat] = useState('all');
+    const [searchParams, setSearchParams] = useSearchParams();
+    const categoryIds = useMemo(() => new Set(CATEGORIES.map((category) => category.id)), []);
+    const requestedCategory = searchParams.get('category');
+    const activeCat = requestedCategory && categoryIds.has(requestedCategory) ? requestedCategory : 'all';
+    const activeCategory = CATEGORIES.find((category) => category.id === activeCat) || CATEGORIES[0];
+
+    const handleCategoryChange = (categoryId) => {
+        const next = new URLSearchParams(searchParams);
+        if (categoryId === 'all') next.delete('category');
+        else next.set('category', categoryId);
+        setSearchParams(next, { replace: true });
+    };
 
     const filteredDemos = useMemo(() => {
         if (activeCat === 'all') return DEMO_REGISTRY;
@@ -343,7 +508,7 @@ const Gallery = () => {
                         <button
                             key={cat.id}
                             className={"gallery-nav-btn " + (activeCat === cat.id ? 'active' : '')}
-                            onClick={() => setActiveCat(cat.id)}
+                            onClick={() => handleCategoryChange(cat.id)}
                         >
                             <span className="nav-en">{cat.en}</span>
                             <span className="nav-zh">{cat.zh}</span>
@@ -355,11 +520,11 @@ const Gallery = () => {
             {/* Main Content Area */}
             <main className="gallery-main">
                 <div className="gallery-header-info">
-                    <h1>{CATEGORIES.find(c => c.id === activeCat)?.en}</h1>
+                    <h1>{activeCategory.en}</h1>
                     <p className="subtitle">
                         {activeCat === 'typography'
                             ? '排版不是选字体，是构建阅读系统'
-                            : `${CATEGORIES.find(c => c.id === activeCat)?.zh} - 生产级组件库`
+                            : `${activeCategory.zh} - 生产级组件库`
                         }
                     </p>
                 </div>

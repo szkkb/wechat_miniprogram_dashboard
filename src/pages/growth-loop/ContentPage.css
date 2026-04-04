@@ -4,10 +4,13 @@
 
 .gl-content-page {
     max-width: 800px;
+    width: 100%;
+    padding-bottom: 2rem;
 }
 
 .gl-markdown-body {
     color: #cbd5e1; line-height: 1.8; font-size: 0.9rem;
+    min-width: 0;
 }
 
 .gl-markdown-body h1 {
@@ -39,6 +42,8 @@
     font-family: 'JetBrains Mono', monospace; font-size: 0.8rem;
     background: rgba(255,255,255,0.06); padding: 0.15rem 0.4rem;
     border-radius: 4px; color: #a78bfa;
+    overflow-wrap: anywhere;
+    word-break: break-word;
 }
 .gl-markdown-body pre {
     background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.06);
@@ -48,19 +53,37 @@
     background: none; padding: 0; font-size: 0.78rem; color: #e2e8f0;
 }
 
+.gl-table-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: 0 0 1rem;
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 10px;
+    background: rgba(255,255,255,0.02);
+}
+
 .gl-markdown-body table {
-    width: 100%; border-collapse: collapse; margin: 0 0 1rem;
-    font-size: 0.8rem;
+    width: 100%; min-width: 520px; border-collapse: collapse; margin: 0;
+    font-size: 0.8rem; table-layout: auto;
 }
 .gl-markdown-body th {
-    text-align: left; padding: 0.5rem; border-bottom: 2px solid rgba(255,255,255,0.1);
+    text-align: left; padding: 0.6rem 0.75rem; border-bottom: 2px solid rgba(255,255,255,0.1);
     color: #f8fafc; font-weight: 600;
+    vertical-align: top;
 }
 .gl-markdown-body td {
-    padding: 0.5rem; border-bottom: 1px solid rgba(255,255,255,0.04);
+    padding: 0.6rem 0.75rem; border-bottom: 1px solid rgba(255,255,255,0.04);
     color: #94a3b8;
+    vertical-align: top;
 }
 .gl-markdown-body tr:hover td { background: rgba(255,255,255,0.02); }
+.gl-markdown-body td code,
+.gl-markdown-body th code {
+    white-space: normal;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    line-height: 1.5;
+}
 
 .gl-markdown-body blockquote {
     border-left: 3px solid #ffbe5c; margin: 0 0 1rem; padding: 0.5rem 1rem;
@@ -74,4 +97,38 @@
 .gl-markdown-body hr {
     border: none; height: 1px; background: rgba(255,255,255,0.06);
     margin: 2rem 0;
+}
+
+@media (max-width: 768px) {
+    .gl-content-page {
+        max-width: none;
+        padding-bottom: calc(var(--mobile-tab-bar-offset, 56px) + 24px);
+    }
+
+    .gl-markdown-body {
+        font-size: 0.88rem;
+    }
+
+    .gl-markdown-body h1 {
+        font-size: 1.5rem;
+    }
+
+    .gl-markdown-body h2 {
+        font-size: 1.15rem;
+    }
+
+    .gl-markdown-body table {
+        min-width: 500px;
+        font-size: 0.76rem;
+    }
+
+    .gl-markdown-body td,
+    .gl-markdown-body th {
+        padding: 0.55rem 0.65rem;
+    }
+
+    .gl-markdown-body td code,
+    .gl-markdown-body th code {
+        font-size: 0.72rem;
+    }
 }

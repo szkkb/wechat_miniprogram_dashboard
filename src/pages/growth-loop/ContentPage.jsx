@@ -3,6 +3,14 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import './ContentPage.css';
 
+const markdownComponents = {
+    table: ({ node, ...props }) => (
+        <div className="gl-table-wrap">
+            <table {...props} />
+        </div>
+    ),
+};
+
 const ContentPage = ({ slug }) => {
     const [content, setContent] = useState('');
     const [loading, setLoading] = useState(true);
@@ -23,7 +31,9 @@ const ContentPage = ({ slug }) => {
     return (
         <div className="gl-content-page animate-fade-in">
             <div className="gl-markdown-body">
-                <ReactMarkdown remarkPlugins={[remarkGfm]}>{content}</ReactMarkdown>
+                <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
+                    {content}
+                </ReactMarkdown>
             </div>
         </div>
     );

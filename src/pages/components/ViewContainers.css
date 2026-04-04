@@ -352,7 +352,7 @@
         flex-direction: column;
         gap: 0;
         width: 100%;
-        padding-bottom: 140px; /* Massive space for the floating bottom sheet clearance */
+        padding-bottom: calc(var(--mobile-tab-bar-offset, 56px) + 112px);
     }
     
     /* Maximize Core Stage Area on Mobile */
@@ -382,7 +382,7 @@
     /* Mobile: floating bottom drawer */
     .header-panel {
         position: fixed;
-        bottom: 20px;
+        bottom: calc(var(--mobile-tab-bar-offset, 56px) + 16px);
         left: 12px;
         right: 12px;
         z-index: 100;

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Smartphone, Sparkles, TrendingUp, ArrowRight, ExternalLink, Palette, Layers, Pen, Star, GitFork } from 'lucide-react';
 import { getMiniprogramCount, getWebfxCounts } from '../data/catalog-registry';
@@ -7,9 +7,44 @@ import './LandingPage.css';
 
 const LandingPage = () => {
     const mpCount = getMiniprogramCount();
+    const cardRefs = useRef({});
+    const [visibleCards, setVisibleCards] = useState({});
 
     useEffect(() => { ensureSession(); track('pv_home'); }, []);
     const fxCounts = getWebfxCounts();
+
+    useEffect(() => {
+        const cardElements = Object.values(cardRefs.current).filter(Boolean);
+        if (cardElements.length === 0) return undefined;
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                setVisibleCards((prev) => {
+                    const next = { ...prev };
+                    let changed = false;
+
+                    entries.forEach((entry) => {
+                        const { cardKey } = entry.target.dataset;
+                        const isVisible = entry.isIntersecting && entry.intersectionRatio >= 0.35;
+                        if (next[cardKey] !== isVisible) {
+                            next[cardKey] = isVisible;
+                            changed = true;
+                        }
+                    });
+
+                    return changed ? next : prev;
+                });
+            },
+            {
+                threshold: [0.2, 0.35, 0.55],
+                rootMargin: '0px 0px -8% 0px',
+            }
+        );
+
+        cardElements.forEach((element) => observer.observe(element));
+
+        return () => observer.disconnect();
+    }, []);
 
     return (
         <div className="landing-container">
@@ -54,7 +89,13 @@ const LandingPage = () => {
                     {/* ── Right Column: Dual Dashboards ── */}
                     <div className="landing-right-col">
                         <div className="workspace-cards">
-                            <Link to="/mini-program" className="workspace-card mp-card">
+                            <Link
+                                to="/mini-program"
+                                className={`workspace-card mp-card ${visibleCards.mp ? 'card-in-view' : ''}`}
+                                data-card-key="mp"
+                                ref={(node) => { cardRefs.current.mp = node; }}
+                                style={{ '--glow-delay': '0s' }}
+                            >
                                 <div className="card-icon-wrapper">
                                     <Smartphone size={48} className="card-icon" strokeWidth={1.5} />
                                 </div>
@@ -65,7 +106,13 @@ const LandingPage = () => {
                                 <div className="card-action">进入 Lab <ArrowRight size={16} /></div>
                             </Link>
 
-                            <Link to="/web-fx" className="workspace-card fx-card">
+                            <Link
+                                to="/web-fx"
+                                className={`workspace-card fx-card ${visibleCards.fx ? 'card-in-view' : ''}`}
+                                data-card-key="fx"
+                                ref={(node) => { cardRefs.current.fx = node; }}
+                                style={{ '--glow-delay': '0.18s' }}
+                            >
                                 <div className="card-icon-wrapper">
                                     <Sparkles size={48} className="card-icon" strokeWidth={1.5} />
                                 </div>
@@ -76,7 +123,13 @@ const LandingPage = () => {
                                 <div className="card-action">进入 Dashboard <ArrowRight size={16} /></div>
                             </Link>
 
-                            <Link to="/growth-loop" className="workspace-card gl-card">
+                            <Link
+                                to="/growth-loop"
+                                className={`workspace-card gl-card ${visibleCards.gl ? 'card-in-view' : ''}`}
+                                data-card-key="gl"
+                                ref={(node) => { cardRefs.current.gl = node; }}
+                                style={{ '--glow-delay': '0.36s' }}
+                            >
                                 <div className="card-icon-wrapper">
                                     <TrendingUp size={48} className="card-icon" strokeWidth={1.5} />
                                 </div>

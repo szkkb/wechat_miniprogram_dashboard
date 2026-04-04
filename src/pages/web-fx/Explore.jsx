@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import FrostedKPICard from '../../components/WebFXLayout/BentoWidgets/FrostedKPICard';
 import MagneticButton from '../../components/WebFXLayout/BentoWidgets/MagneticButton';
@@ -99,8 +100,8 @@ const Explore = () => {
                         </div>
                         <div className="widget-body typography-promo">
                             <h2>0-DOM Reflow</h2>
-                            <p>Discover our new Shrink-Wrap text layout engine.</p>
-                            <a href="/web-fx/typography" className="promo-link">View Typography Demo →</a>
+                            <p>Browse live typography demos, font pairings and CJK layout notes.</p>
+                            <Link to="/web-fx/gallery?category=typography" className="promo-link">Open Typography Resources →</Link>
                         </div>
                     </div>
                 </motion.div>

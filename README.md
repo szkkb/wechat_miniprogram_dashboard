@@ -52,13 +52,14 @@ npm run dev
 
 ## 部署
 
-托管在 Cloudflare Pages，手动 CLI 部署：
+仓库不包含生产环境的域名映射、Pages 项目名或本机路径配置。
+如需自行部署到 Cloudflare Pages，请先准备你自己的 Pages 项目和 Wrangler 登录状态。
 
 ```bash
-./deploy.sh    # 一键：push GitHub + build + deploy Cloudflare
+CLOUDFLARE_PAGES_PROJECT=your-pages-project ./deploy.sh
 ```
 
-详细部署说明见 [CLAUDE.md](./CLAUDE.md)。
+脚本会按当前分支执行 `git push`、`npm run build`，然后把 `dist/` 部署到你指定的 Pages 项目。
 
 ## 项目结构
 

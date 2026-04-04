@@ -29,6 +29,13 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
         if (window.innerWidth <= 768) toggleSidebar();
     };
 
+    const getFlatItemClassName = (item) => {
+        const currentUrl = `${location.pathname}${location.search}`;
+        const isQueryRoute = item.route.includes('?');
+        const isActive = isQueryRoute ? currentUrl === item.route : location.pathname === item.route && location.search === '';
+        return `webfx-sub-item link ${isActive ? 'active' : ''}`;
+    };
+
     return (
         <>
             <div
@@ -107,7 +114,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
                                                 <li key={item.id}>
                                                     <NavLink
                                                         to={item.route}
-                                                        className={({ isActive }) => `webfx-sub-item link ${isActive ? 'active' : ''}`}
+                                                        className={() => getFlatItemClassName(item)}
                                                         onClick={() => window.innerWidth <= 768 && toggleSidebar()}
                                                     >
                                                         <span className="webfx-sub-label">{item.name.zh}</span>

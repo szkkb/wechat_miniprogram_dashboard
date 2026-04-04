@@ -101,7 +101,7 @@ export const WEBFX_CATALOG = [
   { id: 'smooth-accordion', name: { en: 'Smooth Accordion', zh: '弹性手风琴' }, group: 'interaction', route: '/web-fx/gallery' },
   { id: 'fluid-drag', name: { en: 'Fluid Drag & Drop', zh: '流体拖拽' }, group: 'interaction', route: '/web-fx/gallery' },
   { id: 'frosted-kpi', name: { en: 'Frosted KPI Card', zh: '毛玻璃卡片' }, group: 'interaction', route: '/web-fx/gallery' },
-  { id: 'typography-engine', name: { en: 'Typography Engine', zh: '排版引擎' }, group: 'interaction', route: '/web-fx/typography' },
+  { id: 'typography-resources', name: { en: 'Typography Resources', zh: '字体与排版资源' }, group: 'interaction', route: '/web-fx/gallery?category=typography' },
   { id: 'wechat-buttons', name: { en: 'WeChat CTA Buttons', zh: '加微信按钮' }, group: 'interaction', route: '/web-fx/wechat-buttons' },
 ];
 

@@ -156,6 +156,8 @@
 }
 
 .workspace-card {
+    --card-accent: #e2e8f0;
+    --card-accent-rgb: 226, 232, 240;
     background: rgba(30, 41, 59, 0.3);
     border: 1px solid rgba(255, 255, 255, 0.05);
     border-radius: 32px;
@@ -168,11 +170,61 @@
     display: flex;
     flex-direction: column;
     min-height: 320px;
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+}
+
+.workspace-card::before,
+.workspace-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.45s ease;
+}
+
+.workspace-card::before {
+    inset: -1px;
+    background:
+        radial-gradient(circle at 18% 18%, rgba(var(--card-accent-rgb), 0.18) 0%, transparent 28%),
+        linear-gradient(135deg, rgba(var(--card-accent-rgb), 0.12), transparent 42%);
+}
+
+.workspace-card::after {
+    inset: -20px;
+    background:
+        radial-gradient(circle at 16% 14%, rgba(var(--card-accent-rgb), 0.28) 0%, transparent 34%),
+        radial-gradient(circle at 78% 80%, rgba(var(--card-accent-rgb), 0.12) 0%, transparent 30%);
+    filter: blur(24px);
+    transform: scale(0.96);
+}
+
+.workspace-card > * {
+    position: relative;
+    z-index: 1;
 }
 
 /* Stagger the second card downwards for asymmetric tension */
 .fx-card {
     margin-left: 3rem;
+}
+
+.mp-card {
+    --card-accent: #10b981;
+    --card-accent-rgb: 16, 185, 129;
+}
+
+.fx-card {
+    --card-accent: #a855f7;
+    --card-accent-rgb: 168, 85, 247;
+}
+
+.gl-card {
+    --card-accent: #ffbe5c;
+    --card-accent-rgb: 255, 190, 92;
 }
 
 .workspace-card:hover {
@@ -184,6 +236,24 @@
 
 .card-icon-wrapper {
     margin-bottom: auto;
+    position: relative;
+    width: fit-content;
+}
+
+.card-icon-wrapper::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 92px;
+    height: 92px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(var(--card-accent-rgb), 0.32) 0%, rgba(var(--card-accent-rgb), 0.14) 38%, transparent 72%);
+    transform: translate(-50%, -50%) scale(0.78);
+    filter: blur(6px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
 }
 
 .mp-card .card-icon { color: #10b981; }
@@ -227,6 +297,38 @@
 .workspace-card:hover .card-action {
     opacity: 1;
     transform: translateX(5px);
+}
+
+.workspace-card.card-in-view {
+    border-color: rgba(var(--card-accent-rgb), 0.22);
+    box-shadow:
+        0 26px 60px rgba(0, 0, 0, 0.35),
+        0 0 0 1px rgba(var(--card-accent-rgb), 0.08);
+}
+
+.workspace-card.card-in-view::before,
+.workspace-card.card-in-view::after,
+.workspace-card.card-in-view .card-icon-wrapper::after {
+    opacity: 1;
+}
+
+.workspace-card.card-in-view::before {
+    animation: cardGlowBreath 2.8s ease-in-out infinite;
+    animation-delay: var(--glow-delay, 0s);
+}
+
+.workspace-card.card-in-view::after {
+    animation: cardAuraBreath 2.8s ease-in-out infinite;
+    animation-delay: var(--glow-delay, 0s);
+}
+
+.workspace-card.card-in-view .card-icon-wrapper::after {
+    animation: iconGlowBreath 2.8s ease-in-out infinite;
+    animation-delay: var(--glow-delay, 0s);
+}
+
+.workspace-card.card-in-view .card-action {
+    opacity: 1;
 }
 
 .mp-card .card-action { color: #10b981; }
@@ -319,6 +421,39 @@
     100% { transform: translate(60px, 60px) scale(1.1); }
 }
 
+@keyframes cardGlowBreath {
+    0%, 100% {
+        opacity: 0.38;
+        transform: scale(0.985);
+    }
+    50% {
+        opacity: 0.85;
+        transform: scale(1.01);
+    }
+}
+
+@keyframes cardAuraBreath {
+    0%, 100% {
+        opacity: 0.22;
+        transform: scale(0.94);
+    }
+    50% {
+        opacity: 0.58;
+        transform: scale(1.02);
+    }
+}
+
+@keyframes iconGlowBreath {
+    0%, 100% {
+        opacity: 0.18;
+        transform: translate(-50%, -50%) scale(0.78);
+    }
+    50% {
+        opacity: 0.72;
+        transform: translate(-50%, -50%) scale(1.08);
+    }
+}
+
 /* ── MOBILE OVERRIDES ── */
 @media (max-width: 992px) {
     .landing-grid-layout {
@@ -371,5 +506,17 @@
     .tool-link-text {
         opacity: 1;
         transform: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .workspace-card,
+    .workspace-card::before,
+    .workspace-card::after,
+    .workspace-card .card-icon-wrapper::after,
+    .workspace-card .card-icon,
+    .workspace-card .card-action {
+        animation: none !important;
+        transition: none !important;
     }
 }

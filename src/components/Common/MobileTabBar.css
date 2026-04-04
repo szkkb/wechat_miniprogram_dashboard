@@ -4,6 +4,10 @@
 }
 
 @media (max-width: 768px) {
+    :root {
+        --mobile-tab-bar-offset: calc(56px + env(safe-area-inset-bottom, 0px));
+    }
+
     .mobile-tab-bar {
         display: flex;
         position: fixed;
@@ -51,6 +55,6 @@
     .webfx-content,
     .gl-content,
     .landing-container {
-        padding-bottom: 72px !important;
+        padding-bottom: calc(var(--mobile-tab-bar-offset) + 16px) !important;
     }
 }
