@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 import './ContentPage.css';
 
 const ContentPage = ({ slug }) => {
@@ -22,7 +23,7 @@ const ContentPage = ({ slug }) => {
     return (
         <div className="gl-content-page animate-fade-in">
             <div className="gl-markdown-body">
-                <ReactMarkdown>{content}</ReactMarkdown>
+                <ReactMarkdown remarkPlugins={[remarkGfm]}>{content}</ReactMarkdown>
             </div>
         </div>
     );
