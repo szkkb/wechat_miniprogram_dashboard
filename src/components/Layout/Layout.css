@@ -295,8 +295,10 @@
         position: fixed;
         top: 0;
         left: 0;
-        bottom: 0;
-        height: calc(100vh - 32px);
+        bottom: var(--mobile-tab-bar-offset, 0px);
+        height: auto;
+        margin: 0;
+        border-radius: 0;
         transform: translateX(-120%);
         box-shadow: 20px 0 40px rgba(0, 0, 0, 0.5);
     }
