@@ -367,7 +367,7 @@ export default function GrowthLoopOutline() {
           <div style={{ fontSize: 10, color: C.accent, fontWeight: 700, letterSpacing: "0.1em", marginBottom: 4 }}>
             {"★ 一句话核心逻辑"}
           </div>
-          <p style={{ fontSize: 13.5, color: C.text, margin: 0, lineHeight: 1.6, fontWeight: 500 }}>
+          <p style={{ fontSize: 13.5, color: C.text, margin: 0, lineHeight: 1.6, fontWeight: 500, textAlign: "left" }}>
             运用行为动力学与科学实验，围绕关键行为构建反馈系统：使系统产出通过可规模化的再投入机制回流为下一轮输入，从而实现复利式增长。
           </p>
         </div>
