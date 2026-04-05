@@ -177,9 +177,6 @@ const PretextEngineCard = () => {
                     </svg>
                     <canvas ref={canvasRef} className="pretext-card-canvas" />
                 </div>
-                <div className="pretext-card-caption">
-                    文字会实时绕开 UFO，进入视口就自动播放，不再需要“查看完整演示”。
-                </div>
             </div>
         </ShowcaseCard>
     );
