@@ -345,6 +345,92 @@
     }
 
     .content-wrapper {
-        padding: 24px 24px 80px 24px; /* massive padding, letting content breathe */
+        padding: 24px 24px 80px 24px;
+    }
+
+    /* ── Shared: page-container mobile padding ── */
+    .page-container {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        width: 100%;
+        padding-bottom: calc(var(--mobile-tab-bar-offset, 56px) + 112px);
+    }
+
+    /* ── Shared: demo card mobile tweaks ── */
+    .demo-card {
+        padding: 16px 12px;
+    }
+
+    .demo-content {
+        min-height: 280px;
+        padding: 16px;
+    }
+
+    .mock-phone {
+        transform: scale(1.15);
+        transform-origin: center center;
+    }
+
+    .demo-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        margin-top: 0;
+        width: 100%;
+    }
+
+    /* ── Shared: floating bottom drawer (header-panel) ── */
+    .header-panel {
+        position: fixed;
+        bottom: calc(var(--mobile-tab-bar-offset, 56px) + 16px);
+        left: 12px;
+        right: 12px;
+        z-index: 100;
+        background: rgba(20, 20, 24, 0.92);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-radius: 16px;
+        padding: 0;
+        border-left: none;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        box-shadow: 0 -4px 30px rgba(0, 0, 0, 0.6);
+        transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        cursor: pointer;
+        max-height: 44px;
+        overflow: hidden;
+    }
+
+    .header-panel-handle {
+        width: 36px; height: 4px; border-radius: 2px;
+        background: rgba(255,255,255,0.2); margin: 8px auto 0;
+    }
+
+    .header-panel-hint {
+        text-align: center; font-size: 12px; color: #07c160;
+        font-weight: 500; padding: 4px 0 8px;
+    }
+
+    .header-panel.header-expanded {
+        max-height: 260px;
+        background: rgba(20, 20, 24, 0.96);
+    }
+
+    .header-panel.header-expanded .header-panel-hint {
+        color: #64748b;
+    }
+
+    .header-panel .section-title {
+        font-size: 16px;
+        margin: 0 0 6px;
+        padding: 0 16px;
+        color: #fff;
+    }
+
+    .header-panel .section-desc {
+        font-size: 13px;
+        line-height: 1.6;
+        color: rgba(255, 255, 255, 0.6);
+        padding: 0 16px 16px;
     }
 }
