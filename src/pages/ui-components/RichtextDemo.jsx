@@ -7,14 +7,26 @@ import './RichText.css';
 const RichtextDemo = () => {
     const [logs, setLogs] = useState([]);
     const [isLargeText, setIsLargeText] = useState(false);
+    const [previewOpen, setPreviewOpen] = useState(false);
 
     const handleNodeClick = (nodeName) => {
         setLogs(prev => [...prev.slice(-4), `触发 rich-text 点击事件: 节点 <${nodeName}>`]);
+        if (nodeName === 'img') setPreviewOpen(true);
     };
 
     return (
         <div className="page-container animate-fade-in">
             <PageIntroPanel title="基础组件 (UI Components)" description="展示承载内容与信息的基石型组件系统，例如富文本、媒体呈现等。" />
+
+            {previewOpen && (
+                <div className="rt-preview-overlay" onClick={() => setPreviewOpen(false)}>
+                    <div className="rt-preview-content">
+                        <ImageIcon size={64} strokeWidth={1} />
+                        <p>商品结构爆炸图.webp</p>
+                        <span className="rt-preview-hint">wx.previewImage() 模拟 · 点击任意位置关闭</span>
+                    </div>
+                </div>
+            )}
 
             <div className="demo-grid">
                 <DemoCard

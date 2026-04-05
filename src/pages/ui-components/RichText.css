@@ -80,3 +80,41 @@
 .rt-container li {
     margin-bottom: 8px;
 }
+
+/* Image preview overlay — simulates wx.previewImage() */
+.rt-preview-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9000;
+    background: rgba(0, 0, 0, 0.92);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    animation: rtFadeIn 0.2s ease;
+}
+
+@keyframes rtFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.rt-preview-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    color: #94a3b8;
+}
+
+.rt-preview-content p {
+    color: #f8fafc;
+    font-size: 1rem;
+    font-weight: 500;
+    margin: 0;
+}
+
+.rt-preview-hint {
+    font-size: 0.75rem;
+    color: #475569;
+}
