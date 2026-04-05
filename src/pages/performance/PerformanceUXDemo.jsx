@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { RefreshCw, ArrowDownToLine, Check, Package } from 'lucide-react';
 import DemoCard from '../../components/Common/DemoCard';
+import PageIntroPanel from '../../components/Common/PageIntroPanel';
 import './PerformanceUX.css';
 
 const PerformanceUXDemo = () => {
@@ -65,12 +66,7 @@ const PerformanceUXDemo = () => {
 
     return (
         <div className="page-container animate-fade-in">
-            <div className="glass-panel header-panel" tabIndex="0">
-                <h3 className="section-title">性能与体验模式 (Performance & UX)</h3>
-                <p className="section-desc">
-                    体验丝滑橡皮筋刷新、无限加载，以及大规模渲染下的抗抖动。
-                </p>
-            </div>
+            <PageIntroPanel title="性能与体验模式 (Performance & UX)" description="体验丝滑橡皮筋刷新、无限加载，以及大规模渲染下的抗抖动。" />
 
             <div className="demo-grid">
                 <DemoCard

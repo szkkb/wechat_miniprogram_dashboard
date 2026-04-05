@@ -1,22 +1,13 @@
 import React, { useState, useRef } from 'react';
 import './ViewContainers.css';
 import { Smartphone, GripHorizontal, ChevronRight, ChevronLeft } from 'lucide-react';
+import PageIntroPanel from '../../components/Common/PageIntroPanel';
 
 const ViewContainers = () => {
     const [activeTab, setActiveTab] = useState('scroll-view');
-    const [introOpen, setIntroOpen] = useState(false);
-
     return (
         <div className="page-container animate-fade-in">
-            <div className={`glass-panel header-panel ${introOpen ? 'header-expanded' : ''}`}
-                onClick={() => setIntroOpen(!introOpen)}>
-                <div className="header-panel-handle" />
-                <div className="header-panel-hint">{introOpen ? '点击收起' : '点击查看本页介绍'}</div>
-                <h3 className="section-title">视图容器 View Containers</h3>
-                <p className="section-desc">
-                    微信小程序三大核心容器的 Web 端高保真还原：弹性滚动、轮播焦点图、自由拖拽。
-                </p>
-            </div>
+            <PageIntroPanel title="视图容器 View Containers" description="微信小程序三大核心容器的 Web 端高保真还原：弹性滚动、轮播焦点图、自由拖拽。" />
 
             <div className="demo-grid">
                 {/* Scroll View Demo */}

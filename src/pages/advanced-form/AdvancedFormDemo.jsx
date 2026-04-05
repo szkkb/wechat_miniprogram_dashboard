@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import DemoCard from '../../components/Common/DemoCard';
+import PageIntroPanel from '../../components/Common/PageIntroPanel';
 import './AdvancedForm.css';
 
 const AdvancedFormDemo = () => {
@@ -64,12 +65,7 @@ const AdvancedFormDemo = () => {
 
     return (
         <div className="page-container animate-fade-in">
-            <div className="glass-panel header-panel" tabIndex="0">
-                <h3 className="section-title">高阶表单与控制 (Advanced Form)</h3>
-                <p className="section-desc">
-                    覆盖需要复杂校验、多级联动或特定防窥输入键盘的高级录入组件表现。
-                </p>
-            </div>
+            <PageIntroPanel title="高阶表单与控制 (Advanced Form)" description="覆盖需要复杂校验、多级联动或特定防窥输入键盘的高级录入组件表现。" />
 
             <div className="demo-grid">
                 <DemoCard

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Smartphone, ShieldCheck, CheckCircle2, X } from 'lucide-react';
 import DemoCard from '../../components/Common/DemoCard';
+import PageIntroPanel from '../../components/Common/PageIntroPanel';
 import './EcosystemPermissions.css';
 
 const EcosystemPermissionsDemo = () => {
@@ -36,12 +37,7 @@ const EcosystemPermissionsDemo = () => {
 
     return (
         <div className="page-container animate-fade-in">
-            <div className="glass-panel header-panel" tabIndex="0">
-                <h3 className="section-title">生态互动与隐私机制 (Ecosystem & Permissions)</h3>
-                <p className="section-desc">
-                    展现特有的系统授权链路设计与实名操作拦截的模拟体验。
-                </p>
-            </div>
+            <PageIntroPanel title="生态互动与隐私机制 (Ecosystem & Permissions)" description="展现特有的系统授权链路设计与实名操作拦截的模拟体验。" />
 
             <div className="demo-grid">
                 <DemoCard

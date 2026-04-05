@@ -412,7 +412,7 @@
     }
 
     .header-panel.header-expanded {
-        max-height: 260px;
+        max-height: 260px !important;
         background: rgba(20, 20, 24, 0.96);
     }
 

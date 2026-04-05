@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ArrowRightLeft, MousePointer2 } from 'lucide-react';
 import './GesturesAndAnimation.css';
+import PageIntroPanel from '../../components/Common/PageIntroPanel';
 
 const GesturesAndAnimation = () => {
     const [swiped, setSwiped] = useState(false);
@@ -8,12 +9,7 @@ const GesturesAndAnimation = () => {
 
     return (
         <div className="page-container animate-fade-in">
-            <div className="glass-panel header-panel" tabIndex="0">
-                <h3 className="section-title">交互与动效引擎 (Gestures & Animations)</h3>
-                <p className="section-desc">
-                    基于 Web 技术还原微信小程序的高阶动画体系：包含极度平滑的共享元素转场（Share Element）以及丝滑的滑动删除手势模拟。
-                </p>
-            </div>
+            <PageIntroPanel title="交互与动效引擎 (Gestures & Animations)" description="基于 Web 技术还原微信小程序的高阶动画体系：包含极度平滑的共享元素转场（Share Element）以及丝滑的滑动删除手势模拟。" />
 
             <div className="demo-grid">
                 {/* Share Element Demo */}

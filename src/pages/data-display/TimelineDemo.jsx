@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Package, Truck, CheckCircle2, ChevronDown, Map, Phone, Copy, Check, Navigation, MapPin } from 'lucide-react';
 import DemoCard from '../../components/Common/DemoCard';
+import PageIntroPanel from '../../components/Common/PageIntroPanel';
 import './Timeline.css';
 
 const TimelineDemo = () => {
@@ -32,12 +33,7 @@ const TimelineDemo = () => {
 
     return (
         <div className="page-container animate-fade-in">
-            <div className="glass-panel header-panel" tabIndex="0">
-                <h3 className="section-title">数据呈现与反馈 (Data Display)</h3>
-                <p className="section-desc">
-                    展示列表、状态追踪、步骤指引及复杂的横滑动作单元阵列。
-                </p>
-            </div>
+            <PageIntroPanel title="数据呈现与反馈 (Data Display)" description="展示列表、状态追踪、步骤指引及复杂的横滑动作单元阵列。" />
 
             <div className="demo-grid">
                 <DemoCard

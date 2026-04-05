@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Type, Edit3, Image as ImageIcon } from 'lucide-react';
 import DemoCard from '../../components/Common/DemoCard';
+import PageIntroPanel from '../../components/Common/PageIntroPanel';
 import './RichText.css';
 
 const RichtextDemo = () => {
@@ -13,12 +14,7 @@ const RichtextDemo = () => {
 
     return (
         <div className="page-container animate-fade-in">
-            <div className="glass-panel header-panel" tabIndex="0">
-                <h3 className="section-title">基础组件 (UI Components)</h3>
-                <p className="section-desc">
-                    展示承载内容与信息的基石型组件系统，例如富文本、媒体呈现等。
-                </p>
-            </div>
+            <PageIntroPanel title="基础组件 (UI Components)" description="展示承载内容与信息的基石型组件系统，例如富文本、媒体呈现等。" />
 
             <div className="demo-grid">
                 <DemoCard

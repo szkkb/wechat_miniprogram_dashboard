@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Image as ImageIcon, Download, Share2, Loader2 } from 'lucide-react';
 import DemoCard from '../../components/Common/DemoCard';
+import PageIntroPanel from '../../components/Common/PageIntroPanel';
 import './CanvasGraphic.css';
 
 const CanvasGraphicDemo = () => {
@@ -29,12 +30,7 @@ const CanvasGraphicDemo = () => {
 
     return (
         <div className="page-container animate-fade-in">
-            <div className="glass-panel header-panel" tabIndex="0">
-                <h3 className="section-title">图形与海报生成 (Canvas & Graphic)</h3>
-                <p className="section-desc">
-                    覆盖基于 Canvas 实现的前端图片合成、裁剪截取等展示能力。
-                </p>
-            </div>
+            <PageIntroPanel title="图形与海报生成 (Canvas & Graphic)" description="覆盖基于 Canvas 实现的前端图片合成、裁剪截取等展示能力。" />
 
             <div className="demo-grid">
                 <DemoCard

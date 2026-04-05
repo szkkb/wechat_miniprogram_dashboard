@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './FormElements.css';
+import PageIntroPanel from '../../components/Common/PageIntroPanel';
 
 const FormElements = () => {
     const [switchState, setSwitchState] = useState(true);
@@ -7,12 +8,7 @@ const FormElements = () => {
 
     return (
         <div className="page-container animate-fade-in">
-            <div className="glass-panel header-panel" tabIndex="0">
-                <h3 className="section-title">表单组件与控件 (Form Elements)</h3>
-                <p className="section-desc">
-                    带有丰富微交互（涟漪、发光焦点、平滑缓动）的原生小程序表单控件在 Web 端的沉浸式模拟。
-                </p>
-            </div>
+            <PageIntroPanel title="表单组件与控件 (Form Elements)" description="带有丰富微交互（涟漪、发光焦点、平滑缓动）的原生小程序表单控件在 Web 端的沉浸式模拟。" />
 
             <div className="demo-grid">
                 {/* Switch Demo */}

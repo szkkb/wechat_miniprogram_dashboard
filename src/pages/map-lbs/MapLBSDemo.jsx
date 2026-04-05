@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { MapPin, Navigation, X, Store } from 'lucide-react';
 import DemoCard from '../../components/Common/DemoCard';
+import PageIntroPanel from '../../components/Common/PageIntroPanel';
 import './MapLBS.css';
 
 const MapLBSDemo = () => {
@@ -25,12 +26,7 @@ const MapLBSDemo = () => {
 
     return (
         <div className="page-container animate-fade-in">
-            <div className="glass-panel header-panel" tabIndex="0">
-                <h3 className="section-title">地图与位置 (Map & LBS)</h3>
-                <p className="section-desc">
-                    覆盖基于地图容器展开的标记、轨迹及联动选择能力。
-                </p>
-            </div>
+            <PageIntroPanel title="地图与位置 (Map & LBS)" description="覆盖基于地图容器展开的标记、轨迹及联动选择能力。" />
 
             <div className="demo-grid">
                 <DemoCard

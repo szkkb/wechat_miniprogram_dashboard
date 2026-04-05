@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { MessageCircle, Phone, X, Move } from 'lucide-react';
 import DemoCard from '../../components/Common/DemoCard';
+import PageIntroPanel from '../../components/Common/PageIntroPanel';
 import './FloatingCS.css';
 
 // ─── 方案一: Fixed Floating Button + Breathing Animation ──────────────────────
@@ -168,12 +169,7 @@ const DraggableCSDemo = () => {
 const FloatingCSDemo = () => {
     return (
         <div className="page-container animate-fade-in">
-            <div className="glass-panel header-panel" tabIndex="0">
-                <h3 className="section-title">生态与全系统 (Ecosystem)</h3>
-                <p className="section-desc">
-                    展示微信原生客服能力的两种悬浮唤起方案：固定呼吸球与可全屏拖动吸边球。
-                </p>
-            </div>
+            <PageIntroPanel title="生态与全系统 (Ecosystem)" description="展示微信原生客服能力的两种悬浮唤起方案：固定呼吸球与可全屏拖动吸边球。" />
 
             <div className="demo-grid two-col">
                 <FixedCSDemo />

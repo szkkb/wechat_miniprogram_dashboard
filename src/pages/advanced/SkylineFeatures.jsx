@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { ArrowUpToLine, GripHorizontal, Columns } from 'lucide-react';
 import './SkylineFeatures.css';
+import PageIntroPanel from '../../components/Common/PageIntroPanel';
 
 const SkylineFeatures = () => {
     const [sheetOpen, setSheetOpen] = useState(false);
@@ -13,12 +14,7 @@ const SkylineFeatures = () => {
 
     return (
         <div className="page-container animate-fade-in" style={{ position: 'relative', height: '100%', overflow: 'hidden' }}>
-            <div className="glass-panel header-panel" tabIndex="0">
-                <h3 className="section-title">Skyline 高阶渲染特性</h3>
-                <p className="section-desc">
-                    模拟微信新一代 Skyline 渲染引擎的高级视图容器：无缝吸顶的 sticky-header、多阶拖拽的 draggable-sheet 以及高性能流式瀑布流。
-                </p>
-            </div>
+            <PageIntroPanel title="Skyline 高阶渲染特性" description="模拟微信新一代 Skyline 渲染引擎的高级视图容器：无缝吸顶的 sticky-header、多阶拖拽的 draggable-sheet 以及高性能流式瀑布流。" />
 
             <div className="demo-grid">
                 {/* Sticky Header Demo */}
