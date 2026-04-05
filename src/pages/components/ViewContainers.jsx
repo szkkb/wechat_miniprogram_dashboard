@@ -7,8 +7,6 @@ const ViewContainers = () => {
     const [activeTab, setActiveTab] = useState('scroll-view');
     return (
         <div className="page-container animate-fade-in">
-            <PageIntroPanel title="视图容器 View Containers" description="微信小程序三大核心容器的 Web 端高保真还原：弹性滚动、轮播焦点图、自由拖拽。" />
-
             <div className="demo-grid">
                 {/* Scroll View Demo */}
                 <div className="glass-panel demo-card">
@@ -76,6 +74,8 @@ const ViewContainers = () => {
                     <p className="demo-hint">可以在指定区域内自由拖动，释放后带有惯性阻泥动画。</p>
                 </div>
             </div>
+
+            <PageIntroPanel title="视图容器 View Containers" description="微信小程序三大核心容器的 Web 端高保真还原：弹性滚动、轮播焦点图、自由拖拽。" />
         </div>
     );
 };

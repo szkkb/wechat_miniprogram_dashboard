@@ -14,8 +14,6 @@ const SkylineFeatures = () => {
 
     return (
         <div className="page-container animate-fade-in" style={{ position: 'relative', height: '100%', overflow: 'hidden' }}>
-            <PageIntroPanel title="Skyline 高阶渲染特性" description="模拟微信新一代 Skyline 渲染引擎的高级视图容器：无缝吸顶的 sticky-header、多阶拖拽的 draggable-sheet 以及高性能流式瀑布流。" />
-
             <div className="demo-grid">
                 {/* Sticky Header Demo */}
                 <div className="glass-panel demo-card">
@@ -109,6 +107,7 @@ const SkylineFeatures = () => {
                 </div>
             </div>
 
+            <PageIntroPanel title="Skyline 高阶渲染特性" description="模拟微信新一代 Skyline 渲染引擎的高级视图容器：无缝吸顶的 sticky-header、多阶拖拽的 draggable-sheet 以及高性能流式瀑布流。" />
         </div>
     );
 };

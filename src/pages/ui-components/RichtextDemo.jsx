@@ -16,8 +16,6 @@ const RichtextDemo = () => {
 
     return (
         <div className="page-container animate-fade-in">
-            <PageIntroPanel title="基础组件 (UI Components)" description="展示承载内容与信息的基石型组件系统，例如富文本、媒体呈现等。" />
-
             {previewOpen && (
                 <div className="rt-preview-overlay" onClick={() => setPreviewOpen(false)}>
                     <div className="rt-preview-content">
@@ -71,6 +69,8 @@ const RichtextDemo = () => {
                     </div>
                 </DemoCard>
             </div>
+
+            <PageIntroPanel title="基础组件 (UI Components)" description="展示承载内容与信息的基石型组件系统，例如富文本、媒体呈现等。" />
         </div>
     );
 };

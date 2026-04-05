@@ -40,8 +40,6 @@ const InteractiveAPIs = () => {
 
     return (
         <div className="page-container animate-fade-in">
-            <PageIntroPanel title="硬件交互与开放 API" description="模拟微信小程序能够调用的手机底层硬件能力，如相机预览、震动反馈、GPS定位及系统剪贴板读取。" />
-
             <div className="demo-grid">
                 {/* Camera & Scan Demo */}
                 <div className="glass-panel demo-card" style={{ gridColumn: '1 / -1' }}>
@@ -128,6 +126,8 @@ const InteractiveAPIs = () => {
                     </div>
                 </div>
             </div>
+
+            <PageIntroPanel title="硬件交互与开放 API" description="模拟微信小程序能够调用的手机底层硬件能力，如相机预览、震动反馈、GPS定位及系统剪贴板读取。" />
         </div>
     );
 };

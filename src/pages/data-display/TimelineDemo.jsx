@@ -33,8 +33,6 @@ const TimelineDemo = () => {
 
     return (
         <div className="page-container animate-fade-in">
-            <PageIntroPanel title="数据呈现与反馈 (Data Display)" description="展示列表、状态追踪、步骤指引及复杂的横滑动作单元阵列。" />
-
             <div className="demo-grid">
                 <DemoCard
                     title="高保真物流追踪轨"
@@ -133,6 +131,8 @@ const TimelineDemo = () => {
                     </div>
                 </DemoCard>
             </div>
+
+            <PageIntroPanel title="数据呈现与反馈 (Data Display)" description="展示列表、状态追踪、步骤指引及复杂的横滑动作单元阵列。" />
         </div>
     );
 };

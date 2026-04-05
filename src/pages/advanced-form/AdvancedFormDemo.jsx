@@ -65,8 +65,6 @@ const AdvancedFormDemo = () => {
 
     return (
         <div className="page-container animate-fade-in">
-            <PageIntroPanel title="高阶表单与控制 (Advanced Form)" description="覆盖需要复杂校验、多级联动或特定防窥输入键盘的高级录入组件表现。" />
-
             <div className="demo-grid">
                 <DemoCard
                     title="四位验证码输入矩阵"
@@ -112,6 +110,8 @@ const AdvancedFormDemo = () => {
                     </div>
                 </DemoCard>
             </div>
+
+            <PageIntroPanel title="高阶表单与控制 (Advanced Form)" description="覆盖需要复杂校验、多级联动或特定防窥输入键盘的高级录入组件表现。" />
         </div>
     );
 };

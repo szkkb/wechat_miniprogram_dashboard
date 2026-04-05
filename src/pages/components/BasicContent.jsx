@@ -18,8 +18,6 @@ const BasicContent = () => {
 
     return (
         <div className="page-container animate-fade-in">
-            <PageIntroPanel title="基础内容与反馈 (Basic Content)" description="展示小程序的基础排版元素、自定义状态图标、发光进度条和原生反馈机制的模拟。" />
-
             <div className="demo-grid">
                 {/* Progress Demo */}
                 <div className="glass-panel demo-card">
@@ -99,6 +97,8 @@ const BasicContent = () => {
                     <p className="demo-hint">点击按钮查看模拟小程序的原生弹出式反馈（Toast/Modal）。</p>
                 </div>
             </div>
+
+            <PageIntroPanel title="基础内容与反馈 (Basic Content)" description="展示小程序的基础排版元素、自定义状态图标、发光进度条和原生反馈机制的模拟。" />
         </div>
     );
 };

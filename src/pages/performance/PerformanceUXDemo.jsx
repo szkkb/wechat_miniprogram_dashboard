@@ -66,8 +66,6 @@ const PerformanceUXDemo = () => {
 
     return (
         <div className="page-container animate-fade-in">
-            <PageIntroPanel title="性能与体验模式 (Performance & UX)" description="体验丝滑橡皮筋刷新、无限加载，以及大规模渲染下的抗抖动。" />
-
             <div className="demo-grid">
                 <DemoCard
                     title="阻尼拉拽与下拉刷新"
@@ -139,6 +137,8 @@ const PerformanceUXDemo = () => {
                     </div>
                 </DemoCard>
             </div>
+
+            <PageIntroPanel title="性能与体验模式 (Performance & UX)" description="体验丝滑橡皮筋刷新、无限加载，以及大规模渲染下的抗抖动。" />
         </div>
     );
 };

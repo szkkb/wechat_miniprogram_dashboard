@@ -8,8 +8,6 @@ const FormElements = () => {
 
     return (
         <div className="page-container animate-fade-in">
-            <PageIntroPanel title="表单组件与控件 (Form Elements)" description="带有丰富微交互（涟漪、发光焦点、平滑缓动）的原生小程序表单控件在 Web 端的沉浸式模拟。" />
-
             <div className="demo-grid">
                 {/* Switch Demo */}
                 <div className="glass-panel demo-card">
@@ -79,6 +77,8 @@ const FormElements = () => {
                     <p className="demo-hint">支持自定义轨道、滑块样式，及悬浮气泡值的丝滑滑动条。</p>
                 </div>
             </div>
+
+            <PageIntroPanel title="表单组件与控件 (Form Elements)" description="带有丰富微交互（涟漪、发光焦点、平滑缓动）的原生小程序表单控件在 Web 端的沉浸式模拟。" />
         </div>
     );
 };

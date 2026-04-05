@@ -21,8 +21,6 @@ const NavigationLayoutDemo = () => {
 
     return (
         <div className="page-container animate-fade-in">
-            <PageIntroPanel title="导航与布局 (Navigation & Layout)" description="展示页面间路由流转顶栏与底栏的深度定制，包含沉浸式的安全区域过渡演算。" />
-
             <div className="demo-grid">
                 <DemoCard
                     title="沉浸式自定义顶栏"
@@ -113,6 +111,8 @@ const NavigationLayoutDemo = () => {
 
                 <PromoCard theme="dark" />
             </div>
+
+            <PageIntroPanel title="导航与布局 (Navigation & Layout)" description="展示页面间路由流转顶栏与底栏的深度定制，包含沉浸式的安全区域过渡演算。" />
         </div>
     );
 };

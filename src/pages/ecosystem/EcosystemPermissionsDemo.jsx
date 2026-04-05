@@ -37,8 +37,6 @@ const EcosystemPermissionsDemo = () => {
 
     return (
         <div className="page-container animate-fade-in">
-            <PageIntroPanel title="生态互动与隐私机制 (Ecosystem & Permissions)" description="展现特有的系统授权链路设计与实名操作拦截的模拟体验。" />
-
             <div className="demo-grid">
                 <DemoCard
                     title="新版安全快捷登录"
@@ -110,6 +108,8 @@ const EcosystemPermissionsDemo = () => {
                     </div>
                 </DemoCard>
             </div>
+
+            <PageIntroPanel title="生态互动与隐私机制 (Ecosystem & Permissions)" description="展现特有的系统授权链路设计与实名操作拦截的模拟体验。" />
         </div>
     );
 };

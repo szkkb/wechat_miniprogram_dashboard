@@ -44,8 +44,6 @@ const CountryPickerDemo = () => {
 
     return (
         <div className="page-container animate-fade-in cp-page-wrapper">
-            <PageIntroPanel title="导航与布局 (Navigation)" description="通过 draggable-sheet 实现物流目的国选择器，内含搜索过滤与时效展示，比 picker 原生选择器体验更丰富。" />
-
             <div className="demo-grid">
                 <DemoCard
                     title="国家目的地选择器"
@@ -204,6 +202,8 @@ const CountryPickerDemo = () => {
                     </div>
                 </DemoCard>
             </div>
+
+            <PageIntroPanel title="导航与布局 (Navigation)" description="通过 draggable-sheet 实现物流目的国选择器，内含搜索过滤与时效展示，比 picker 原生选择器体验更丰富。" />
         </div>
     );
 };

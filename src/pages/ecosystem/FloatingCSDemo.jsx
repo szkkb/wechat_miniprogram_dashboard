@@ -169,12 +169,12 @@ const DraggableCSDemo = () => {
 const FloatingCSDemo = () => {
     return (
         <div className="page-container animate-fade-in">
-            <PageIntroPanel title="生态与全系统 (Ecosystem)" description="展示微信原生客服能力的两种悬浮唤起方案：固定呼吸球与可全屏拖动吸边球。" />
-
             <div className="demo-grid two-col">
                 <FixedCSDemo />
                 <DraggableCSDemo />
             </div>
+
+            <PageIntroPanel title="生态与全系统 (Ecosystem)" description="展示微信原生客服能力的两种悬浮唤起方案：固定呼吸球与可全屏拖动吸边球。" />
         </div>
     );
 };

@@ -30,8 +30,6 @@ const CanvasGraphicDemo = () => {
 
     return (
         <div className="page-container animate-fade-in">
-            <PageIntroPanel title="图形与海报生成 (Canvas & Graphic)" description="覆盖基于 Canvas 实现的前端图片合成、裁剪截取等展示能力。" />
-
             <div className="demo-grid">
                 <DemoCard
                     title="一键分享海报生成"
@@ -105,6 +103,8 @@ const CanvasGraphicDemo = () => {
                     </div>
                 </DemoCard>
             </div>
+
+            <PageIntroPanel title="图形与海报生成 (Canvas & Graphic)" description="覆盖基于 Canvas 实现的前端图片合成、裁剪截取等展示能力。" />
         </div>
     );
 };

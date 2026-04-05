@@ -9,8 +9,6 @@ const GesturesAndAnimation = () => {
 
     return (
         <div className="page-container animate-fade-in">
-            <PageIntroPanel title="交互与动效引擎 (Gestures & Animations)" description="基于 Web 技术还原微信小程序的高阶动画体系：包含极度平滑的共享元素转场（Share Element）以及丝滑的滑动删除手势模拟。" />
-
             <div className="demo-grid">
                 {/* Share Element Demo */}
                 <div className="glass-panel demo-card" style={{ gridColumn: '1 / -1' }}>
@@ -79,6 +77,8 @@ const GesturesAndAnimation = () => {
                     <p className="demo-hint">模拟带有橡皮筋弹性和基于物理速度计算的手势交互（常用于滑动删除）。</p>
                 </div>
             </div>
+
+            <PageIntroPanel title="交互与动效引擎 (Gestures & Animations)" description="基于 Web 技术还原微信小程序的高阶动画体系：包含极度平滑的共享元素转场（Share Element）以及丝滑的滑动删除手势模拟。" />
         </div>
     );
 };

@@ -26,8 +26,6 @@ const MapLBSDemo = () => {
 
     return (
         <div className="page-container animate-fade-in">
-            <PageIntroPanel title="地图与位置 (Map & LBS)" description="覆盖基于地图容器展开的标记、轨迹及联动选择能力。" />
-
             <div className="demo-grid">
                 <DemoCard
                     title="交互式定制地标群"
@@ -93,6 +91,8 @@ const MapLBSDemo = () => {
                     </div>
                 </DemoCard>
             </div>
+
+            <PageIntroPanel title="地图与位置 (Map & LBS)" description="覆盖基于地图容器展开的标记、轨迹及联动选择能力。" />
         </div>
     );
 };
