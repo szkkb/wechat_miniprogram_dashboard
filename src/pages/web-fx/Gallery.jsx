@@ -272,6 +272,12 @@ const FluidTypography = () => {
             tags={['typography:fluid', 'CSS:clamp()', '响应式', '零断点']}
         >
             <div style={{ padding: '1.5rem', background: '#0a0a12', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                <div style={{ fontSize: clampVal, fontFamily: "'Outfit', sans-serif", fontWeight: 800, color: '#f8fafc', transition: 'font-size 0.2s', lineHeight: 1.2 }}>
+                    流体字号预览
+                </div>
+                <div style={{ padding: '0.75rem', borderRadius: 8, background: 'rgba(168,85,247,0.08)', border: '1px solid rgba(168,85,247,0.2)', fontFamily: "'JetBrains Mono', monospace", fontSize: '0.7rem', color: '#c084fc', wordBreak: 'break-all', lineHeight: 1.6 }}>
+                    font-size: {clampVal};
+                </div>
                 <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
                     <label style={{ flex: 1, minWidth: 120 }}>
                         <span style={{ fontSize: '0.7rem', color: '#64748b', display: 'block', marginBottom: 4 }}>最小字号 (px)</span>
@@ -283,12 +289,6 @@ const FluidTypography = () => {
                         <input type="range" min="24" max="96" value={maxSize} onChange={e => setMaxSize(+e.target.value)} style={{ width: '100%' }} />
                         <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.8rem', color: '#a855f7' }}>{maxSize}px</span>
                     </label>
-                </div>
-                <div style={{ padding: '0.75rem', borderRadius: 8, background: 'rgba(168,85,247,0.08)', border: '1px solid rgba(168,85,247,0.2)', fontFamily: "'JetBrains Mono', monospace", fontSize: '0.7rem', color: '#c084fc', wordBreak: 'break-all', lineHeight: 1.6 }}>
-                    font-size: {clampVal};
-                </div>
-                <div style={{ fontSize: clampVal, fontFamily: "'Outfit', sans-serif", fontWeight: 800, color: '#f8fafc', transition: 'font-size 0.2s', lineHeight: 1.2 }}>
-                    流体字号预览
                 </div>
                 <div style={{ fontSize: '0.7rem', color: '#475569', lineHeight: 1.6 }}>
                     💡 原理：clamp(最小值, 首选值, 最大值)。首选值用 rem + vw 线性插值，在 {minVw}px→{maxVw}px 视口间连续缩放。
@@ -308,16 +308,16 @@ const VariableFontsDemo = () => {
             tags={['typography:variable', 'font-variation-settings', 'opsz 光学尺寸', '性能:单文件']}
         >
             <div style={{ padding: '1.5rem', background: '#0a0a12', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                <label>
-                    <span style={{ fontSize: '0.7rem', color: '#64748b', display: 'block', marginBottom: 4 }}>font-weight: <span style={{ fontFamily: "'JetBrains Mono', monospace", color: '#22c55e' }}>{weight}</span></span>
-                    <input type="range" min="100" max="900" step="1" value={weight} onChange={e => setWeight(+e.target.value)} style={{ width: '100%' }} />
-                </label>
                 <div style={{ fontFamily: "'Outfit', sans-serif", fontWeight: weight, fontSize: '2rem', color: '#f8fafc', transition: 'font-weight 0.05s', lineHeight: 1.3 }}>
                     Outfit Variable 连续变化
                 </div>
                 <div style={{ fontFamily: "'Outfit', sans-serif", fontWeight: weight, fontSize: '1.2rem', color: '#94a3b8', lineHeight: 1.6 }}>
                     传统方式需要 Light.woff2 + Regular.woff2 + Bold.woff2 三个文件。可变字体只需一个文件，包含 100-900 的连续 weight 变化。
                 </div>
+                <label>
+                    <span style={{ fontSize: '0.7rem', color: '#64748b', display: 'block', marginBottom: 4 }}>font-weight: <span style={{ fontFamily: "'JetBrains Mono', monospace", color: '#22c55e' }}>{weight}</span></span>
+                    <input type="range" min="100" max="900" step="1" value={weight} onChange={e => setWeight(+e.target.value)} style={{ width: '100%' }} />
+                </label>
                 <div style={{ padding: '0.6rem 0.8rem', borderRadius: 8, background: 'rgba(34,197,94,0.08)', border: '1px solid rgba(34,197,94,0.15)', fontSize: '0.7rem', color: '#64748b', lineHeight: 1.7 }}>
                     <strong style={{ color: '#22c55e' }}>隐藏超能力 — Optical Size (opsz)：</strong>小字号自动加粗笔画保证可读性，大标题自动变纤细显示精致细节。浏览器已原生支持 <code style={{ color: '#a78bfa' }}>font-optical-sizing: auto</code>
                 </div>
