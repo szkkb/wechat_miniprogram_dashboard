@@ -128,6 +128,7 @@ const AnalyticsSection = () => {
                     <p>你还没有产生任何行为数据。</p>
                     <p>去浏览一些<Link to="/mini-program" className="glo-inline-link">小程序组件</Link>或<Link to="/web-fx" className="glo-inline-link">视觉风格</Link>，然后回来看你的行为轨迹。</p>
                     <p className="glo-analytics-hint">每一次浏览、复制、点击都会被记录在你的浏览器本地。没有服务器，数据只属于你。</p>
+                    <p className="glo-analytics-hint">⚠️ 微信内置浏览器会在每次关闭后清除缓存，无法积累跨次访问数据。用 Safari 或 Chrome 打开可保留完整历史。</p>
                 </div>
             </motion.div>
         );
@@ -214,6 +215,9 @@ const AnalyticsSection = () => {
 
             <div className="glo-analytics-footer">
                 💡 这就是 Growth Loop 的数据思维：观察行为 → 发现模式 → 优化体验 → 驱动增长
+            </div>
+            <div className="glo-analytics-footer" style={{ marginTop: 4, fontSize: '0.65rem', color: '#475569' }}>
+                ⚠️ 数据存储在浏览器本地 (localStorage)。微信内置浏览器会在关闭后清除缓存，无法积累历史数据。建议用 Safari / Chrome 直接打开 kkbsz.com 以保留完整行为轨迹。
             </div>
         </motion.div>
     );
