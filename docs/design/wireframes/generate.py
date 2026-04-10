@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Generate wireframe via OpenRouter Gemini 3 Pro Image Preview"""
 
-import json, urllib.request, base64, re, sys
+import json, urllib.request, base64, re, sys, os
 
-API_KEY = "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"
+API_KEY = os.environ.get("OPENROUTER_API_KEY", "")
 PROMPT_FILE = sys.argv[1] if len(sys.argv) > 1 else "analytics-dashboard-v1-prompt.md"
 OUTPUT_FILE = PROMPT_FILE.replace("-prompt.md", ".png")
 
