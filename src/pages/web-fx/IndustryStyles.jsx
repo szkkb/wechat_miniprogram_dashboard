@@ -342,6 +342,110 @@ const LastMileDelivery = () => (
     </ShowcaseCard>
 );
 
+// 9.5 PDA Tactical Terminal — Neo-Brutalist 9-grid for warehouse handheld
+const PDATacticalTerminal = () => {
+    const Icon = ({ name }) => {
+        const common = { width: 26, height: 26, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: 1.75, strokeLinecap: 'round', strokeLinejoin: 'round' };
+        const icons = {
+            inbound: <svg {...common}><path d="M12 3v13"/><path d="m6 11 6 6 6-6"/><path d="M5 21h14"/></svg>,
+            reprint: <svg {...common}><path d="M6 9V2h12v7"/><rect x="6" y="14" width="12" height="8"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/></svg>,
+            query: <svg {...common}><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>,
+            pick: <svg {...common}><rect x="6" y="3" width="12" height="18" rx="1"/><path d="M9 7h6"/><path d="M9 11h6"/><path d="M9 15h4"/></svg>,
+            pack: <svg {...common}><path d="m7.5 4.27 9 5.15"/><path d="M21 8 12 3 3 8l9 5 9-5Z"/><path d="M3 8v8l9 5 9-5V8"/><path d="M12 13v8"/></svg>,
+            price: <svg {...common}><path d="M20 7h-3a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/><path d="M20 12h-5"/><path d="M4 12V6a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12"/><path d="M8 14v3"/><path d="M12 14v3"/></svg>,
+            ship: <svg {...common}><path d="M12 21V7"/><path d="m6 13 6-6 6 6"/><path d="M5 3h14"/></svg>,
+            alert: <svg {...common}><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>,
+            user: <svg {...common}><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>,
+        };
+        return icons[name];
+    };
+
+    const items = [
+        { n: 1, icon: 'inbound',  label: '入库',  zh: 'INBOUND',  count: 290, unit: '待',   tone: 'alert' },
+        { n: 2, icon: 'reprint',  label: '补打',  zh: 'REPRINT' },
+        { n: 3, icon: 'query',    label: '查询',  zh: 'QUERY' },
+        { n: 4, icon: 'pick',     label: '拣货',  zh: 'PICK',     count: 47,  unit: '单',   tone: 'active' },
+        { n: 5, icon: 'pack',     label: '打包',  zh: 'PACK' },
+        { n: 6, icon: 'price',    label: '核价',  zh: 'PRICE' },
+        { n: 7, icon: 'ship',     label: '发货',  zh: 'SHIP' },
+        { n: 8, icon: 'alert',    label: '异常',  zh: 'ALERT',    count: 3,   unit: '条',   tone: 'warn' },
+        { n: 9, icon: 'user',     label: '我的',  zh: 'PROFILE' },
+    ];
+
+    return (
+        <ShowcaseCard
+            title="PDA Tactical Terminal 手持终端作战界面"
+            description="Neo-Brutalism + 机甲工具风 — 为 4寸低分辨率 LCD 设计的极致高对比 9 宫格，冷静框架 × 跳跃数据"
+            tags={['industry:Logistics', '场景:仓储 PDA', 'Neo-Brutalism', '键帽快捷键', '数据荧光色', '黑白线稿']}
+        >
+            <div className="is-pda-scene">
+                <div className="is-pda-device">
+                    {/* Bezel top: signal grill + LED */}
+                    <div className="is-pda-bezel top">
+                        <div className="is-pda-grill" aria-hidden>
+                            <span /><span /><span /><span /><span /><span /><span /><span /><span /><span /><span /><span />
+                        </div>
+                        <div className="is-pda-led" />
+                    </div>
+
+                    {/* LCD Screen */}
+                    <div className="is-pda-screen">
+                        {/* Corner registration marks */}
+                        <span className="is-pda-reg tl" />
+                        <span className="is-pda-reg tr" />
+                        <span className="is-pda-reg bl" />
+                        <span className="is-pda-reg br" />
+
+                        {/* Tactical status bar */}
+                        <div className="is-pda-status">
+                            <div className="is-pda-brand">
+                                <b>HH-WMS</b>
+                                <em>GZ-03</em>
+                            </div>
+                            <div className="is-pda-hud">
+                                <span className="is-pda-hud-chip">● ONLINE</span>
+                            </div>
+                        </div>
+
+                        {/* 3 × 3 Grid */}
+                        <div className="is-pda-grid">
+                            {items.map(it => (
+                                <button key={it.n} className={`is-pda-cell ${it.tone || ''}`}>
+                                    <span className="is-pda-keycap" aria-hidden>{it.n}</span>
+                                    <span className="is-pda-icon">{Icon({ name: it.icon })}</span>
+                                    <span className="is-pda-zh">{it.label}</span>
+                                    {it.count != null ? (
+                                        <span className="is-pda-count">
+                                            <b>{it.count}</b>
+                                            <i>{it.unit}</i>
+                                        </span>
+                                    ) : (
+                                        <span className="is-pda-en">{it.zh}</span>
+                                    )}
+                                </button>
+                            ))}
+                        </div>
+
+                        {/* Footer: tactical readout */}
+                        <div className="is-pda-foot">
+                            <span className="is-pda-foot-l">PRESS <kbd>1</kbd>–<kbd>9</kbd> · SCAN READY</span>
+                            <span className="is-pda-foot-r"><i className="is-pda-pulse" />188 9876 5421</span>
+                        </div>
+                    </div>
+
+                    {/* Bezel bottom: physical SCAN button */}
+                    <div className="is-pda-bezel bot">
+                        <div className="is-pda-scan-btn">
+                            <span />
+                            SCAN
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ShowcaseCard>
+    );
+};
+
 // 10. Global Network — Interactive 3D Globe
 const GlobalNetwork = () => {
     const canvasRef = useRef(null);
@@ -1192,6 +1296,7 @@ const industryDemos = [
     { industry: 'logistics', el: <FleetManagement key="fleet" /> },
     { industry: 'logistics', el: <CustomsDeclaration key="customs" /> },
     { industry: 'logistics', el: <LastMileDelivery key="lastmile" /> },
+    { industry: 'logistics', el: <PDATacticalTerminal key="pda" /> },
     // ── 基础面板
     { industry: 'logistics', el: <HighDensityDashboard key="density" /> },
     { industry: 'logistics', el: <IndustrialConsole key="console" /> },

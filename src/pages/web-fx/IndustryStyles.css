@@ -665,6 +665,327 @@
 }
 .is-lastmile-notify-icon { font-size: 0.8rem; }
 
+/* ── 9.5 PDA Tactical Terminal ── Neo-Brutalism + 机甲工具风 ── */
+.is-pda-scene {
+    padding: 1.5rem 1rem;
+    background:
+        linear-gradient(90deg, rgba(10,10,10,0.04) 1px, transparent 1px) 0 0 / 24px 24px,
+        linear-gradient(rgba(10,10,10,0.04) 1px, transparent 1px) 0 0 / 24px 24px,
+        #e8e8e0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 480px;
+    font-family: 'JetBrains Mono', ui-monospace, 'Noto Sans SC', monospace;
+}
+
+.is-pda-device {
+    width: 100%;
+    max-width: 320px;
+    background: #111;
+    padding: 10px;
+    border: 2px solid #0a0a0a;
+    box-shadow: 6px 6px 0 #0a0a0a;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.is-pda-bezel {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 4px;
+    color: #444;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+}
+.is-pda-bezel.top { height: 14px; }
+.is-pda-bezel.bot { height: 30px; justify-content: center; }
+
+.is-pda-grill {
+    display: flex;
+    gap: 3px;
+    flex: 0 0 auto;
+}
+.is-pda-grill span {
+    width: 3px;
+    height: 3px;
+    background: #2a2a2a;
+    border-radius: 1px;
+}
+.is-pda-led {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #00ff88;
+    box-shadow: 0 0 4px #00ff88;
+    animation: is-pda-blink 2.4s ease-in-out infinite;
+}
+@keyframes is-pda-blink {
+    0%, 45%, 55%, 100% { opacity: 1; }
+    50% { opacity: 0.25; }
+}
+
+.is-pda-screen {
+    position: relative;
+    background: #f2f1e8;
+    border: 2px solid #0a0a0a;
+    padding: 10px 10px 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Corner registration marks — tactical HUD detail */
+.is-pda-reg {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border: 1.5px solid #0a0a0a;
+}
+.is-pda-reg.tl { top: 4px; left: 4px; border-right: none; border-bottom: none; }
+.is-pda-reg.tr { top: 4px; right: 4px; border-left: none; border-bottom: none; }
+.is-pda-reg.bl { bottom: 4px; left: 4px; border-right: none; border-top: none; }
+.is-pda-reg.br { bottom: 4px; right: 4px; border-left: none; border-top: none; }
+
+/* Status bar */
+.is-pda-status {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 9px;
+    border: 2px solid #0a0a0a;
+    background: #0a0a0a;
+    color: #f2f1e8;
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+}
+.is-pda-brand {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    flex-shrink: 0;
+}
+.is-pda-brand b {
+    font-weight: 800;
+    letter-spacing: 0.1em;
+}
+.is-pda-brand em {
+    font-style: normal;
+    color: #888;
+    font-size: 9px;
+    letter-spacing: 0.08em;
+}
+.is-pda-hud {
+    display: flex;
+    gap: 6px;
+}
+.is-pda-hud-chip {
+    font-size: 9px;
+    color: #00ff88;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+}
+.is-pda-hud-chip.muted { color: #999; font-weight: 400; }
+
+/* 3x3 grid */
+.is-pda-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5px;
+}
+
+.is-pda-cell {
+    position: relative;
+    background: #ffffff;
+    border: 2px solid #0a0a0a;
+    padding: 14px 6px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: transform 80ms ease, box-shadow 80ms ease;
+    min-height: 86px;
+}
+.is-pda-cell:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 3px 3px 0 #0a0a0a;
+    z-index: 2;
+}
+.is-pda-cell:active {
+    transform: translate(1px, 1px);
+    box-shadow: 0 0 0 #0a0a0a;
+}
+
+/* Keycap — top-left corner, slightly overlapping */
+.is-pda-keycap {
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    width: 16px;
+    height: 16px;
+    background: #ffffff;
+    border: 1.5px solid #0a0a0a;
+    border-radius: 2px;
+    font-size: 9px;
+    font-weight: 800;
+    color: #0a0a0a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow:
+        inset 0 -2px 0 rgba(0,0,0,0.18),
+        inset 0 1px 0 #fff,
+        1.5px 1.5px 0 #0a0a0a;
+    font-family: 'JetBrains Mono', monospace;
+    line-height: 1;
+    z-index: 1;
+}
+
+.is-pda-icon {
+    color: #0a0a0a;
+    margin-top: 2px;
+    display: flex;
+}
+
+.is-pda-zh {
+    font-family: 'Noto Sans SC', system-ui, sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: #0a0a0a;
+    letter-spacing: 0.04em;
+    margin-top: 1px;
+}
+.is-pda-en {
+    font-size: 7.5px;
+    font-weight: 600;
+    color: #888;
+    letter-spacing: 0.14em;
+}
+
+/* Data numbers — "dopamine" accent, the only bright color */
+.is-pda-count {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 2px;
+    line-height: 1;
+    margin-top: 1px;
+}
+.is-pda-count b {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 15px;
+    font-weight: 800;
+    color: #00b874;
+    letter-spacing: -0.02em;
+}
+.is-pda-count i {
+    font-style: normal;
+    font-size: 9px;
+    color: #555;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+}
+
+/* Tonal variants for data */
+.is-pda-cell.alert  .is-pda-count b { color: #ff4d00; }  /* safety orange — 入库积压 */
+.is-pda-cell.active .is-pda-count b { color: #0066ff; }  /* electric blue — 进行中 */
+.is-pda-cell.warn   .is-pda-count b { color: #e60026; }  /* hot red — 异常告警 */
+
+/* Alert cell gets a subtle accent bar */
+.is-pda-cell.alert::before,
+.is-pda-cell.warn::before,
+.is-pda-cell.active::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 22px;
+    height: 3px;
+}
+.is-pda-cell.alert::before  { background: #ff4d00; }
+.is-pda-cell.warn::before   { background: #e60026; }
+.is-pda-cell.active::before { background: #0066ff; }
+
+/* Footer */
+.is-pda-foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 4px 6px;
+    border-top: 2px solid #0a0a0a;
+    font-size: 9px;
+    color: #0a0a0a;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+}
+.is-pda-foot kbd {
+    display: inline-block;
+    background: #ffffff;
+    border: 1.5px solid #0a0a0a;
+    border-radius: 2px;
+    padding: 0 3px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    line-height: 1.3;
+    box-shadow: inset 0 -1px 0 rgba(0,0,0,0.2), 1px 1px 0 #0a0a0a;
+    margin: 0 1px;
+}
+.is-pda-foot-r {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+.is-pda-pulse {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #ff4d00;
+    animation: is-pda-pulse 1.2s ease-in-out infinite;
+}
+@keyframes is-pda-pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.3; transform: scale(0.7); }
+}
+
+/* Physical SCAN button on bottom bezel */
+.is-pda-scan-btn {
+    width: 78px;
+    height: 22px;
+    background: #222;
+    border: 1.5px solid #000;
+    border-top-color: #3a3a3a;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 0.22em;
+    color: #888;
+    box-shadow: inset 0 -2px 0 rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.06);
+}
+.is-pda-scan-btn span {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #00ff88;
+    box-shadow: 0 0 3px #00ff88;
+}
+
+/* Small screens — keep the device intact */
+@media (max-width: 420px) {
+    .is-pda-scene { padding: 1rem 0.5rem; min-height: auto; }
+    .is-pda-device { max-width: 100%; }
+    .is-pda-cell { min-height: 78px; padding: 12px 4px 8px; }
+    .is-pda-zh { font-size: 12px; }
+    .is-pda-count b { font-size: 12px; }
+}
+
 /* ── 10. Global Network 全球物流网络 ── */
 .is-globe-scene {
     width: 100%; min-height: 340px; display: flex; flex-direction: column;
